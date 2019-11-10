@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RadoHub.WebApp", "RadoHub.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadoHub.Data.Models", "RadoHub.Data.Models\RadoHub.Data.Models.csproj", "{4502D80E-31F9-47D5-81E7-88A0BFC4B2CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadoHub.Data", "RadoHub.Data\RadoHub.Data.csproj", "{A1C17BA6-C5DB-4DC7-AB5A-D078B2DE1598}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4502D80E-31F9-47D5-81E7-88A0BFC4B2CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4502D80E-31F9-47D5-81E7-88A0BFC4B2CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4502D80E-31F9-47D5-81E7-88A0BFC4B2CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C17BA6-C5DB-4DC7-AB5A-D078B2DE1598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C17BA6-C5DB-4DC7-AB5A-D078B2DE1598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C17BA6-C5DB-4DC7-AB5A-D078B2DE1598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C17BA6-C5DB-4DC7-AB5A-D078B2DE1598}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
