@@ -12,6 +12,7 @@ using RadoHub.WebApp.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RadoHub.Data.Models;
 
 namespace RadoHub.WebApp
 {
@@ -27,11 +28,22 @@ namespace RadoHub.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<RadoHubDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddIdentity<RadoHubUser, IdentityRole>(options =>
+              {
+                  options.Password.RequireDigit = false;
+                  options.Password.RequiredUniqueChars = 0;
+                  options.Password.RequireLowercase = false;
+                  options.Password.RequireNonAlphanumeric = false;
+                  options.Password.RequireUppercase = false;
+              })
+                .AddEntityFrameworkStores<RadoHubDbContext>()
+            .AddDefaultTokenProviders()
+            .AddDefaultUI();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
