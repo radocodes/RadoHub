@@ -4,4 +4,6 @@ This is my personal web site (hub, portal). It is about me (biography), portfoli
 - **Website is under construction**
 
 ### Technical Specifications:
-ASP .NET Core MVC 3.0
+- ASP .NET Core MVC 3.0 
+- MS SQL Server 
+- Entity Framework Core
