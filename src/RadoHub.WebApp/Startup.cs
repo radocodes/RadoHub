@@ -44,7 +44,9 @@ namespace RadoHub.WebApp
             .AddDefaultTokenProviders()
             .AddDefaultUI();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
+
             services.AddRazorPages();
         }
 
