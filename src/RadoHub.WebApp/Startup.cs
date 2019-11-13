@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RadoHub.Data.Models;
+using RadoHub.Services.Interfaces;
+using RadoHub.Services.Services;
 
 namespace RadoHub.WebApp
 {
@@ -43,6 +45,8 @@ namespace RadoHub.WebApp
                 .AddEntityFrameworkStores<RadoHubDbContext>()
             .AddDefaultTokenProviders()
             .AddDefaultUI();
+
+            services.AddScoped<IUserAccountService, UserAccountService>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();

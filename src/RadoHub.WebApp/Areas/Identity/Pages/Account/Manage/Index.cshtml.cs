@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RadoHub.Data.Models;
+using RadoHub.Services.Interfaces;
+using RadoHub.Services.Services;
 
 namespace RadoHub.WebApp.Areas.Identity.Pages.Account.Manage
 {
@@ -14,13 +16,15 @@ namespace RadoHub.WebApp.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<RadoHubUser> _userManager;
         private readonly SignInManager<RadoHubUser> _signInManager;
-
+        private readonly IUserAccountService _userAccountService; 
         public IndexModel(
             UserManager<RadoHubUser> userManager,
-            SignInManager<RadoHubUser> signInManager)
+            SignInManager<RadoHubUser> signInManager,
+            IUserAccountService userAccountService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _userAccountService = userAccountService;
         }
 
         public string Username { get; set; }
@@ -33,21 +37,41 @@ namespace RadoHub.WebApp.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Display(Name = "FistName (optional)")]
+            public string FirstName { get; set; }
+
+            [Display(Name = "LastName (optional)")]
+            public string LastName { get; set; }
+
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Phone number (optional)")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "City (optional)")]
+            public string City { get; set; }
+
+            [Display(Name = "Company (optional)")]
+            public string Company { get; set; }
         }
 
         private async Task LoadAsync(RadoHubUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
+            var city = user.City;
+            var company = user.Company;
 
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                FirstName = firstName,
+                LastName = lastName,
+                PhoneNumber = phoneNumber,
+                City = city,
+                Company = company,
             };
         }
 
@@ -78,6 +102,7 @@ namespace RadoHub.WebApp.Areas.Identity.Pages.Account.Manage
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
@@ -86,6 +111,34 @@ namespace RadoHub.WebApp.Areas.Identity.Pages.Account.Manage
                     var userId = await _userManager.GetUserIdAsync(user);
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
+            }
+
+            var firstName = _userAccountService.GetFirstName(user.Id);
+
+            if (Input.FirstName != firstName)
+            {
+                _userAccountService.SetFirstName(user.Id, Input.FirstName);
+            }
+
+            var lastName = _userAccountService.GetLastName(user.Id);
+
+            if (Input.LastName != lastName)
+            {
+                _userAccountService.SetLastName(user.Id, Input.LastName);
+            }
+
+            var city = _userAccountService.GetUserCity(user.Id);
+
+            if (Input.City != city)
+            {
+                _userAccountService.SetUserCity(user.Id, Input.City);
+            }
+
+            var company = _userAccountService.GetUserCompany(user.Id);
+
+            if (Input.Company != company)
+            {
+                _userAccountService.SetUserCompany(user.Id, Input.Company);
             }
 
             await _signInManager.RefreshSignInAsync(user);

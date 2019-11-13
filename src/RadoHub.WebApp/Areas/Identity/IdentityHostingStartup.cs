@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RadoHub.Data.Models;
+using RadoHub.Services.Interfaces;
+using RadoHub.Services.Services;
 using RadoHub.WebApp.Data;
 
 [assembly: HostingStartup(typeof(RadoHub.WebApp.Areas.Identity.IdentityHostingStartup))]

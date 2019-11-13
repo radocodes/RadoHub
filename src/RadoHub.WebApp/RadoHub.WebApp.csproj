@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RadoHub.Data.Models\RadoHub.Data.Models.csproj" />
     <ProjectReference Include="..\RadoHub.Data\RadoHub.Data.csproj" />
+    <ProjectReference Include="..\RadoHub.Services\RadoHub.Services.csproj" />
   </ItemGroup>
 
 </Project>

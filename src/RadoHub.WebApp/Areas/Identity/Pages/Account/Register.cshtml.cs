@@ -47,9 +47,29 @@ namespace RadoHub.WebApp.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "UserName")]
+            public string UserName { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [Display(Name = "FistName (optional)")]
+            public string FirstName { get; set; }
+
+            [Display(Name = "LastName (optional)")]
+            public string LastName { get; set; }
+
+            [Phone]
+            [Display(Name = "PhoneNumber (optional)")]
+            public string PhoneNumber { get; set; }
+
+            [Display(Name = "City (optional)")]
+            public string City { get; set; }
+
+            [Display(Name = "Company (optional)")]
+            public string Company { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -75,7 +95,16 @@ namespace RadoHub.WebApp.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new RadoHubUser { UserName = Input.Email, Email = Input.Email };
+                var user = new RadoHubUser
+                {
+                    UserName = Input.UserName,
+                    Email = Input.Email,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    City = Input.City,
+                    PhoneNumber = Input.PhoneNumber,
+                    Company = Input.Company,
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
