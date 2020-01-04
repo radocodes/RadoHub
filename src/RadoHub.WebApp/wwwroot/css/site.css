@@ -1,6 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -101,6 +102,50 @@ body {
             width: 50%;
         }
 
+.index {
+    background-color: whitesmoke;
+}
+
+    .index .header {
+        background-color: darkkhaki; /*darkslateblue*/
+        color: #333;
+        padding: 25px;
+        /*margin-top: 25px;*/
+        margin-bottom: 50px;
+        /*border-radius: 75px;*/
+    }
+
+    .index .about-row {
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    .index .about-me-btn {
+        background-color: forestgreen;
+        color: #333;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 25px;
+        border-radius: 75px;
+    }
+
+    .index .about-me-btn:hover {
+        color: whitesmoke;
+        box-shadow: 5px 5px 10px 5px grey
+    }
+
+    .index .about-row a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .index .feeds {
+        margin-top: 50px;
+        margin-bottom: 25px;
+        background-color: white;
+    }
+
 .about-me {
 }
 
@@ -117,27 +162,26 @@ body {
     .about-me .technologies {
         padding: 25px;
         background-color: darkslateblue;
-        color:white;
+        color: white;
     }
 
-    .about-me .technologies .list {
-        font-weight: bold;
-
-    }
+        .about-me .technologies .list {
+            font-weight: bold;
+        }
 
     .about-me .projects {
         padding: 25px;
     }
 
-    .about-me .projects .img-container {
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+        .about-me .projects .img-container {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .about-me .projects .project-img {
-        max-width: 100%;
-    }
+        .about-me .projects .project-img {
+            max-width: 100%;
+        }
 
     .about-me .education {
         background-color: whitesmoke;
@@ -147,13 +191,13 @@ body {
         background-color: whitesmoke;
     }
 
-    .about-me .certificates .header {
-        text-decoration: underline;
-    }
+        .about-me .certificates .header {
+            text-decoration: underline;
+        }
 
-    .about-me .certificates .container{
-        background-color: lightgrey;
-    }
+        .about-me .certificates .container {
+            background-color: lightgrey;
+        }
 
     .about-me .table {
         width: 50%;

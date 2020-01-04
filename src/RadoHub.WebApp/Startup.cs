@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using RadoHub.Data.Models;
 using RadoHub.Services.Interfaces;
 using RadoHub.Services.Services;
+using RadoHub.WebApp.Middlewares;
 
 namespace RadoHub.WebApp
 {
@@ -75,6 +76,9 @@ namespace RadoHub.WebApp
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            //auto seeds userRoles and default Admin user at application startup
+            app.UseSeedDataMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
