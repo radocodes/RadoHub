@@ -61,6 +61,25 @@ html {
     min-height: 100%;
 }
 
+.layout-administration {
+}
+
+    .layout-administration .sub-nav {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        background-color: lightgrey;
+    }
+
+        .layout-administration .sub-nav .nav {
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+
+        .layout-administration .sub-nav .nav-link {
+            color: #333;
+            font-weight: bold;
+        }
+
 body {
     /* Margin bottom by footer height */
     margin-bottom: 240px /*60px*/;
@@ -183,9 +202,9 @@ body {
             margin-right: auto;
         }
 
-        .about-me .projects .img-container :hover {
-            opacity: 0.8;
-        }
+            .about-me .projects .img-container :hover {
+                opacity: 0.8;
+            }
 
         .about-me .projects .project-img {
             max-width: 100%;
