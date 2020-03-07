@@ -130,10 +130,10 @@ body {
         border-radius: 75px;
     }
 
-    .index .about-me-btn:hover {
-        color: whitesmoke;
-        box-shadow: 5px 5px 10px 5px grey
-    }
+        .index .about-me-btn:hover {
+            color: whitesmoke;
+            box-shadow: 5px 5px 10px 5px grey
+        }
 
     .index .about-row a {
         color: white;
@@ -148,6 +148,10 @@ body {
 
 .about-me {
 }
+
+    .about-me .title {
+        margin-top: 25px;
+    }
 
     .about-me .header {
         margin-top: 25px;
