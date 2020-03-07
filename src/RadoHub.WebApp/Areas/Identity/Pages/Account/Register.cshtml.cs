@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using RadoHub.Data.Models;
+using RadoHub.Services.Constants;
 
 namespace RadoHub.WebApp.Areas.Identity.Pages.Account
 {
@@ -114,6 +115,18 @@ namespace RadoHub.WebApp.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    var addUserToRole = await _userManager
+                        .AddToRoleAsync(user, GlobalConstants.DefaultUserRole);
+
+                    if (addUserToRole.Succeeded)
+                    {
+                        _logger.LogInformation("User added to default user role.");
+                    }
+                    else
+                    {
+                        _logger.LogInformation("User adding to default user role failed.");
+                    }
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
