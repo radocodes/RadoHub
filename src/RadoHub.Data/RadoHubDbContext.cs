@@ -13,5 +13,7 @@ namespace RadoHub.WebApp.Data
             : base(options)
         {
         }
+
+        public DbSet<CookingRecipe> CookingRecipes { get; set; }
     }
 }
