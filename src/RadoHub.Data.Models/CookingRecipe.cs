@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace RadoHub.Data.Models
@@ -20,6 +21,7 @@ namespace RadoHub.Data.Models
 
         public TimeSpan ExecutingTime { get; set; }
 
+        [NotMapped]
         public ICollection<string> Products{ get; set; }
 
         public string Content { get; set; }
@@ -30,12 +32,15 @@ namespace RadoHub.Data.Models
 
         public string CreatorId { get; set; }
 
+        [NotMapped]
         public Queue<string> EditorsUsernames { get; set; }
 
         public string CoverImageFileName { get; set; }
 
+        [NotMapped]
         public ICollection<string> ImagesFileNames { get; set; }
 
+        [NotMapped]
         public ICollection<string> Hashtags { get; set; }
 
     }
