@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RadoHub.WebApp.Areas.LifeStyle.Controllers.Cooking
 {
-    public class CookingController : Controller
+    public class CookingController : LifeStyleControllerBase
     {
         public IActionResult Index()
         {
