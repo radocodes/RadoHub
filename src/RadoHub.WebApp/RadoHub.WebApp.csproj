@@ -33,6 +33,7 @@
 
 
   <ItemGroup>
+    <Folder Include="Areas\LifeStyle\Controllers\" />
     <Folder Include="Areas\LifeStyle\views\" />
   </ItemGroup>
 
