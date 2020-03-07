@@ -183,6 +183,10 @@ body {
             margin-right: auto;
         }
 
+        .about-me .projects .img-container :hover {
+            opacity: 0.8;
+        }
+
         .about-me .projects .project-img {
             max-width: 100%;
         }
