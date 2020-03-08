@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
 using RadoHub.Data.Models;
-using RadoHub.Services.Interfaces;
+using RadoHub.Services.Contracts;
 using RadoHub.WebApp.Data;
 using System;
 using System.Collections.Generic;

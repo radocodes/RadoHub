@@ -13,7 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RadoHub.Data.Models;
-using RadoHub.Services.Interfaces;
+using RadoHub.Services.Contracts;
 using RadoHub.Services.Services;
 using RadoHub.WebApp.Middlewares;
 

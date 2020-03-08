@@ -2,7 +2,7 @@
 using RadoHub.Data.Models;
 using System.Threading.Tasks;
 
-namespace RadoHub.Services.Interfaces
+namespace RadoHub.Services.Contracts
 {
     public interface IUserAccountService
     {

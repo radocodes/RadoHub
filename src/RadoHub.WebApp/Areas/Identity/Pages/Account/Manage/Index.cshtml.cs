@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RadoHub.Data.Models;
-using RadoHub.Services.Interfaces;
+using RadoHub.Services.Contracts;
 using RadoHub.Services.Services;
 
 namespace RadoHub.WebApp.Areas.Identity.Pages.Account.Manage
