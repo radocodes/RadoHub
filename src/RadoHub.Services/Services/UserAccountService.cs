@@ -23,6 +23,16 @@ namespace RadoHub.Services.Services
             this.UserManager = userManager;
         }
 
+
+        public RadoHubUser GetUserById(string userId)
+        {
+            var user = this.UserManager
+                .FindByIdAsync(userId)
+                .GetAwaiter().GetResult();
+
+            return user;
+        }
+
         public string GetFirstName(string userId)
         {
             var firstName = this.UserManager
