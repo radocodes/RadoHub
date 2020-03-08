@@ -6,6 +6,8 @@ namespace RadoHub.Services.Contracts
 {
     public interface IUserAccountService
     {
+        RadoHubUser GetUserById(string userId);
+
         string GetFirstName(string userId);
         
         string GetLastName(string userId);
