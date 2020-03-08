@@ -3,21 +3,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RadoHub.Data.Repositories.Contracts
 {
     public interface ICookingRecipeRepository
     {
-        ICollection<CookingRecipe> GetAllCookingRecipes();
+        IEnumerable<CookingRecipe> GetAllCookingRecipes();
 
-        ICollection<CookingRecipe> GetCookingRecipesByHashTags();
+        IEnumerable<CookingRecipe> GetCookingRecipesByHashtag(string hashtag);
 
-        CookingRecipe GetCookingRecipeById(int CookingRecipeId);
+        CookingRecipe GetCookingRecipeById(int cookingRecipeId);
 
-        CookingRecipe CreateCookingRecipe(CookingRecipe cookingRecipe);
+        Task CreateCookingRecipeAsync(CookingRecipe cookingRecipe);
 
-        void UpdateCookingRecipe(CookingRecipe UpdatingModel);
+        Task UpdateCookingRecipeAsync(CookingRecipe updatingModel);
 
-        void Delete(CookingRecipe cookingRecipe);
+        Task DeleteAsync(CookingRecipe cookingRecipe);
     }
 }
