@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RadoHub.Data.Models\RadoHub.Data.Models.csproj" />
     <ProjectReference Include="..\RadoHub.Data\RadoHub.Data.csproj" />
+    <ProjectReference Include="..\RadoHub.ViewModels\RadoHub.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
