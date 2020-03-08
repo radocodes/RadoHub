@@ -16,10 +16,13 @@ namespace RadoHub.Data.Repositories.Implementation
             this.DbContext = dbContext;
         }
 
-        public async Task CreateCookingRecipeAsync(CookingRecipe cookingRecipe)
+        public async Task<int> CreateCookingRecipeAsync(CookingRecipe cookingRecipe)
         {
             await this.DbContext.CookingRecipes.AddAsync(cookingRecipe);
             await this.DbContext.SaveChangesAsync();
+
+            //possible incorect id
+            return cookingRecipe.Id;
         }
 
         public async Task DeleteAsync(CookingRecipe cookingRecipe)
