@@ -9,7 +9,7 @@ namespace RadoHub.Data.Repositories.Implementation
 {
     public class CookingRecipeRepository : ICookingRecipeRepository
     {
-        private RadoHubDbContext DbContext;
+        private readonly RadoHubDbContext DbContext;
 
         public CookingRecipeRepository(RadoHubDbContext dbContext)
         {

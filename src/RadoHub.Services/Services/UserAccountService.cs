@@ -14,8 +14,8 @@ namespace RadoHub.Services.Services
 {
     public class UserAccountService : IUserAccountService
     {
-        private RadoHubDbContext DbContext;
-        private UserManager<RadoHubUser> UserManager;
+        private readonly RadoHubDbContext DbContext;
+        private readonly UserManager<RadoHubUser> UserManager;
 
         public UserAccountService(RadoHubDbContext dbContext, UserManager<RadoHubUser> userManager)
         {
