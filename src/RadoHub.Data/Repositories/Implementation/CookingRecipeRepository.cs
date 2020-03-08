@@ -1,10 +1,8 @@
 ﻿using RadoHub.Data.Models;
 using RadoHub.Data.Repositories.Contracts;
 using RadoHub.WebApp.Data;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RadoHub.Data.Repositories.Implementation
@@ -12,6 +10,7 @@ namespace RadoHub.Data.Repositories.Implementation
     public class CookingRecipeRepository : ICookingRecipeRepository
     {
         private RadoHubDbContext DbContext;
+
         public CookingRecipeRepository(RadoHubDbContext dbContext)
         {
             this.DbContext = dbContext;
