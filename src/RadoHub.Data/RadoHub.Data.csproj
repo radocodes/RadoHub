@@ -18,8 +18,4 @@
     <ProjectReference Include="..\RadoHub.Data.Models\RadoHub.Data.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\Implementation\" />
-  </ItemGroup>
-
 </Project>
