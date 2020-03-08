@@ -16,6 +16,8 @@ using RadoHub.Data.Models;
 using RadoHub.Services.Contracts;
 using RadoHub.Services.Services;
 using RadoHub.WebApp.Middlewares;
+using RadoHub.Data.Repositories.Contracts;
+using RadoHub.Data.Repositories.Implementation;
 
 namespace RadoHub.WebApp
 {
@@ -47,6 +49,10 @@ namespace RadoHub.WebApp
             .AddDefaultTokenProviders()
             .AddDefaultUI();
 
+            // Data repositories
+            services.AddScoped<ICookingRecipeRepository, CookingRecipeRepository>();
+
+            // Application service
             services.AddScoped<IUserAccountService, UserAccountService>();
 
             services.AddControllersWithViews()
