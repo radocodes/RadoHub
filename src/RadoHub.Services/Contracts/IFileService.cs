@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace RadoHub.Services.Contracts
 {
-    interface IFileService
+    public interface IFileService
     {
         Task SaveImageFile(string fullPath, IFormFile imageFile);
+
+        public void DeleteImageFile(string fullPath);
     }
 }

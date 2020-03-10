@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using RadoHub.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RadoHub.Services.Services
 {
-    public class FileService
+    public class FileService : IFileService
     {
         public async Task SaveImageFile(string fullPath, IFormFile imageFile)
         {
@@ -15,6 +16,19 @@ namespace RadoHub.Services.Services
             {
                 await imageFile.CopyToAsync(stream);
             };
+        }
+
+        public void DeleteImageFile(string fullPath)
+        {
+            if (File.Exists(fullPath))
+            {
+                File.Delete(fullPath);
+            }
+            else
+            {
+                var exeptionMessage = "Operation Failed! The file you tried to delete is not found";
+                throw new FileNotFoundException(exeptionMessage, fullPath);
+            }
         }
     }
 }
