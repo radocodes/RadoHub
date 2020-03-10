@@ -54,6 +54,7 @@ namespace RadoHub.WebApp
 
             // Application service
             services.AddScoped<IUserAccountService, UserAccountService>();
+            services.AddScoped<IFileService, FileService>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
