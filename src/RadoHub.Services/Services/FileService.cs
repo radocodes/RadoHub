@@ -10,6 +10,19 @@ namespace RadoHub.Services.Services
 {
     public class FileService : IFileService
     {
+        public void CreateDirectory(string fullPath)
+        {
+            if (!Directory.Exists(fullPath))
+            {
+                Directory.CreateDirectory(fullPath);
+            }
+            else
+            {
+                var exeptionMessage = "Operation Failed! Directory you tried to create already exist";
+                throw new Exception(exeptionMessage);
+            }
+        }
+
         public async Task SaveImageFile(string fullPath, IFormFile imageFile)
         {
             using (var stream = new FileStream(fullPath, FileMode.Create))
