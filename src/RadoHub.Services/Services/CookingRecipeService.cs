@@ -95,7 +95,7 @@ namespace RadoHub.Services.Services
 
         public List<CookingRecipe> GetAllCookingRecipes()
         {
-            throw new NotImplementedException();
+            return this.cookingRecipeRepo.GetAllCookingRecipes().ToList();
         }
 
         public CookingRecipe GetCookingRecipeById(int cookingRecipeId)
