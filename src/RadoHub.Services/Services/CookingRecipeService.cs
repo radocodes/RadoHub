@@ -2,7 +2,7 @@
 using RadoHub.Data.Repositories.Contracts;
 using RadoHub.Services.Constants;
 using RadoHub.Services.Contracts;
-using RadoHub.ViewModels.CookingRecipe;
+using RadoHub.ViewModels.CookingRecipes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

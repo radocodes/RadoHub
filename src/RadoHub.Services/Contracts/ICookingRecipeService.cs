@@ -1,5 +1,5 @@
 ﻿using RadoHub.Data.Models;
-using RadoHub.ViewModels.CookingRecipe;
+using RadoHub.ViewModels.CookingRecipes;
 using System;
 using System.Collections.Generic;
 using System.Text;

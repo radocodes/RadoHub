@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace RadoHub.ViewModels.CookingRecipe
+namespace RadoHub.ViewModels.CookingRecipes
 {
     public class CreateRecipeViewModel
     {
