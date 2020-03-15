@@ -27,7 +27,7 @@ namespace RadoHub.Services.Services
             this.fileService = fileService;
         }
 
-        public void CreateCookingRecipe(CreateCookingRecipeViewModel model)
+        public void CreateCookingRecipe(CreateRecipeViewModel model)
         {
 
             var cookingRecipe = new CookingRecipe()
