@@ -32,4 +32,10 @@
     </Content>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\production\cookingRecipes\" />
+    <Folder Include="wwwroot\images\stage\cookingRecipes\" />
+  </ItemGroup>
+
 </Project>
