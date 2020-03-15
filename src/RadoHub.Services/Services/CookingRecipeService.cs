@@ -78,9 +78,19 @@ namespace RadoHub.Services.Services
             }
         }
 
-        public Task DeleteAsync(int cookingRecipeId)
+        public async Task DeleteAsync(int cookingRecipeId)
         {
-            throw new NotImplementedException();
+            var cookingRecipe = this.cookingRecipeRepo.GetCookingRecipeById(cookingRecipeId);
+
+            await this.cookingRecipeRepo.DeleteAsync(cookingRecipe);
+
+            var sb = new StringBuilder();
+            sb.Append(CookingRecipeConstants.StageImageFolderPath);
+            sb.Append(CookingRecipeConstants.CookingRecipesImageFolderName);
+            sb.Append(cookingRecipeId);
+
+            var currRecipeimagePath = sb.ToString();
+            this.fileService.DeleteDirectory(currRecipeimagePath);
         }
 
         public List<CookingRecipe> GetAllCookingRecipes()
