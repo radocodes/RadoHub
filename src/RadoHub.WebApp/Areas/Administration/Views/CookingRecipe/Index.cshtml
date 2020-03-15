@@ -1,4 +1,4 @@
-﻿
+﻿@model RadoHub.ViewModels.CookingRecipes.AdminGetAllRecipesViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,6 +8,13 @@
             <div class="title">
                 <h1 class="text-center">Manage Cooking Recipes</h1>
             </div>
+
+            @if (ViewData["statusMessage"] != null)
+            {
+                <div class="status-message">
+                    <h3>@ViewData["statusMessage"].ToString()</h3>
+                </div>
+            }
         </header>
 
         <section class="main-buttons container">
@@ -22,62 +29,23 @@
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">ID#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>twitter</td>
-                    </tr>
-                </tbody>
-            </table>
+                    @foreach (var Recipe in Model.AllCookingRecipes)
+                    {
+                        <tr>
+                            <th scope="row">@Recipe.Id</th>
+                            <td>@Recipe.Title</td>
+                            <td>
+                                <a class="btn btn-primary" href="#">Edit</a>
+                            </td>
+                        </tr>
+                    }
 
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>twitter</td>
-                    </tr>
                 </tbody>
             </table>
         </section>
