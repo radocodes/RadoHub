@@ -23,7 +23,7 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
 
             viewModel.AllCookingRecipes = this.cookingRecipeService.GetAllCookingRecipes();
 
-            return View(viewModel);
+            return this.View(viewModel);
         }
 
         [HttpPost]
@@ -41,8 +41,33 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
                 TempData["statusMessage"] = $"Action Failed! | {exeption.Message}";
                 return RedirectToAction("Index", "CookingRecipe");
             }
-            
+        }
 
+        public IActionResult CreateCookingRecipe()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateCookingRecipe(CreateRecipeViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            try
+            {
+                this.cookingRecipeService.CreateCookingRecipe(model);
+
+                TempData["statusMessage"] = "Cooking recipe was created successfully!";
+                return RedirectToAction("Index", "CookingRecipe");
+            }
+            catch (System.Exception exeption)
+            {
+                TempData["statusMessage"] = $"Action Failed! | {exeption.Message}";
+                return RedirectToAction("Index", "CookingRecipe");
+            }
         }
     }
 }
