@@ -100,7 +100,7 @@ namespace RadoHub.Services.Services
 
         public CookingRecipe GetCookingRecipeById(int cookingRecipeId)
         {
-            throw new NotImplementedException();
+            return this.cookingRecipeRepo.GetCookingRecipeById(cookingRecipeId);
         }
 
         public List<CookingRecipe> GetCookingRecipesByKeyWords(string userSearching)
