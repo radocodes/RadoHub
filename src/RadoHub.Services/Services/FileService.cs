@@ -23,6 +23,19 @@ namespace RadoHub.Services.Services
             }
         }
 
+        public void DeleteDirectory(string fullPath)
+        {
+            if (Directory.Exists(fullPath))
+            {
+                Directory.Delete(fullPath, true);
+            }
+            else
+            {
+                var exeptionMessage = "Operation Failed! Directory you tried to delete is not found";
+                throw new DirectoryNotFoundException(exeptionMessage);
+            }
+        }
+
         public async Task SaveImageFile(string fullPath, IFormFile imageFile)
         {
             using (var stream = new FileStream(fullPath, FileMode.Create))
