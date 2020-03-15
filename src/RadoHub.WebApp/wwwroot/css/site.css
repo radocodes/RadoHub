@@ -64,6 +64,11 @@ html {
 .layout-administration {
 }
 
+    .layout-administration .title {
+        margin-top:0;
+        margin-bottom:0;
+    }
+
     .layout-administration .sub-nav {
         margin-top: 25px;
         margin-bottom: 25px;
@@ -121,113 +126,133 @@ body {
             width: 50%;
         }
 
-.index {
-    background-color: whitesmoke;
+.home {
 }
 
-    .index .header {
-        background-color: darkkhaki; /*darkslateblue*/
-        color: #333;
-        padding: 25px;
-        /*margin-top: 25px;*/
-        margin-bottom: 50px;
-        /*border-radius: 75px;*/
+    .home .index {
+        background-color: whitesmoke;
     }
 
-    .index .about-row {
-        margin-top: 25px;
-        margin-bottom: 25px;
-    }
-
-    .index .about-me-btn {
-        background-color: forestgreen;
-        color: #333;
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 25px;
-        border-radius: 75px;
-    }
-
-        .index .about-me-btn:hover {
-            color: whitesmoke;
-            box-shadow: 5px 5px 10px 5px grey
+        .home .index .header {
+            background-color: darkkhaki; /*darkslateblue*/
+            color: #333;
+            padding: 25px;
+            /*margin-top: 25px;*/
+            margin-bottom: 50px;
+            /*border-radius: 75px;*/
         }
 
-    .index .about-row a {
-        color: white;
-        text-decoration: none;
+        .home .index .about-row {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        .home .index .about-me-btn {
+            background-color: forestgreen;
+            color: #333;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 25px;
+            border-radius: 75px;
+        }
+
+            .home .index .about-me-btn:hover {
+                color: whitesmoke;
+                box-shadow: 5px 5px 10px 5px grey
+            }
+
+        .home .index .about-row a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .home .index .feeds {
+            margin-top: 50px;
+            margin-bottom: 25px;
+            background-color: white;
+        }
+
+    .home .about-me {
     }
 
-    .index .feeds {
-        margin-top: 50px;
-        margin-bottom: 25px;
-        background-color: white;
-    }
+        .home .about-me .title {
+            margin-top: 25px;
+        }
 
-.about-me {
-}
-
-    .about-me .title {
-        margin-top: 25px;
-    }
-
-    .about-me .header {
-        margin-top: 25px;
-        padding: 50px;
-        font-weight: bold;
-    }
-
-    .about-me .summary {
-        padding: 25px;
-    }
-
-    .about-me .technologies {
-        padding: 25px;
-        background-color: darkslateblue;
-        color: white;
-    }
-
-        .about-me .technologies .list {
+        .home .about-me .header {
+            margin-top: 25px;
+            padding: 50px;
             font-weight: bold;
         }
 
-    .about-me .projects {
-        padding: 25px;
-    }
+        .home .about-me .summary {
+            padding: 25px;
+        }
 
-        .about-me .projects .img-container {
+        .home .about-me .technologies {
+            padding: 25px;
+            background-color: darkslateblue;
+            color: white;
+        }
+
+            .home .about-me .technologies .list {
+                font-weight: bold;
+            }
+
+        .home .about-me .projects {
+            padding: 25px;
+        }
+
+            .home .about-me .projects .img-container {
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+                .home .about-me .projects .img-container :hover {
+                    opacity: 0.8;
+                }
+
+            .home .about-me .projects .project-img {
+                max-width: 100%;
+            }
+
+        .home .about-me .education {
+            background-color: whitesmoke;
+        }
+
+        .home .about-me .certificates {
+            background-color: whitesmoke;
+        }
+
+            .home .about-me .certificates .header {
+                text-decoration: underline;
+            }
+
+            .home .about-me .certificates .container {
+                background-color: lightgrey;
+            }
+
+        .home .about-me .table {
             width: 50%;
             margin-left: auto;
             margin-right: auto;
         }
 
-            .about-me .projects .img-container :hover {
-                opacity: 0.8;
-            }
+.admin-cooking-recipe {
+}
 
-        .about-me .projects .project-img {
-            max-width: 100%;
-        }
-
-    .about-me .education {
-        background-color: whitesmoke;
+    .admin-cooking-recipe .index {
     }
 
-    .about-me .certificates {
-        background-color: whitesmoke;
-    }
-
-        .about-me .certificates .header {
-            text-decoration: underline;
+        .admin-cooking-recipe .index header {
+            margin: 25px;
         }
 
-        .about-me .certificates .container {
-            background-color: lightgrey;
+        .admin-cooking-recipe .index .main-buttons {
+            color: white;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 25px;
         }
-
-    .about-me .table {
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-    }
