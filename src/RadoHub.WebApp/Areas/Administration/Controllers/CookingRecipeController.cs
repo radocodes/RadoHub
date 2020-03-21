@@ -65,8 +65,13 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
             }
             catch (System.Exception exeption)
             {
-                TempData["statusMessage"] = $"Action Failed! | {exeption.Message}";
-                return RedirectToAction("Index", "CookingRecipe");
+                ModelState.AddModelError("Action Failed!", exeption.Message);
+
+                return this.View(model);
+
+                //another approach
+                //TempData["statusMessage"] = $"Action Failed! | {exeption.Message}";
+                //return RedirectToAction("Index", "CookingRecipe");
             }
         }
     }
