@@ -1,7 +1,53 @@
-﻿
+﻿@model RadoHub.ViewModels.CookingRecipes.CookingRecipesViewModel
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Cooking Index</h1>
+<div class="lifestyle-cooking">
+    <div class="index">
+        <header class="title">
+            <h1 class="text-center">Cooking Recipes</h1>
+        </header>
+
+        <section class="all-recipes container">
+            @foreach (var recipe in Model.Recipes)
+            {
+                <div class="row">
+                    <aside class="col-sm-5">
+                        @if (recipe.CoverImageFileName != null)
+                        {
+                            <img src="~/images/stage/cookingRecipes/@recipe.Id/coverImage/@recipe.CoverImageFileName" class="cover-image">
+                        }
+                    </aside>
+
+                    <section class="col-sm-7">
+                        <article class="article">
+                            <div>
+                                <h2 style="word-wrap: break-word">@recipe.Title</h2>
+                            </div>
+                            <div>
+                                <p class="blog-index-info-icons"><i class="far fa-calendar-alt"></i> @recipe.CreationDate.ToShortDateString()</p>
+                            </div>
+                            <div class="text-body">
+                                @if (recipe.ShortDescription.Length < 400)
+                                {
+
+                                    @recipe.ShortDescription
+                                }
+                                else
+                                {
+                                    @recipe.ShortDescription.Substring(0, 400)
+                                }
+                                ...
+                            </div>
+                            <a class="btn btn-default" asp-area="" asp-controller="Blog" asp-action="ArticleDetails" asp-route-id="@recipe.Id">READ MORE</a>
+                        </article>
+
+                    </section>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+
 
