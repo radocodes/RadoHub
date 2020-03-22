@@ -27,9 +27,8 @@ namespace RadoHub.Services.Services
             this.fileService = fileService;
         }
 
-        public void CreateCookingRecipe(CreateRecipeViewModel model)
+        public void CreateCookingRecipe(string creatorId, CreateRecipeViewModel model)
         {
-
             var cookingRecipe = new CookingRecipe()
             {
                 Title = model.Title,
@@ -38,7 +37,7 @@ namespace RadoHub.Services.Services
                 Content = model.Content,
                 CreationDate = DateTime.UtcNow,
                 LastModifiedAt = DateTime.UtcNow,
-                CreatorId = model.CreatorId,
+                CreatorId = creatorId,
             };
 
             if (model.Products != null)

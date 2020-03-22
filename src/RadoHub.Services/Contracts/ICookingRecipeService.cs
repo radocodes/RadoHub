@@ -15,7 +15,7 @@ namespace RadoHub.Services.Contracts
 
         CookingRecipe GetCookingRecipeById(int cookingRecipeId);
 
-        void CreateCookingRecipe(CreateRecipeViewModel model);
+        void CreateCookingRecipe(string creatorId, CreateRecipeViewModel model);
 
         Task UpdateCookingRecipeAsync(CookingRecipe updatingModel);
 

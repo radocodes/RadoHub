@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using RadoHub.Data.Models;
 using RadoHub.Services.Contracts;
 using RadoHub.ViewModels.CookingRecipes;
 
@@ -7,9 +9,12 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
     public class CookingRecipeController : AdministrationControllerBase
     {
         private readonly ICookingRecipeService cookingRecipeService;
-        public CookingRecipeController(ICookingRecipeService cookingRecipeService)
+        private readonly UserManager<RadoHubUser> userManager;
+
+        public CookingRecipeController(ICookingRecipeService cookingRecipeService, UserManager<RadoHubUser> userManager)
         {
             this.cookingRecipeService = cookingRecipeService;
+            this.userManager = userManager;
         }
 
         public IActionResult Index()
@@ -58,7 +63,12 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
 
             try
             {
-                this.cookingRecipeService.CreateCookingRecipe(model);
+                var creatorId = this.userManager
+                    .GetUserAsync(HttpContext.User)
+                    .GetAwaiter().GetResult()
+                    .Id;
+
+                this.cookingRecipeService.CreateCookingRecipe(creatorId, model);
 
                 TempData["statusMessage"] = "Cooking recipe was created successfully!";
                 return RedirectToAction("Index", "CookingRecipe");
