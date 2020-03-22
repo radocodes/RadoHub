@@ -20,7 +20,7 @@ namespace RadoHub.ViewModels.CookingRecipes
 
         [Display(Name = "Products")]
         [Required]
-        public IEnumerable<string> Products { get; set; }
+        public string Products { get; set; }
 
         [Display(Name = "Content")]
         [Required]
@@ -35,6 +35,6 @@ namespace RadoHub.ViewModels.CookingRecipes
         public IEnumerable<IFormFile> Images { get; set; }
 
         [Display(Name = "Hashtags")]
-        public IEnumerable<string> Hashtags { get; set; }
+        public string Hashtags { get; set; }
     }
 }
