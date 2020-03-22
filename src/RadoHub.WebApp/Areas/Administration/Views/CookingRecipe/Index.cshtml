@@ -20,7 +20,7 @@
         <section class="main-buttons container">
             <div>
                 <div class="main-btn">
-                    <a class="btn btn-success">Create new Recipe</a>
+                    <a class="btn btn-success" asp-controller="CookingRecipe" asp-action="CreateCookingRecipe">Create new Recipe</a>
                 </div>
             </div>
         </section>
@@ -42,7 +42,10 @@
                             <td>@Recipe.Title</td>
                             <td>
                                 <a class="btn btn-primary" href="#">Edit</a>
-                            </td>
+                                <form method="post">
+                                    <button class="btn btn-primary" asp-controller="CookingRecipe" asp-action="DeleteCookingRecipe" asp-route-id="@Recipe.Id">Delete</button>
+                                </form>
+                            </td>/
                         </tr>
                     }
 
