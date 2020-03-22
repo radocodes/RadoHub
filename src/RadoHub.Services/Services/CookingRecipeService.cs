@@ -35,13 +35,21 @@ namespace RadoHub.Services.Services
                 Title = model.Title,
                 ShortDescription = model.ShortDescription,
                 ExecutingTime = model.ExecutingTime,
-                Products = model.Products.ToHashSet(),
                 Content = model.Content,
                 CreationDate = DateTime.UtcNow,
                 LastModifiedAt = DateTime.UtcNow,
                 CreatorId = model.CreatorId,
-                Hashtags = model.Hashtags.ToHashSet()
             };
+
+            if (model.Products != null)
+            {
+                cookingRecipe.Products = model.Products.Split((new[] { ',' }), StringSplitOptions.RemoveEmptyEntries).ToHashSet();
+            }
+
+            if (model.Hashtags != null)
+            {
+                cookingRecipe.Hashtags = model.Hashtags.Split((new[] { ',' }), StringSplitOptions.RemoveEmptyEntries).ToHashSet();
+            }
 
             var newCookingRecipeId = this.cookingRecipeRepo
                 .CreateCookingRecipeAsync(cookingRecipe)
