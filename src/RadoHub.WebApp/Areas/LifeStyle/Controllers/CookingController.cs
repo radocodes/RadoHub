@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RadoHub.Services.Contracts;
+using RadoHub.ViewModels.CookingRecipes;
 
 namespace RadoHub.WebApp.Areas.LifeStyle.Controllers.Cooking
 {
     public class CookingController : LifeStyleControllerBase
     {
+        private readonly ICookingRecipeService cookingRecipeService;
+
+        public CookingController(ICookingRecipeService cookingRecipeService)
+        {
+            this.cookingRecipeService = cookingRecipeService;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var model = new CookingRecipesViewModel();
+
+            model.Recipes = this.cookingRecipeService.GetAllRecipesAsPublic();
+
+            return View(model);
         }
     }
 }
