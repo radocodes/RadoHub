@@ -57,7 +57,7 @@ namespace RadoHub.Services.Services
             var sb = new StringBuilder();
             sb.Append(CookingRecipeConstants.StageImageFolderPath);
             sb.Append(CookingRecipeConstants.CookingRecipesImageFolderName);
-            sb.Append(newCookingRecipeId);
+            sb.Append(@$"{newCookingRecipeId}\");
 
             var currRecipeAllimagesPath = sb.ToString();
 
@@ -67,11 +67,16 @@ namespace RadoHub.Services.Services
 
             this.fileService.CreateDirectory(currCoverImagePath);
 
-            var coverImgFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
-
             if (model.CoverImage != null)
             {
+                var coverImgFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
+
                 this.fileService.SaveImageFile($"{currCoverImagePath}{coverImgFileName}", model.CoverImage);
+
+                var updatingModel = this.GetCookingRecipeById(newCookingRecipeId);
+                updatingModel.CoverImageFileName = coverImgFileName;
+
+                this.cookingRecipeRepo.UpdateCookingRecipeAsync(updatingModel);
             }
 
             if (model.Images != null && model.Images.Count() > 0)
@@ -103,6 +108,32 @@ namespace RadoHub.Services.Services
         public List<CookingRecipe> GetAllCookingRecipes()
         {
             return this.cookingRecipeRepo.GetAllCookingRecipes().ToList();
+        }
+
+        public List<CookingRecipeViewModel> GetAllRecipesAsPublic()
+        {
+            var allRecipes = this.GetAllCookingRecipes();
+            var publicRecipes = new List<CookingRecipeViewModel>();
+
+            foreach (var recipe in allRecipes)
+            {
+                publicRecipes.Add(new CookingRecipeViewModel()
+                {
+                    Id = recipe.Id,
+                    Title = recipe.Title,
+                    ShortDescription = recipe.ShortDescription,
+                    ExecutingTime = recipe.ExecutingTime,
+                    Products = recipe.Products,
+                    Content = recipe.Content,
+                    CreationDate = recipe.CreationDate,
+                    LastModifiedAt = recipe.LastModifiedAt,
+                    CoverImageFileName = recipe.CoverImageFileName,
+                    ImagesFileNames = recipe.ImagesFileNames,
+                    Hashtags = recipe.Hashtags
+                });
+            }
+
+            return publicRecipes;
         }
 
         public CookingRecipe GetCookingRecipeById(int cookingRecipeId)

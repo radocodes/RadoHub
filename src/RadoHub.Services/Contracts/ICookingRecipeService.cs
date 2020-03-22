@@ -11,6 +11,8 @@ namespace RadoHub.Services.Contracts
     {
         List<CookingRecipe> GetAllCookingRecipes();
 
+        List<CookingRecipeViewModel> GetAllRecipesAsPublic();
+
         List<CookingRecipe> GetCookingRecipesByKeyWords(string userSearching);
 
         CookingRecipe GetCookingRecipeById(int cookingRecipeId);
