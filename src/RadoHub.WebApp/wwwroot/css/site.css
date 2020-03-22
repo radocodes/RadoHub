@@ -258,5 +258,37 @@ body {
 
     .admin-cooking-recipe .create-recipe {
         background-color: whitesmoke;
-        padding-bottom:50px;
+        padding-bottom: 50px;
     }
+
+.lifestyle {
+}
+
+.lifestyle-cooking {
+    background-color:burlywood;
+}
+
+    .lifestyle-cooking .all-recipes {
+        background-color:whitesmoke;
+    }
+
+        .lifestyle-cooking .all-recipes .cover-image {
+            width: 300px;
+            height: 200px;
+            margin-top: 50px;
+            margin-left: 30px;
+            margin-right: 0;
+        }
+
+        .lifestyle-cooking .all-recipes .article {
+            margin-left: 0;
+            margin-right: 30px;
+            margin-top: 50px;
+        }
+
+            .lifestyle-cooking .all-recipes .article .text-body {
+                text-align: justify;
+                font-size: medium;
+                overflow: hidden;
+                text-overflow: clip;
+            }
