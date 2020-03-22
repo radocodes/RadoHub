@@ -1,7 +1,122 @@
-﻿
+﻿@model RadoHub.ViewModels.CookingRecipes.CreateRecipeViewModel
 @{
-    ViewData["Title"] = "CreateCookingRecipe";
+    ViewData["Title"] = "Create new cooking recipe";
 }
 
-<h1>CreateCookingRecipe</h1>
+<div class="admin-cooking-recipe">
+    <div class="create-recipe">
 
+        <header class="title">
+            <div>
+                <h1 class="text-center">@ViewData["Title"]</h1>
+            </div>
+        </header>
+
+        <section class="create-form">
+            <div class="container">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="@Model.Title">Title</label>
+                        <input type="text" class="form-control" asp-for="@Model.Title">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.ShortDescription">Short Description</label>
+                        <input type="text" class="form-control" asp-for="@Model.ShortDescription">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.ExecutingTime">Executing Time</label>
+                        <input type="time" class="form-control" asp-for="@Model.ExecutingTime" style="width:20%">
+                    </div>
+                    <div class="form-group products-form">
+                        <label asp-for="@Model.Products">Products</label>
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                                <input type="text" class="form-control" id="product-input">
+                                <input type="hidden" class="form-control" id="products-array" asp-for="@Model.Products">
+                            </div>
+                            <div class="col-auto">
+                                <div class="btn btn-success" id="add-product">+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.Content">Content</label>
+                        <textarea type="text" class="form-control" asp-for="@Model.Content" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="@Model.CoverImage">Cover Image</label>
+                        <input type="file" class="form-control-file" asp-for="@Model.CoverImage">
+                    </div>
+                    <div class="form-group hashtags-form">
+                        <label asp-for="@Model.Hashtags">Hashtags</label>
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                                <input type="text" class="form-control" id="hashtag-input">
+                                <input type="hidden" class="form-control" id="hashtags-array" asp-for="@Model.Hashtags">
+                            </div>
+                            <div class="col-auto">
+                                <div class="btn btn-success" id="add-hashtag">+</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Create recipe</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        //Add products
+        let recipeProducts = new Array();
+
+        let addProduct = () => {
+            $("#add-product").on("click", () => {
+
+                let product = $("#product-input").val();
+
+                if (product != null) {
+                    recipeProducts.push(product);
+
+                    $("#products-array").val(recipeProducts);
+
+                    console.log(`Added product: ${product}`);
+
+                    $(".products-form").append(`<div class="product">${product}</div>`);
+                }
+                else {
+                    console.log('Product adding failed!');
+                }
+            })
+        }
+
+        //Add hashtags
+        let recipeHashtags = new Array();
+
+        let addHashtags = () => {
+            $("#add-hashtag").on("click", () => {
+
+                let hashtag = $("#hashtag-input").val();
+
+                if (hashtag != null) {
+                    recipeHashtags.push(hashtag);
+
+                    $("#hashtags-array").val(recipeHashtags);
+
+                    console.log(`Added hashtag: ${hashtag}`);
+
+                    $(".hashtags-form").append(`<div class="hashtag">${hashtag}</div>`);
+                }
+                else {
+                    console.log('Hashtag adding failed!')
+                }
+            })
+        }
+
+        addProduct();
+        addHashtags();
+    });
+</script>
