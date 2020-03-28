@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - Rado's Hub</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/eae986932a.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -26,6 +27,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">Cooking</a>
                             </li>
                         </ul>
                     </div>
@@ -48,7 +52,6 @@
                         <a class="nav-link" asp-area="Administration" asp-controller="CookingRecipe" asp-action="Index">Manage Cooking</a>
                     </li>
                 </ul>
-                <hr />
             </div>
         </header>
         <div @*class="container"*@>
@@ -73,7 +76,9 @@
                     <div class="col-md col-12 lifestyle">
                         <div class="column-center">
                             <h5>Lifestyle</h5>
-                            <p>Cooking</p>
+                            <div>
+                                <a asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">Cooking</a>
+                            </div>
                         </div>
                     </div>
                 </div>
