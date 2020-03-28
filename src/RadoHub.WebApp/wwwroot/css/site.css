@@ -285,29 +285,29 @@ body {
             padding-bottom: 25px;
         }
 
-    .lifestyle-cooking .all-recipes {
-        background-color: whitesmoke;
-        padding-bottom: 50px;
-        border-radius: 10px;
-    }
-
-        .lifestyle-cooking .all-recipes .cover-image {
-            width: 300px;
-            height: 200px;
-            margin-top: 50px;
-            margin-left: 30px;
-            margin-right: 0;
+        .lifestyle-cooking .index .all-recipes {
+            background-color: whitesmoke;
+            padding-bottom: 50px;
+            border-radius: 10px;
         }
 
-        .lifestyle-cooking .all-recipes .article {
-            margin-left: 0;
-            margin-right: 30px;
-            margin-top: 50px;
-        }
-
-            .lifestyle-cooking .all-recipes .article .text-body {
-                text-align: justify;
-                font-size: medium;
-                overflow: hidden;
-                text-overflow: clip;
+            .lifestyle-cooking .index .all-recipes .cover-image {
+                width: 300px;
+                height: 200px;
+                margin-top: 50px;
+                margin-left: 30px;
+                margin-right: 0;
             }
+
+            .lifestyle-cooking .index .all-recipes .article {
+                margin-left: 0;
+                margin-right: 30px;
+                margin-top: 50px;
+            }
+
+                .lifestyle-cooking .index .all-recipes .article .text-body {
+                    text-align: justify;
+                    font-size: medium;
+                    overflow: hidden;
+                    text-overflow: clip;
+                }
