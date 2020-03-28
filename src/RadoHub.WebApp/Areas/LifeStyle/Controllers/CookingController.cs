@@ -23,7 +23,12 @@ namespace RadoHub.WebApp.Areas.LifeStyle.Controllers.Cooking
 
             model.Recipes = this.cookingRecipeService.GetAllRecipesAsPublic();
 
-            return View(model);
+            return this.View(model);
+        }
+
+        public IActionResult RecipeDetails()
+        {
+            return this.View();
         }
     }
 }
