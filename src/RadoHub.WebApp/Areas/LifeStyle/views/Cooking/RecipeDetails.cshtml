@@ -8,10 +8,49 @@
         <header>
             <h1 class="title text-center">Cooking Recipes</h1>
         </header>
-        <article class="container">
+
+        <article class="article container">
             <div class="title text-center">
-                <h3>@Model.Title</h3>
+                <h2>@Model.Title</h2>
             </div>
+            @if (Model.CoverImageFileName != null)
+            {
+                <div class="cover-image text-center">
+                    <img src="~/images/stage/cookingRecipes/@Model.Id/coverImage/@Model.CoverImageFileName" />
+                </div>
+            }
+            @if (Model.ShortDescription != null)
+            {
+                <div class="short-description text-center">
+                    @Model.ShortDescription
+                </div>
+            }
+            @if (Model.ExecutingTime != null)
+            {
+                <div class="executing-time">
+                    <strong>Време за приготвяне: </strong>@Model.ExecutingTime.TotalMinutes Min.
+                </div>
+            }
+            <div class="products">
+                <strong>Продукти:</strong>
+                @foreach (var product in Model.Products)
+                {
+                    <p>@product</p>
+                }
+            </div>
+            <div class="content">
+                <h5>Рецепта:</h5>
+                @Model.Content
+            </div>
+            @if (Model.Hashtags.Count > 0)
+            {
+                <div class="hashtags">
+                    <div>
+                        <strong>Hashtags:</strong>
+                    </div>
+                    @String.Join(',', Model.Hashtags)
+                </div>
+            }
         </article>
     </div>
 </div>
