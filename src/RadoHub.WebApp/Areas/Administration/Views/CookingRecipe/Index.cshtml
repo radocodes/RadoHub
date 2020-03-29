@@ -11,7 +11,7 @@
 
             @if (ViewData["statusMessage"] != null)
             {
-                <div class="status-message">
+                <div class="status-message text-center alert alert-warning" role="alert">
                     <h3>@ViewData["statusMessage"].ToString()</h3>
                 </div>
             }
@@ -62,7 +62,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 <form method="post">
-                                                    <button type="button" class="btn btn-primary" asp-controller="CookingRecipe" asp-action="DeleteCookingRecipe" asp-route-id="@Recipe.Id">Delete</button>
+                                                    <button type="submit" class="btn btn-primary" asp-controller="CookingRecipe" asp-action="DeleteCookingRecipe" asp-route-id="@Recipe.Id">Delete</button>
                                                 </form>
                                             </div>
                                         </div>
