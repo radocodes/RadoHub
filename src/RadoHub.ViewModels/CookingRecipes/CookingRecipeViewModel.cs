@@ -13,7 +13,7 @@ namespace RadoHub.ViewModels.CookingRecipes
 
         public TimeSpan ExecutingTime { get; set; }
 
-        public ICollection<string> Products { get; set; }
+        public IEnumerable<string> Products { get; set; }
 
         public string Content { get; set; }
 
@@ -23,8 +23,8 @@ namespace RadoHub.ViewModels.CookingRecipes
 
         public string CoverImageFileName { get; set; }
 
-        public ICollection<string> ImagesFileNames { get; set; }
+        public IEnumerable<string> ImagesFileNames { get; set; }
 
-        public ICollection<string> Hashtags { get; set; }
+        public IEnumerable<string> Hashtags { get; set; }
     }
 }
