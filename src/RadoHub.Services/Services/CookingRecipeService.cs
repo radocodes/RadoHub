@@ -34,21 +34,13 @@ namespace RadoHub.Services.Services
                 Title = model.Title,
                 ShortDescription = model.ShortDescription,
                 ExecutingTime = model.ExecutingTime,
+                Products = model.Products,
                 Content = model.Content,
+                Hashtags = model.Hashtags,
                 CreationDate = DateTime.UtcNow,
                 LastModifiedAt = DateTime.UtcNow,
                 CreatorId = creatorId,
             };
-
-            if (model.Products != null)
-            {
-                cookingRecipe.Products = model.Products.Split((new[] { ',' }), StringSplitOptions.RemoveEmptyEntries).ToHashSet();
-            }
-
-            if (model.Hashtags != null)
-            {
-                cookingRecipe.Hashtags = model.Hashtags.Split((new[] { ',' }), StringSplitOptions.RemoveEmptyEntries).ToHashSet();
-            }
 
             var newCookingRecipeId = this.cookingRecipeRepo
                 .CreateCookingRecipeAsync(cookingRecipe)
@@ -117,20 +109,17 @@ namespace RadoHub.Services.Services
 
             foreach (var recipe in allRecipes)
             {
-                publicRecipes.Add(new CookingRecipeViewModel()
+                var recipeModel = new CookingRecipeViewModel()
                 {
                     Id = recipe.Id,
                     Title = recipe.Title,
-                    ShortDescription = recipe.ShortDescription,
-                    ExecutingTime = recipe.ExecutingTime,
-                    Products = recipe.Products,
-                    Content = recipe.Content,
                     CreationDate = recipe.CreationDate,
                     LastModifiedAt = recipe.LastModifiedAt,
                     CoverImageFileName = recipe.CoverImageFileName,
-                    ImagesFileNames = recipe.ImagesFileNames,
-                    Hashtags = recipe.Hashtags
-                });
+                    ShortDescription = recipe.ShortDescription
+                };
+
+                publicRecipes.Add(recipeModel);
             }
 
             return publicRecipes;
@@ -139,6 +128,40 @@ namespace RadoHub.Services.Services
         public CookingRecipe GetCookingRecipeById(int cookingRecipeId)
         {
             return this.cookingRecipeRepo.GetCookingRecipeById(cookingRecipeId);
+        }
+
+        public CookingRecipeViewModel GetCookingRecipeByIdAsPublic(int cookingRecipeId)
+        {
+            var recipe = this.cookingRecipeRepo.GetCookingRecipeById(cookingRecipeId);
+
+            var recipeModel = new CookingRecipeViewModel()
+            {
+                Id = recipe.Id,
+                Title = recipe.Title,
+                ShortDescription = recipe.ShortDescription,
+                ExecutingTime = recipe.ExecutingTime,
+                Content = recipe.Content,
+                CreationDate = recipe.CreationDate,
+                LastModifiedAt = recipe.LastModifiedAt,
+                CoverImageFileName = recipe.CoverImageFileName
+            };
+
+            if (recipe.Products != null)
+            {
+                recipeModel.Products = recipe.Products.Split((new[] { ',' }), StringSplitOptions.RemoveEmptyEntries).ToHashSet();
+            }
+
+            if (recipe.Hashtags != null)
+            {
+                recipeModel.Hashtags = recipe.Hashtags.Split((new[] { ',' }), StringSplitOptions.RemoveEmptyEntries).ToHashSet();
+            }
+
+            if (recipe.ImagesFileNames != null)
+            {
+                recipeModel.ImagesFileNames = recipe.ImagesFileNames.Split((new[] { ',' }), StringSplitOptions.RemoveEmptyEntries).ToHashSet();
+            }
+
+            return recipeModel;
         }
 
         public List<CookingRecipe> GetCookingRecipesByKeyWords(string userSearching)
