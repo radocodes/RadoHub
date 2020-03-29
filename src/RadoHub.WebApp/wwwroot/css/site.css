@@ -311,3 +311,53 @@ body {
                     overflow: hidden;
                     text-overflow: clip;
                 }
+
+    .lifestyle-cooking .recipe-details {
+        color: #333;
+    }
+
+        .lifestyle-cooking .recipe-details header {
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+
+        .lifestyle-cooking .recipe-details .article {
+            background-color: whitesmoke;
+            padding-bottom: 50px;
+            border-radius: 10px;
+        }
+
+            .lifestyle-cooking .recipe-details .article .title {
+                padding-top: 25px;
+                padding-bottom: 25px;
+            }
+
+            .lifestyle-cooking .recipe-details .article .cover-image {
+                margin: 25px;
+            }
+
+            .lifestyle-cooking .recipe-details .article .cover-image img {
+                width: 40%;
+            }
+
+            .lifestyle-cooking .recipe-details .article .short-description {
+                margin: 25px;
+                font-style:italic;
+                font-size:large;
+            }
+
+            .lifestyle-cooking .recipe-details .article .executing-time {
+                margin: 25px;
+            }
+
+            .lifestyle-cooking .recipe-details .article .products {
+                margin: 25px;
+            }
+
+            .lifestyle-cooking .recipe-details .article .content {
+                margin: 25px;
+            }
+
+            .lifestyle-cooking .recipe-details .article .hashtags {
+                margin: 25px;
+            }
