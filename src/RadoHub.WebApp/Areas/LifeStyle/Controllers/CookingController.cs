@@ -28,22 +28,7 @@ namespace RadoHub.WebApp.Areas.LifeStyle.Controllers.Cooking
 
         public IActionResult RecipeDetails(int id)
         {
-            var recipe = this.cookingRecipeService.GetCookingRecipeById(id);
-
-            var viewModel = new CookingRecipeViewModel()
-            {
-                Id = recipe.Id,
-                Title = recipe.Title,
-                ShortDescription = recipe.ShortDescription,
-                CreationDate = recipe.CreationDate,
-                LastModifiedAt = recipe.LastModifiedAt,
-                ExecutingTime = recipe.ExecutingTime,
-                Products = recipe.Products,
-                Content = recipe.Content,
-                Hashtags = recipe.Hashtags,
-                CoverImageFileName = recipe.CoverImageFileName,
-                ImagesFileNames = recipe.ImagesFileNames
-            };
+            var viewModel = this.cookingRecipeService.GetCookingRecipeByIdAsPublic(id);
 
             return this.View(viewModel);
         }
