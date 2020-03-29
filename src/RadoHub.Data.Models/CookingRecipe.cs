@@ -9,10 +9,7 @@ namespace RadoHub.Data.Models
     {
         public CookingRecipe()
         {
-            this.Products = new HashSet<string>();
-            this.EditorsUsernames = new Queue<string>();
-            this.ImagesFileNames = new HashSet<string>();
-            this.Hashtags = new HashSet<string>();
+
         }
 
         public string Title { get; set; }
@@ -21,8 +18,7 @@ namespace RadoHub.Data.Models
 
         public TimeSpan ExecutingTime { get; set; }
 
-        [NotMapped]
-        public ICollection<string> Products{ get; set; }
+        public string Products{ get; set; }
 
         public string Content { get; set; }
 
@@ -32,16 +28,13 @@ namespace RadoHub.Data.Models
 
         public string CreatorId { get; set; }
 
-        [NotMapped]
-        public Queue<string> EditorsUsernames { get; set; }
+        public string EditorsUsernames { get; set; }
 
         public string CoverImageFileName { get; set; }
 
-        [NotMapped]
-        public ICollection<string> ImagesFileNames { get; set; }
+        public string ImagesFileNames { get; set; }
 
-        [NotMapped]
-        public ICollection<string> Hashtags { get; set; }
+        public string Hashtags { get; set; }
 
     }
 }
