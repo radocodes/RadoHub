@@ -26,8 +26,6 @@ namespace RadoHub.ViewModels.CookingRecipes
         [Required]
         public string Content { get; set; }
 
-        public string CreatorId { get; set; }
-
         [Display(Name = "Cover image")]
         public IFormFile CoverImage { get; set; }
 
