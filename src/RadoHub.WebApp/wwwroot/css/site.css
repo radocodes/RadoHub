@@ -110,6 +110,16 @@ body {
         margin-bottom: 20px;
     }
 
+    .layout-administration .title a:link {
+        color: #333;
+        text-decoration: none;
+    }
+
+        .layout-administration .title a:visited {
+            color: #333;
+            text-decoration: none;
+        }
+
     .layout-administration .sub-nav {
         background-color: lightgrey;
     }
@@ -310,6 +320,7 @@ body {
                     font-size: medium;
                     overflow: hidden;
                     text-overflow: clip;
+                    padding-bottom: 50px;
                 }
 
     .lifestyle-cooking .recipe-details {
