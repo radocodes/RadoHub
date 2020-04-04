@@ -37,16 +37,13 @@
             </nav>
 
             <div class="title text-center">
-                <h4>Administration</h4>
+               <a asp-area="Administration" asp-controller="Home" asp-action="Index"><h4>Administration</h4></a> 
             </div>
 
             <div class="sub-nav">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" asp-area="Administration" asp-controller="Home" asp-action="Index">Control Panel</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" asp-area="Administration" asp-controller="CookingRecipe" asp-action="Index">Manage Cooking</a>
