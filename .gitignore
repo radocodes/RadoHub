@@ -330,3 +330,4 @@ ASALocalRun/
 .mfractor/
 /src/RadoHub.WebApp/wwwroot/images/stage
 /src/RadoHub.WebApp/appsettings.json
+/src/RadoHub.WebApp/appsettings.Development.json
