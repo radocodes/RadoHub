@@ -1,4 +1,5 @@
-﻿using RadoHub.Data.Models;
+﻿using Microsoft.AspNetCore.Hosting;
+using RadoHub.Data.Models;
 using RadoHub.Data.Repositories.Contracts;
 using RadoHub.Services.Constants;
 using RadoHub.Services.Contracts;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Environment = RadoHub.Services.Constants.Environment;
 
 namespace RadoHub.Services.Services
 {
@@ -16,15 +18,18 @@ namespace RadoHub.Services.Services
         private readonly ICookingRecipeRepository cookingRecipeRepo;
         private readonly IUserAccountService userAccountService;
         private readonly IFileService fileService;
+        private readonly IWebHostEnvironment env;
 
         public CookingRecipeService
             (ICookingRecipeRepository cookingRecipeRepository,
             IUserAccountService userAccountService,
-            IFileService fileService)
+            IFileService fileService,
+            IWebHostEnvironment environment)
         {
             this.cookingRecipeRepo = cookingRecipeRepository;
             this.userAccountService = userAccountService;
             this.fileService = fileService;
+            this.env = environment;
         }
 
         public void CreateCookingRecipe(string creatorId, CreateRecipeViewModel model)
@@ -47,7 +52,17 @@ namespace RadoHub.Services.Services
                 .GetAwaiter().GetResult();
 
             var sb = new StringBuilder();
-            sb.Append(CookingRecipeConstants.StageImageFolderPath);
+
+            if (env.EnvironmentName == Environment.Development)
+            {
+                sb.Append(CookingRecipeConstants.StageImageFolderPath);
+            }
+
+            else if (env.EnvironmentName == Environment.Production)
+            {
+                sb.Append(CookingRecipeConstants.ProdImageFolderPath);
+            }
+            
             sb.Append(CookingRecipeConstants.CookingRecipesImageFolderName);
             sb.Append(@$"{newCookingRecipeId}\");
 
@@ -89,7 +104,16 @@ namespace RadoHub.Services.Services
             await this.cookingRecipeRepo.DeleteAsync(cookingRecipe);
 
             var sb = new StringBuilder();
-            sb.Append(CookingRecipeConstants.StageImageFolderPath);
+
+            if (env.EnvironmentName == Environment.Development)
+            {
+                sb.Append(CookingRecipeConstants.StageImageFolderPath);
+            }
+            else if (env.EnvironmentName == Environment.Production)
+            {
+                sb.Append(CookingRecipeConstants.ProdImageFolderPath);
+            }
+            
             sb.Append(CookingRecipeConstants.CookingRecipesImageFolderName);
             sb.Append(cookingRecipeId);
 
