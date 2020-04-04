@@ -13,6 +13,7 @@
             <div class="title text-center">
                 <h2>@Model.Title</h2>
             </div>
+            <div class="date-info text-center"><i class="fas fa-pencil-alt"></i> @Model.CreationDate.ToShortDateString() | <i class="fas fa-sync-alt"></i> @Model.LastModifiedAt.ToShortDateString()</div>
             @if (Model.CoverImageFileName != null)
             {
                 <div class="cover-image text-center">
