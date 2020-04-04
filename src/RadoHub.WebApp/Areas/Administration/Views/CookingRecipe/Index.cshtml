@@ -1,12 +1,12 @@
 ﻿@model RadoHub.ViewModels.CookingRecipes.AdminGetAllRecipesViewModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Manage Cooking Recipes";
 }
 <div class="admin-cooking-recipe">
     <div class="index">
         <header>
             <div class="title">
-                <h1 class="text-center">Manage Cooking Recipes</h1>
+                <h1 class="text-center">@ViewData["Title"]</h1>
             </div>
 
             @if (ViewData["statusMessage"] != null)
