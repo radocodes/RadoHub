@@ -1,6 +1,9 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RadoHub.Services.Contracts;
+using RadoHub.ViewModels.CookingRecipes;
+using RadoHub.ViewModels.Home;
 using RadoHub.WebApp.Models;
 
 namespace RadoHub.WebApp.Controllers
@@ -8,15 +11,21 @@ namespace RadoHub.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICookingRecipeService cookingRecipeService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICookingRecipeService cookingRecipeService)
         {
-            _logger = logger;
+            this._logger = logger;
+            this.cookingRecipeService = cookingRecipeService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = new HomeIndexViewModel();
+            model.CookingRecipesModel = new CookingRecipesViewModel();
+            model.CookingRecipesModel.Recipes = cookingRecipeService.GetAllRecipesAsPublic();
+
+            return View(model);
         }
 
         public IActionResult About()
