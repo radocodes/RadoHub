@@ -1,12 +1,15 @@
-﻿@{
+﻿@model RadoHub.ViewModels.Home.HomeIndexViewModel
+@{
     ViewData["Title"] = "Home";
 }
+
 <div class="home">
     <div class="index">
         <div class="header container text-center">
             <h1 class="display-4 font-weight-bold">Rado's Hub</h1>
             <p>Welcome to my personal portal! I'm not sure is that a hub or a pub, but cheers!</p>
         </div>
+
         <div class="content">
             <div class="container">
                 <div class="row about-row">
@@ -19,11 +22,55 @@
                         </a>
                     </div>
                 </div>
-                <div class="row feeds">
-                    <div class="col-md-12 col-12">
 
+                @*<section class="feeds">
+                    <div class="row">
+                        <div class="col-md-12 col-12">
+
+                        </div>
                     </div>
-                </div>
+                </section>*@
+
+                <section class="season-inspiration">
+                    <div class="container">
+                        <div class="row">
+                            <div class="title">
+                                <strong>Season Inspiration</strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+                                <div class="image-wrapper">
+                                    <img class="image" src="~/images/season-inspiration/April.jpg" alt="season picture" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                @if (Model.CookingRecipesModel.Recipes != null && Model.CookingRecipesModel.Recipes.Count() > 0)
+                {
+                    <section class="cooking-recipes">
+                        <div class="container">
+                            <div class="row">
+                                <div class="title">
+                                    <strong>Something delicious? - Do it yourself</strong>
+                                </div>
+                            </div>
+                            <div class="row recipes-list">
+                                <div class="container">
+                                    @foreach (var recipe in Model.CookingRecipesModel.Recipes)
+                                    {
+                                        <a class="col-3 col-md-3" asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id" style="width: 20%">
+                                            <img src="~/images/stage/cookingRecipes/@recipe.Id/coverImage/@recipe.CoverImageFileName" class="card-img-top" style="height:150px; width: inherit" alt="recipe img">
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                }
+
             </div>
         </div>
     </div>

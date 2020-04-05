@@ -110,10 +110,10 @@ body {
         margin-bottom: 20px;
     }
 
-    .layout-administration .title a:link {
-        color: #333;
-        text-decoration: none;
-    }
+        .layout-administration .title a:link {
+            color: #333;
+            text-decoration: none;
+        }
 
         .layout-administration .title a:visited {
             color: #333;
@@ -147,7 +147,29 @@ body {
 
     .home .index {
         background-color: whitesmoke;
+        padding-bottom: 25px;
     }
+
+        .home .index section {
+            border-radius: 5px;
+            margin-top: 25px;
+            margin-bottom: 50px;
+            padding-bottom: 25px;
+            border: solid;
+            border-width: 1px;
+            border-color: lightgrey;
+            background-color: ghostwhite;
+        }
+
+        .home .index section .title {
+            background-color: darkslategrey;
+            color: whitesmoke;
+            padding-left: 25px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            height: 25px;
+            width: 100%;
+        }
 
         .home .index .header {
             background-color: darkkhaki; /*darkslateblue*/
@@ -160,12 +182,12 @@ body {
 
         .home .index .about-row {
             margin-top: 25px;
-            margin-bottom: 25px;
+            margin-bottom: 50px;
         }
 
         .home .index .about-me-btn {
-            background-color: forestgreen;
-            color: #333;
+            background-color: darkslategrey;
+            color: gray;
             width: 50%;
             margin-left: auto;
             margin-right: auto;
@@ -187,6 +209,29 @@ body {
             margin-top: 50px;
             margin-bottom: 25px;
             background-color: white;
+        }
+
+        .home .index .season-inspiration {
+
+        }
+
+            .home .index .season-inspiration .image-wrapper {
+                width: 65%;
+                padding:25px;
+                /*background-color:white;*/
+                margin-left: auto;
+                margin-right:auto;
+            }
+
+            .home .index .season-inspiration .image {
+                width: 100%;
+            }
+
+        .home .index .cooking-recipes {
+            /*background-color: lightgray;*/
+            border-radius: 5px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
         }
 
     .home .about-me {
@@ -347,14 +392,14 @@ body {
                 margin: 25px;
             }
 
-            .lifestyle-cooking .recipe-details .article .cover-image img {
-                width: 40%;
-            }
+                .lifestyle-cooking .recipe-details .article .cover-image img {
+                    width: 40%;
+                }
 
             .lifestyle-cooking .recipe-details .article .short-description {
                 margin: 25px;
-                font-style:italic;
-                font-size:large;
+                font-style: italic;
+                font-size: large;
             }
 
             .lifestyle-cooking .recipe-details .article .executing-time {
