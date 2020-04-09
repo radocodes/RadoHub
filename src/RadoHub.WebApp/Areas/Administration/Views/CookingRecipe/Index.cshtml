@@ -39,7 +39,7 @@
                     {
                         <tr>
                             <th scope="row">@Recipe.Id</th>
-                            <td>@Recipe.Title</td>
+                            <td><a asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@Recipe.Id">@Recipe.Title</a></td>
                             <td>
                                 <a class="btn btn-primary" href="#">Edit</a>
 
