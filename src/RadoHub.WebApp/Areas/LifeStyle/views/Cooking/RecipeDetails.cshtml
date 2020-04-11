@@ -1,7 +1,20 @@
 ﻿@model RadoHub.ViewModels.CookingRecipes.CookingRecipeViewModel
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
 @{
+    string envDir;
+
+    if (hostingEnv.EnvironmentName == "Development")
+    {
+        envDir = "stage";
+    }
+    else
+    {
+        envDir = "production";
+    }
+
     ViewData["Title"] = $"Cooking Recipes-{Model.Title}";
 }
+
 
 <div class="lifestyle-cooking">
     <div class="recipe-details">
@@ -17,7 +30,7 @@
             @if (Model.CoverImageFileName != null)
             {
                 <div class="cover-image text-center">
-                    <img src="~/images/stage/cookingRecipes/@Model.Id/coverImage/@Model.CoverImageFileName" />
+                    <img src="~/images/@envDir/cookingRecipes/@Model.Id/coverImage/@Model.CoverImageFileName" />
                 </div>
             }
             @if (Model.ShortDescription != null)
