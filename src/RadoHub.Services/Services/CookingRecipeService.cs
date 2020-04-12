@@ -193,8 +193,23 @@ namespace RadoHub.Services.Services
             throw new NotImplementedException();
         }
 
-        public Task UpdateCookingRecipeAsync(CookingRecipe updatingModel)
+        public async Task UpdateCookingRecipeAsync(string editorId, EditRecipeViewModel model)
         {
+            //var editedCookingRecipe = new CookingRecipe()
+            //{
+            //    Id = model.Id,
+            //    Title = model.Title,
+            //    ShortDescription = model.ShortDescription,
+            //    Products = model.Products,
+            //    Content = model.Content,
+            //    ExecutingTime = model.ExecutingTime,
+            //    Hashtags = model.Hashtags,
+            //    EditorsUsernames = this.userAccountService.GetUserById(editorId).UserName,
+            //    LastModifiedAt = DateTime.UtcNow,
+            //};
+
+            //await this.cookingRecipeRepo.UpdateCookingRecipeAsync(editedCookingRecipe);
+
             throw new NotImplementedException();
         }
     }

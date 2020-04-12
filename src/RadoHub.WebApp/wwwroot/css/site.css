@@ -157,7 +157,7 @@ body {
         .home .index section {
             border-radius: 5px;
             margin-top: 25px;
-            margin-bottom: 50px;
+            margin-bottom:50px;
             padding-bottom: 25px;
             border: solid;
             border-width: 1px;
@@ -189,12 +189,21 @@ body {
             margin-bottom: 50px;
         }
 
+            .home .index .about-row a {
+                width: 50%;
+            }
+
+        .home .index .about-btn-link-wrapper {
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
         .home .index .about-me-btn {
             background-color: darkslategrey;
             color: gray;
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
+            
+            
             padding: 25px;
             border-radius: 75px;
         }
@@ -233,12 +242,21 @@ body {
         .home .index .cooking-recipes {
             /*background-color: lightgray;*/
             border-radius: 5px;
-            margin-bottom: 25px;
             padding-bottom: 25px;
         }
 
-    .home .about-me {
-    }
+        .home .index .i-suggest .banner-wrapper {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        } 
+
+        .home .index .i-suggest .banner {
+            height: 200px;
+            width: 1000px;
+        }
+
+        .home .about-me {
+        }
 
         .home .about-me .title {
             margin-top: 25px;

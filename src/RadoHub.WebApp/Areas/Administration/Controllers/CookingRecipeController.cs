@@ -84,5 +84,20 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
                 //return RedirectToAction("Index", "CookingRecipe");
             }
         }
+
+        public IActionResult EditCookingRecipe(int Id)
+        {
+            //TODO: impelementation 
+            
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult EditCookingRecipe(EditRecipeViewModel model)
+        {
+            //TODO: impelementation
+
+            return this.View();
+        }
     }
 }
