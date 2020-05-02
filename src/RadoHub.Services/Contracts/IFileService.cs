@@ -12,7 +12,9 @@ namespace RadoHub.Services.Contracts
 
         public void DeleteDirectory(string fullPath);
 
-        Task SaveImageFile(string fullPath, IFormFile imageFile);
+        public Task SaveImageFile(string fullPath, IFormFile imageFile);
+
+        public Task UpdateImageFile(string fullPath, IFormFile imageFile);
 
         public void DeleteImageFile(string fullPath);
     }
