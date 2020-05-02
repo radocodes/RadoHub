@@ -45,18 +45,22 @@
                     <strong>Време за приготвяне: </strong>@Model.ExecutingTime.TotalMinutes Min.
                 </div>
             }
-            <div class="products">
-                <strong>Продукти:</strong>
+        <div class="products">
+            <strong>Продукти:</strong>
+            @if (Model.Products != null)
+            {
                 @foreach (var product in Model.Products)
                 {
-                    <p>@product</p>
+                    <div>@product</div>
                 }
-            </div>
+            }
+
+        </div>
             <div class="content">
                 <h5>Рецепта:</h5>
                 @Model.Content
             </div>
-            @if (Model.Hashtags.Count > 0)
+            @if (Model.Hashtags != null && Model.Hashtags.Count > 0)
             {
                 <div class="hashtags">
                     <div>
