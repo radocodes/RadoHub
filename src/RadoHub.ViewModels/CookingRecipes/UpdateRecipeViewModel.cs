@@ -38,6 +38,7 @@ namespace RadoHub.ViewModels.CookingRecipes
 
         [Display(Name = "Hashtags")]
         public string Hashtags { get; set; }
+
         public string CoverImageFileName { get; set; }
 
     }

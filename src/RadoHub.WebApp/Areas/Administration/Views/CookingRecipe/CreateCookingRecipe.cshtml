@@ -15,9 +15,11 @@
         <section class="create-form">
             <div class="container">
                 <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="@Model.Title">Title</label>
                         <input type="text" class="form-control" asp-for="@Model.Title">
+                        <span asp-validation-for="@Model.Title" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="@Model.ShortDescription">Short Description</label>
@@ -33,15 +35,18 @@
                             <div class="col-auto">
                                 <input type="text" class="form-control" id="product-input">
                                 <input type="hidden" class="form-control" id="products-array" asp-for="@Model.Products">
+                                <span asp-validation-for="@Model.Products" class="text-danger"></span>
                             </div>
                             <div class="col-auto">
                                 <div class="btn btn-success" id="add-product">+</div>
                             </div>
                         </div>
+                        <div id="added-products"></div>
                     </div>
                     <div class="form-group">
                         <label asp-for="@Model.Content">Content</label>
                         <textarea type="text" class="form-control" asp-for="@Model.Content" rows="10"></textarea>
+                        <span asp-validation-for="@Model.Content" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="@Model.CoverImage">Cover Image</label>
@@ -58,6 +63,7 @@
                                 <div class="btn btn-success" id="add-hashtag">+</div>
                             </div>
                         </div>
+                        <div id="added-hashtags"></div>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Create recipe</button>
@@ -69,12 +75,10 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        
-        //Add products
-        let recipeProducts = new Array();
 
+        // Add Product function
         let addProduct = () => {
-            $("#add-product").on("click", () => {
+            $(document).on("click", "#add-product", () => {
 
                 let product = $("#product-input").val();
 
@@ -85,7 +89,7 @@
 
                     console.log(`Added product: ${product}`);
 
-                    $(".products-form").append(`<div class="product">${product}</div>`);
+                    $("#added-products").append(`<span class="products" id="product-${recipeProducts.length}">${product}</span> <span class="btn btn-light remove-product-btn" id="product-remove-btn-${recipeProducts.length}" style="color:red">x</span><br />`);
 
                     $("#product-input").val("");
                 }
@@ -95,32 +99,127 @@
             })
         }
 
-        //Add hashtags
-        let recipeHashtags = new Array();
+        // Remove Product function
+        let removeProduct = () => {
+            $(document).on("click", ".remove-product-btn", (eventHendler) => {
+                let removeBtnIdPrefix = "product-remove-btn-";
+                let removeProductButtonId = eventHendler.target.id;
+                let productNumber = removeProductButtonId.slice(removeBtnIdPrefix.length)
+                let productId = `product-${productNumber}`;
 
-        let addHashtags = () => {
-            $("#add-hashtag").on("click", () => {
+                let prodToRemove = document.getElementById(productId).innerHTML;
+
+                if (recipeProducts.length > 0) {
+                    for (var i = 0; i < recipeProducts.length; i++) {
+                        if (recipeProducts[i] === prodToRemove) {
+                            recipeProducts.splice(i, 1);
+                        }
+                    }
+                }
+
+                if (recipeProducts.length === 0) {
+                    $("#products-array").val(null);
+                }
+                else {
+                    $("#products-array").val(recipeProducts);
+                }
+
+                document.getElementById("added-products").remove();
+                $(".products-form").append(`<div id="added-products"></div>`);
+
+                if (recipeProducts.length > 0) {
+                    for (var i = 0; i < recipeProducts.length; i++) {
+                        $("#added-products").append(`<span class="products" id="product-${(i + 1)}">${recipeProducts[i]}</span> <span class="btn btn-light remove-product-btn" id="product-remove-btn-${(i + 1)}" style="color:red">x</span><br />`);
+                    }
+                }
+            });
+        }
+
+        // Add Hashtag function
+        let addHashtag = () => {
+            $(document).on("click", "#add-hashtag", () => {
 
                 let hashtag = $("#hashtag-input").val();
 
                 if (hashtag != null) {
-                    recipeHashtags.push(hashtag);
+                    allHashtags.push(hashtag);
 
-                    $("#hashtags-array").val(recipeHashtags);
+                    $("#hashtags-array").val(allHashtags);
 
                     console.log(`Added hashtag: ${hashtag}`);
 
-                    $(".hashtags-form").append(`<div class="hashtag">${hashtag}</div>`);
+                    $("#added-hashtags").append(`<span class="hashtags" id="hashtag-${allHashtags.length}">${hashtag}</span> <span class="btn btn-light remove-hashtag-btn" id="hashtag-remove-btn-${allHashtags.length}" style="color:red">x</span><br />`);
 
                     $("#hashtag-input").val("");
                 }
                 else {
-                    console.log('Hashtag adding failed!')
+                    console.log('Hashtag adding failed!');
                 }
             })
         }
 
+        // Remove Hashtag function
+        let removeHashtag = () => {
+            $(document).on("click", ".remove-hashtag-btn", (eventHendler) => {
+                let removeBtnIdPrefix = "hashtag-remove-btn-";
+                let removeHashtagButtonId = eventHendler.target.id;
+                let hashtagNumber = removeHashtagButtonId.slice(removeBtnIdPrefix.length)
+                let hashtagId = `hashtag-${hashtagNumber}`;
+
+                let hashtagToRemove = document.getElementById(hashtagId).innerHTML;
+
+                if (allHashtags.length > 0) {
+                    for (var i = 0; i < allHashtags.length; i++) {
+                        if (allHashtags[i] === hashtagToRemove) {
+                            allHashtags.splice(i, 1);
+                        }
+                    }
+                }
+
+                if (allHashtags.length === 0) {
+                    $("#hashtags-array").val(null);
+                }
+                else {
+                    $("#hashtags-array").val(allHashtags);
+                }
+
+                document.getElementById("added-hashtags").remove();
+                $(".hashtags-form").append(`<div id="added-hashtags"></div>`);
+
+                if (allHashtags.length > 0) {
+                    for (var i = 0; i < allHashtags.length; i++) {
+                        $("#added-hashtags").append(`<span class="hashtags" id="hashtag-${(i + 1)}">${allHashtags[i]}</span> <span class="btn btn-light remove-hashtag-btn" id="hashtag-remove-btn-${(i + 1)}" style="color:red">x</span><br />`);
+                    }
+                }
+            });
+        }
+
+        // Prepare Products
+        let productsCount = $(".products").length;
+        let recipeProducts = new Array();
+
+        for (var i = 0; i < productsCount; i++) {
+            let currProduct = document.getElementById(`product-${i + 1}`).innerHTML;
+            recipeProducts.push(currProduct);
+        }
+
+        $("#products-array").val(recipeProducts);
+
+        // Prepare Hashtags
+        let hashtagsCount = $(".hashtags").length;
+        let allHashtags = new Array();
+
+        for (var i = 0; i < hashtagsCount; i++) {
+            let currHashtag = document.getElementById(`hashtag-${i + 1}`).innerHTML;
+            allHashtags.push(currHashtag);
+        }
+
+        $("#hashtags-array").val(allHashtags);
+
+        // Functions calling
         addProduct();
-        addHashtags();
+        addHashtag();
+        removeProduct();
+        removeHashtag();
     });
 </script>
