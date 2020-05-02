@@ -41,7 +41,7 @@
                             <th scope="row">@Recipe.Id</th>
                             <td><a asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@Recipe.Id">@Recipe.Title</a></td>
                             <td>
-                                <a class="btn btn-primary" href="#">Edit</a>
+                                <a asp-controller="CookingRecipe" asp-action="UpdateCookingRecipe" asp-route-id="@Recipe.Id" class="btn btn-primary">Edit</a>
 
                                 <!-- Modal delete button -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
