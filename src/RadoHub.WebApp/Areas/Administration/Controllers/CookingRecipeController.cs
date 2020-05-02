@@ -95,6 +95,11 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
         [HttpPost]
         public IActionResult UpdateCookingRecipe(UpdateRecipeViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             try
             {
                 var editorId = this.userManager
