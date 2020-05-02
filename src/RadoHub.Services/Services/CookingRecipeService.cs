@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using RadoHub.Data.Models;
 using RadoHub.Data.Repositories.Contracts;
 using RadoHub.Services.Constants;
@@ -32,16 +33,16 @@ namespace RadoHub.Services.Services
             this.env = environment;
         }
 
-        public void CreateCookingRecipe(string creatorId, CreateRecipeViewModel model)
+        public void CreateCookingRecipe(string creatorId, CreateRecipeViewModel viewModel)
         {
             var cookingRecipe = new CookingRecipe()
             {
-                Title = model.Title,
-                ShortDescription = model.ShortDescription,
-                ExecutingTime = model.ExecutingTime,
-                Products = model.Products,
-                Content = model.Content,
-                Hashtags = model.Hashtags,
+                Title = viewModel.Title,
+                ShortDescription = viewModel.ShortDescription,
+                ExecutingTime = viewModel.ExecutingTime,
+                Products = viewModel.Products,
+                Content = viewModel.Content,
+                Hashtags = viewModel.Hashtags,
                 CreationDate = DateTime.UtcNow,
                 LastModifiedAt = DateTime.UtcNow,
                 CreatorId = creatorId,
@@ -51,50 +52,30 @@ namespace RadoHub.Services.Services
                 .CreateCookingRecipeAsync(cookingRecipe)
                 .GetAwaiter().GetResult();
 
-            var sb = new StringBuilder();
+            this.HandleImages(newCookingRecipeId, null, viewModel.CoverImage, viewModel.Images);
+        }
 
-            if (env.EnvironmentName == Environment.Development)
+        public async Task UpdateCookingRecipeAsync(string editorId, UpdateRecipeViewModel viewModel)
+        {
+            //var oldCookingRecipe = this.cookingRecipeRepo.GetCookingRecipeById(viewModel.Id);
+
+            var updatingModel = new CookingRecipe()
             {
-                sb.Append(CookingRecipeConstants.StageImageFolderPath);
-            }
+                Id = viewModel.Id,
+                Title = viewModel.Title,
+                ShortDescription = viewModel.ShortDescription,
+                Products = viewModel.Products,
+                Content = viewModel.Content,
+                ExecutingTime = viewModel.ExecutingTime,
+                Hashtags = viewModel.Hashtags,
+                LastModifiedAt = DateTime.UtcNow,
+                //TODO: improve editorsUsernames handling at all (db too)
+                //EditorsUsernames = oldCookingRecipe.EditorsUsernames,
+            };
 
-            else if (env.EnvironmentName == Environment.Production)
-            {
-                sb.Append(CookingRecipeConstants.ProdImageFolderPath);
-            }
-            
-            sb.Append(CookingRecipeConstants.CookingRecipesImageFolderName);
-            sb.Append(@$"{newCookingRecipeId}\");
+            await this.cookingRecipeRepo.UpdateCookingRecipeAsync(updatingModel);
 
-            var currRecipeAllimagesPath = sb.ToString();
-
-            sb.Append(CookingRecipeConstants.CoverImagefolderName);
-
-            var currCoverImagePath = sb.ToString();
-
-            this.fileService.CreateDirectory(currCoverImagePath);
-
-            if (model.CoverImage != null)
-            {
-                var coverImgFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
-
-                this.fileService.SaveImageFile($"{currCoverImagePath}{coverImgFileName}", model.CoverImage);
-
-                var updatingModel = this.GetCookingRecipeById(newCookingRecipeId);
-                updatingModel.CoverImageFileName = coverImgFileName;
-
-                this.cookingRecipeRepo.UpdateCookingRecipeAsync(updatingModel);
-            }
-
-            if (model.Images != null && model.Images.Count() > 0)
-            {
-                foreach (var image in model.Images)
-                {
-                    var imageFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
-
-                    this.fileService.SaveImageFile($"{currRecipeAllimagesPath}{imageFileName}", model.CoverImage);
-                }
-            }
+            this.HandleImages(updatingModel.Id, viewModel.CoverImageFileName, viewModel.CoverImage, viewModel.Images);
         }
 
         public async Task DeleteAsync(int cookingRecipeId)
@@ -113,7 +94,7 @@ namespace RadoHub.Services.Services
             {
                 sb.Append(CookingRecipeConstants.ProdImageFolderPath);
             }
-            
+
             sb.Append(CookingRecipeConstants.CookingRecipesImageFolderName);
             sb.Append(cookingRecipeId);
 
@@ -193,24 +174,81 @@ namespace RadoHub.Services.Services
             throw new NotImplementedException();
         }
 
-        public async Task UpdateCookingRecipeAsync(string editorId, EditRecipeViewModel model)
+        public UpdateRecipeViewModel GetRecipeToUpdate(int id)
         {
-            //var editedCookingRecipe = new CookingRecipe()
-            //{
-            //    Id = model.Id,
-            //    Title = model.Title,
-            //    ShortDescription = model.ShortDescription,
-            //    Products = model.Products,
-            //    Content = model.Content,
-            //    ExecutingTime = model.ExecutingTime,
-            //    Hashtags = model.Hashtags,
-            //    EditorsUsernames = this.userAccountService.GetUserById(editorId).UserName,
-            //    LastModifiedAt = DateTime.UtcNow,
-            //};
+            var recipeToUpdate = this.GetCookingRecipeById(id);
 
-            //await this.cookingRecipeRepo.UpdateCookingRecipeAsync(editedCookingRecipe);
+            var updateModel = new UpdateRecipeViewModel()
+            { 
+                Id = recipeToUpdate.Id,
+                Title = recipeToUpdate.Title,
+                ShortDescription = recipeToUpdate.ShortDescription,
+                ExecutingTime = recipeToUpdate.ExecutingTime,
+                Content = recipeToUpdate.Content,
+                CoverImageFileName = recipeToUpdate.CoverImageFileName
+            };
 
-            throw new NotImplementedException();
+            if (recipeToUpdate.Products != null)
+            {
+                updateModel.ProductsToUpdate = recipeToUpdate.Products.Split((new[] { ',' }), StringSplitOptions.RemoveEmptyEntries).ToHashSet();
+            }
+
+            if (recipeToUpdate.Hashtags != null)
+            {
+                updateModel.HashtagsToUpdate = recipeToUpdate.Hashtags.Split((new[] { ',' }), StringSplitOptions.RemoveEmptyEntries).ToHashSet();
+            }
+
+            return updateModel;
+        }
+
+        private void HandleImages(int cookingRecipeId, string oldCoverImageFileName, IFormFile newCoverImage, IEnumerable<IFormFile> newImages)
+        {
+            string coverImgFileName = oldCoverImageFileName;
+
+            var sb = new StringBuilder();
+
+            if (env.EnvironmentName == Environment.Development)
+            {
+                sb.Append(CookingRecipeConstants.StageImageFolderPath);
+            }
+
+            else if (env.EnvironmentName == Environment.Production)
+            {
+                sb.Append(CookingRecipeConstants.ProdImageFolderPath);
+            }
+
+            sb.Append(CookingRecipeConstants.CookingRecipesImageFolderName);
+            sb.Append(@$"{cookingRecipeId}\");
+
+            var currRecipeAllimagesPath = sb.ToString();
+
+            sb.Append(CookingRecipeConstants.CoverImagefolderName);
+
+            var currCoverImagePath = sb.ToString();
+
+            this.fileService.CreateDirectory(currCoverImagePath);
+
+            if (newCoverImage != null)
+            {
+                coverImgFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
+
+                this.fileService.SaveImageFile($"{currCoverImagePath}{coverImgFileName}", newCoverImage);
+            }
+
+            var updatingModel = this.cookingRecipeRepo.GetCookingRecipeById(cookingRecipeId);
+            updatingModel.CoverImageFileName = coverImgFileName;
+            this.cookingRecipeRepo.UpdateCookingRecipeAsync(updatingModel);
+
+            // TODO: implementation for secondary images not completed 
+            if (newImages != null && newImages.Count() > 0)
+            {
+                foreach (var image in newImages)
+                {
+                    var imageFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
+
+                    this.fileService.SaveImageFile($"{currRecipeAllimagesPath}{imageFileName}", newCoverImage);
+                }
+            }
         }
     }
 }
