@@ -85,19 +85,41 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
             }
         }
 
-        public IActionResult EditCookingRecipe(int Id)
+        public IActionResult UpdateCookingRecipe(int id)
         {
-            //TODO: impelementation 
-            
-            return this.View();
+            UpdateRecipeViewModel recipeToUpdate = this.cookingRecipeService.GetRecipeToUpdate(id);
+
+            return this.View(recipeToUpdate);
         }
 
         [HttpPost]
-        public IActionResult EditCookingRecipe(EditRecipeViewModel model)
+        public IActionResult UpdateCookingRecipe(UpdateRecipeViewModel model)
         {
-            //TODO: impelementation
+            try
+            {
+                var editorId = this.userManager
+                    .GetUserAsync(HttpContext.User)
+                    .GetAwaiter().GetResult()
+                    .Id;
 
-            return this.View();
+                this.cookingRecipeService.UpdateCookingRecipeAsync(editorId, model)
+                    .GetAwaiter().GetResult();
+
+                TempData["statusMessage"] = "Cooking recipe was updated successfully!";
+                return RedirectToAction("Index", "CookingRecipe");
+            }
+            catch (System.Exception exeption)
+            {
+                ModelState.AddModelError("Action Failed!", exeption.Message);
+
+                model = this.cookingRecipeService.GetRecipeToUpdate(model.Id);
+                return this.View(model);
+
+                //another approach
+                //TempData["statusMessage"] = $"Action Failed! | {exeption.Message}";
+                //return RedirectToAction("Index", "CookingRecipe");
+            }
+
         }
     }
 }
