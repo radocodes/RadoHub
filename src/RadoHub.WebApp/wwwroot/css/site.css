@@ -251,8 +251,9 @@ body {
         } 
 
         .home .index .i-suggest .banner {
-            height: 200px;
-            width: 1000px;
+            width: 100%;
+            /*height: 200px;*/
+            /*width: 1000px;*/
         }
 
         .home .about-me {
@@ -324,6 +325,7 @@ body {
         }
 
 .admin-cooking-recipe {
+    padding-bottom: 25px;
 }
 
     .admin-cooking-recipe .index {
