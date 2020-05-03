@@ -57,21 +57,20 @@ namespace RadoHub.Services.Services
 
         public async Task UpdateCookingRecipeAsync(string editorId, UpdateRecipeViewModel viewModel)
         {
-            //var oldCookingRecipe = this.cookingRecipeRepo.GetCookingRecipeById(viewModel.Id);
+            var updatingModel = this.cookingRecipeRepo.GetCookingRecipeById(viewModel.Id);
 
-            var updatingModel = new CookingRecipe()
-            {
-                Id = viewModel.Id,
-                Title = viewModel.Title,
-                ShortDescription = viewModel.ShortDescription,
-                Products = viewModel.Products,
-                Content = viewModel.Content,
-                ExecutingTime = viewModel.ExecutingTime,
-                Hashtags = viewModel.Hashtags,
-                LastModifiedAt = DateTime.UtcNow,
-                //TODO: improve editorsUsernames handling at all (db too)
-                //EditorsUsernames = oldCookingRecipe.EditorsUsernames,
-            };
+            updatingModel.Id = viewModel.Id;
+            updatingModel.Title = viewModel.Title;
+            updatingModel.ShortDescription = viewModel.ShortDescription;
+            updatingModel.Products = viewModel.Products;
+            updatingModel.Content = viewModel.Content;
+            updatingModel.ExecutingTime = viewModel.ExecutingTime;
+            updatingModel.Hashtags = viewModel.Hashtags;
+            updatingModel.LastModifiedAt = DateTime.UtcNow;
+            //TODO: improve editorsUsernames handling at all (db too)
+            //EditorsUsernames = oldCookingRecipe.EditorsUsernames,
+
+
 
             await this.cookingRecipeRepo.UpdateCookingRecipeAsync(updatingModel);
 
@@ -179,7 +178,7 @@ namespace RadoHub.Services.Services
             var recipeToUpdate = this.GetCookingRecipeById(id);
 
             var updateModel = new UpdateRecipeViewModel()
-            { 
+            {
                 Id = recipeToUpdate.Id,
                 Title = recipeToUpdate.Title,
                 ShortDescription = recipeToUpdate.ShortDescription,
