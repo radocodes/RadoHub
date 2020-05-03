@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RadoHub.Services.Contracts;
@@ -23,7 +24,9 @@ namespace RadoHub.WebApp.Controllers
         {
             var model = new HomeIndexViewModel();
             model.CookingRecipesModel = new CookingRecipesViewModel();
-            model.CookingRecipesModel.Recipes = cookingRecipeService.GetAllRecipesAsPublic();
+            model.CookingRecipesModel.Recipes = cookingRecipeService
+                .GetAllRecipesAsPublic()
+                .Where(recipe => recipe.CoverImageFileName != null).ToList();
 
             return View(model);
         }
