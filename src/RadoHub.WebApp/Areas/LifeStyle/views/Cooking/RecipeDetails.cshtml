@@ -36,7 +36,7 @@
             @if (Model.ShortDescription != null)
             {
                 <div class="short-description text-center">
-                    @Model.ShortDescription
+                    @Html.Raw(Model.ShortDescription)
                 </div>
             }
             @if (Model.ExecutingTime != null && Model.ExecutingTime > TimeSpan.Zero)
@@ -58,7 +58,7 @@
             </div>
             <div class="content">
                 <h5>Рецепта:</h5>
-                @Model.Content
+                @Html.Raw(Model.Content)
             </div>
             @if (Model.Hashtags != null && Model.Hashtags.Count > 0)
             {

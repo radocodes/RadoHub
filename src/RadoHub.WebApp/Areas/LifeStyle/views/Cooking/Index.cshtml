@@ -44,11 +44,11 @@
                                 @if (recipe.ShortDescription.Length < 400)
                                 {
 
-                                    @recipe.ShortDescription
+                                    @Html.Raw(recipe.ShortDescription)
                                 }
                                 else
                                 {
-                                    @recipe.ShortDescription.Substring(0, 300)
+                                    @Html.Raw(recipe.ShortDescription.Substring(0, 300))
                                 }
                                 ...
                             </div>
