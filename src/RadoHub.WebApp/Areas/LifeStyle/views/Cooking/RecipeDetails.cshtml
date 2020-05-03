@@ -39,23 +39,23 @@
                     @Model.ShortDescription
                 </div>
             }
-            @if (Model.ExecutingTime != null)
+            @if (Model.ExecutingTime != null && Model.ExecutingTime > TimeSpan.Zero)
             {
                 <div class="executing-time">
-                    <strong>Време за приготвяне: </strong>@Model.ExecutingTime.TotalMinutes Min.
+                    <strong>Време за приготвяне: </strong>@Model.ExecutingTime.Hours:@Model.ExecutingTime.Minutes h
                 </div>
             }
-        <div class="products">
-            <strong>Продукти:</strong>
-            @if (Model.Products != null)
-            {
-                @foreach (var product in Model.Products)
+            <div class="products">
+                <strong>Продукти:</strong>
+                @if (Model.Products != null)
                 {
-                    <div>@product</div>
+                    @foreach (var product in Model.Products)
+                    {
+                        <div>@product</div>
+                    }
                 }
-            }
 
-        </div>
+            </div>
             <div class="content">
                 <h5>Рецепта:</h5>
                 @Model.Content
