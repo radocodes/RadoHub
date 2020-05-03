@@ -230,7 +230,10 @@ namespace RadoHub.Services.Services
 
             if (newCoverImage != null)
             {
-                coverImgFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
+                if (string.IsNullOrEmpty(coverImgFileName))
+                {
+                    coverImgFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
+                }
 
                 this.fileService.SaveImageFile($"{currCoverImagePath}{coverImgFileName}", newCoverImage);
             }
