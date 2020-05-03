@@ -44,10 +44,10 @@
                                 <a asp-controller="CookingRecipe" asp-action="UpdateCookingRecipe" asp-route-id="@Recipe.Id" class="btn btn-primary">Edit</a>
 
                                 <!-- Modal delete button -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-@Recipe.Id">
                                     Delete
                                 </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="exampleModal-@Recipe.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
