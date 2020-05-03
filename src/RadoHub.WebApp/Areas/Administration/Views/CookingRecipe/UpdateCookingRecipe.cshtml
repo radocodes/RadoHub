@@ -40,7 +40,9 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="@Model.ExecutingTime">Executing Time</label>
-                        <input type="time" class="form-control" asp-for="@Model.ExecutingTime" style="width:20%">
+                        <input class="form-control" asp-for="@Model.ExecutingTime" style="width:20%">
+                        <span asp-validation-for="@Model.ExecutingTime" class="text-danger"></span>
+                        <small class="form-text text-muted">Input format: hh:mm:ss (examle: 14:25:42)</small>
                     </div>
                     <div class="form-group products-form">
                         <label asp-for="@Model.Products">Products</label>
