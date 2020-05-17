@@ -41,7 +41,7 @@
                                 <p class="blog-index-info-icons"><i class="fas fa-pencil-alt"></i> @recipe.CreationDate.ToShortDateString() | <i class="fas fa-sync-alt"></i> @recipe.LastModifiedAt.ToShortDateString()</p>
                             </div>
                             <div class="text-body">
-                                @if (recipe.ShortDescription.Length < 400)
+                                @if (recipe.ShortDescription.Length < 300)
                                 {
 
                                     @Html.Raw(recipe.ShortDescription)
@@ -50,7 +50,6 @@
                                 {
                                     @Html.Raw(recipe.ShortDescription.Substring(0, 300))
                                 }
-                                ...
                             </div>
                             <a class="btn btn-dark" asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">READ MORE</a>
                         </article>
