@@ -157,7 +157,7 @@ body {
         .home .index section {
             border-radius: 5px;
             margin-top: 25px;
-            margin-bottom:50px;
+            margin-bottom: 50px;
             padding-bottom: 25px;
             border: solid;
             border-width: 1px;
@@ -202,8 +202,6 @@ body {
         .home .index .about-me-btn {
             background-color: darkslategrey;
             color: gray;
-            
-            
             padding: 25px;
             border-radius: 75px;
         }
@@ -228,7 +226,7 @@ body {
         }
 
             .home .index .season-inspiration .image-wrapper {
-                width: 65%;
+                width: 75%;
                 padding: 25px;
                 /*background-color:white;*/
                 margin-left: auto;
@@ -242,13 +240,25 @@ body {
         .home .index .cooking-recipes {
             /*background-color: lightgray;*/
             border-radius: 5px;
-            padding-bottom: 25px;
+            padding-bottom: 0px;
+            margin-bottom: 0;
+
         }
+            .home .index .cooking-recipes .recipe-wrapper {
+                margin-bottom: 2.5%;
+            }
+
+            .home .index .cooking-recipes .recipe-box {
+            }
+
+                .home .index .cooking-recipes .recipe-box .recipe-img {
+                    padding: 0;
+                }
 
         .home .index .i-suggest .banner-wrapper {
             margin-top: 25px;
             margin-bottom: 25px;
-        } 
+        }
 
         .home .index .i-suggest .banner {
             width: 100%;
@@ -256,8 +266,8 @@ body {
             /*width: 1000px;*/
         }
 
-        .home .about-me {
-        }
+    .home .about-me {
+    }
 
         .home .about-me .title {
             margin-top: 25px;
@@ -269,9 +279,22 @@ body {
             font-weight: bold;
         }
 
-        .home .about-me .summary {
-            padding: 25px;
-        }
+            .home .about-me .header .my-photo {
+
+            }
+
+            .home .about-me .header .my-photo .image {
+                width: 50%;
+                border-radius: 50%;
+            }
+
+            .home .about-me .header .contacts {
+                margin-top: 30px;
+            }
+
+            .home .about-me .summary {
+                padding: 25px;
+            }
 
         .home .about-me .technologies {
             padding: 25px;
@@ -388,7 +411,6 @@ body {
                     font-size: medium;
                     overflow: hidden;
                     text-overflow: clip;
-                    padding-bottom: 50px;
                 }
 
     .lifestyle-cooking .recipe-details {
