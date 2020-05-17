@@ -76,7 +76,7 @@ string envDir;
                                 <div class="row">
                                     @foreach (var recipe in Model.CookingRecipesModel.Recipes)
                                     {
-                                    <div class="col-12 col-md-3 text-center recipe-wrapper">
+                                    <div class="col-12 col-md-4 text-center recipe-wrapper">
                                         <a class="col-12 col-md-3 recipe-box" asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">
                                             <img src="~/images/@envDir/cookingRecipes/@recipe.Id/coverImage/@recipe.CoverImageFileName" class="recipe-img" style="height:150px;" alt="recipe img">
                                         </a>
