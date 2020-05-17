@@ -26,7 +26,7 @@ namespace RadoHub.WebApp.Controllers
             model.CookingRecipesModel = new CookingRecipesViewModel();
             model.CookingRecipesModel.Recipes = cookingRecipeService
                 .GetAllRecipesAsPublic()
-                .Where(recipe => recipe.CoverImageFileName != null).ToList();
+                .Where(recipe => recipe.CoverImageFileName != null).Take(3).ToList();
 
             return View(model);
         }
