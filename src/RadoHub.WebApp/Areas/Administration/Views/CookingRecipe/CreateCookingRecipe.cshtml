@@ -24,6 +24,7 @@
                     <div class="form-group">
                         <label asp-for="@Model.ShortDescription">Short Description</label>
                         <textarea type="text" class="form-control" asp-for="@Model.ShortDescription" rows="3"></textarea>
+                        <span asp-validation-for="@Model.ShortDescription" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="@Model.ExecutingTime">Executing Time</label>

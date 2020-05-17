@@ -15,6 +15,7 @@ namespace RadoHub.ViewModels.CookingRecipes
         public string Title { get; set; }
 
         [Display(Name = "Short description")]
+        [StringLength(300)]
         public string ShortDescription { get; set; }
 
         [Display(Name = "Executing time")]
