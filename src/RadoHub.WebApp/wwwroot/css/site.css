@@ -441,11 +441,15 @@ body {
                     width: 40%;
                 }
 
-            .lifestyle-cooking .recipe-details .article .short-description {
-                margin: 25px;
-                font-style: italic;
-                font-size: large;
-            }
+                    .lifestyle-cooking .recipe-details .article .cover-image img:hover {
+                        cursor: pointer;
+                    }
+
+                    .lifestyle-cooking .recipe-details .article .short-description {
+                        margin: 25px;
+                        font-style: italic;
+                        font-size: large;
+                    }
 
             .lifestyle-cooking .recipe-details .article .executing-time {
                 margin: 25px;
