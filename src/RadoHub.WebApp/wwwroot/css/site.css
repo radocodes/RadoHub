@@ -406,6 +406,17 @@ body {
                 margin-top: 50px;
             }
 
+                .lifestyle-cooking .index .all-recipes .article .article-header a {
+                    color: #333;
+                    /*text-decoration:none;*/
+                }
+
+                .lifestyle-cooking .index .all-recipes .article .article-title {
+                    word-wrap: break-word;
+                    font-size: xx-large;
+                    font-weight: 500;
+                }
+
                 .lifestyle-cooking .index .all-recipes .article .text-body {
                     text-align: justify;
                     font-size: medium;

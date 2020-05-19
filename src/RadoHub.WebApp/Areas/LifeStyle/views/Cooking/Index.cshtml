@@ -28,14 +28,18 @@
                     <aside class="col-sm-5">
                         @if (recipe.CoverImageFileName != null)
                         {
+                        <a asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">
                             <img src="~/images/@envDir/cookingRecipes/@recipe.Id/coverImage/@recipe.CoverImageFileName" class="cover-image">
+                        </a>
                         }
                     </aside>
 
                     <section class="col-sm-7">
                         <article class="article">
-                            <div>
-                                <h2 style="word-wrap: break-word">@recipe.Title</h2>
+                            <div class="article-header">
+                                <a asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">
+                                    <span class="article-title">@recipe.Title</span>
+                                </a>
                             </div>
                             <div>
                                 <p class="blog-index-info-icons"><i class="fas fa-pencil-alt"></i> @recipe.CreationDate.ToShortDateString() | <i class="fas fa-sync-alt"></i> @recipe.LastModifiedAt.ToShortDateString()</p>
