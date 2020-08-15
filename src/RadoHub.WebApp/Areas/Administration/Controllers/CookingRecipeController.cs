@@ -10,11 +10,13 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
     {
         private readonly ICookingRecipeService cookingRecipeService;
         private readonly UserManager<RadoHubUser> userManager;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public CookingRecipeController(ICookingRecipeService cookingRecipeService, UserManager<RadoHubUser> userManager)
+        public CookingRecipeController(ICookingRecipeService cookingRecipeService, UserManager<RadoHubUser> userManager, ICloudinaryService cloudinaryService)
         {
             this.cookingRecipeService = cookingRecipeService;
             this.userManager = userManager;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public IActionResult Index()
@@ -50,7 +52,10 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
 
         public IActionResult CreateCookingRecipe()
         {
-            return this.View();
+            CreateRecipeViewModel model = new CreateRecipeViewModel();
+            model.CloudinaryAccount = this.cloudinaryService.CloudinaryAccount();
+
+            return this.View(model);
         }
 
         [HttpPost]
@@ -89,6 +94,8 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
         {
             UpdateRecipeViewModel recipeToUpdate = this.cookingRecipeService.GetRecipeToUpdate(id);
 
+            recipeToUpdate.CloudinaryAccount = this.cloudinaryService.CloudinaryAccount();
+
             return this.View(recipeToUpdate);
         }
 
@@ -103,9 +110,9 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
             try
             {
                 var editorId = this.userManager
-                    .GetUserAsync(HttpContext.User)
-                    .GetAwaiter().GetResult()
-                    .Id;
+                        .GetUserAsync(HttpContext.User)
+                        .GetAwaiter().GetResult()
+                        .Id;
 
                 this.cookingRecipeService.UpdateCookingRecipeAsync(editorId, model)
                     .GetAwaiter().GetResult();
@@ -120,9 +127,9 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
                 model = this.cookingRecipeService.GetRecipeToUpdate(model.Id);
                 return this.View(model);
 
-                //another approach
-                //TempData["statusMessage"] = $"Action Failed! | {exeption.Message}";
-                //return RedirectToAction("Index", "CookingRecipe");
+                // Another approach
+                // TempData["statusMessage"] = $"Action Failed! | {exeption.Message}";
+                // return RedirectToAction("Index", "CookingRecipe");
             }
 
         }
