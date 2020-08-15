@@ -24,6 +24,11 @@ namespace RadoHub.Services.Services
             this.cloudinary = new Cloudinary(this.cloudinaryAccount);
         }
 
+        public Cloudinary GetCloudinaryInstance()
+        {
+            return this.cloudinary;
+        }
+
         public Account CloudinaryAccount()
         {
             return this.cloudinaryAccount;
