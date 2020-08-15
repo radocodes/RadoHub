@@ -1,7 +1,3 @@
-    using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -48,6 +44,8 @@ namespace RadoHub.WebApp
                 .AddEntityFrameworkStores<RadoHubDbContext>()
             .AddDefaultTokenProviders()
             .AddDefaultUI();
+
+            services.Configure<CloudinaryConfigs>(Configuration.GetSection("CloudinaryAccountCredits"));  
 
             // Data repositories
             services.AddScoped<ICookingRecipeRepository, CookingRecipeRepository>();
