@@ -1,7 +1,7 @@
-﻿using RadoHub.Data.Models;
+﻿using CloudinaryDotNet;
+using RadoHub.Data.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace RadoHub.ViewModels.CookingRecipes
 {
@@ -26,5 +26,7 @@ namespace RadoHub.ViewModels.CookingRecipes
         public IEnumerable<string> ImagesFileNames { get; set; }
 
         public HashSet<string> Hashtags { get; set; }
+
+        public Account CloudinaryAccount { get; set; }
     }
 }

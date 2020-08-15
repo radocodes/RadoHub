@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CloudinaryDotNet;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace RadoHub.ViewModels.CookingRecipes
 {
@@ -27,13 +25,11 @@ namespace RadoHub.ViewModels.CookingRecipes
         [Required]
         public string Content { get; set; }
 
-        [Display(Name = "Cover image")]
-        public IFormFile CoverImage { get; set; }
-
-        [Display(Name = "Images")]
-        public IEnumerable<IFormFile> Images { get; set; }
-
         [Display(Name = "Hashtags")]
         public string Hashtags { get; set; }
+
+        public string CoverImageFileName { get; set; }
+
+        public Account CloudinaryAccount { get; set; }
     }
 }
