@@ -30,6 +30,6 @@ namespace RadoHub.ViewModels.CookingRecipes
 
         public string CoverImageFileName { get; set; }
 
-        public Account CloudinaryAccount { get; set; }
+        public Cloudinary Cloudinary { get; set; }
     }
 }
