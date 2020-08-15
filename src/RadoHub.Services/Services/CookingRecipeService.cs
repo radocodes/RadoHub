@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Environment = RadoHub.Services.Constants.Environment;
 
 namespace RadoHub.Services.Services
 {
@@ -46,13 +45,12 @@ namespace RadoHub.Services.Services
                 CreationDate = DateTime.UtcNow,
                 LastModifiedAt = DateTime.UtcNow,
                 CreatorId = creatorId,
+                CoverImageFileName = viewModel.CoverImageFileName,
             };
 
             var newCookingRecipeId = this.cookingRecipeRepo
                 .CreateCookingRecipeAsync(cookingRecipe)
                 .GetAwaiter().GetResult();
-
-            this.HandleImages(newCookingRecipeId, null, viewModel.CoverImage, viewModel.Images);
         }
 
         public async Task UpdateCookingRecipeAsync(string editorId, UpdateRecipeViewModel viewModel)
@@ -67,14 +65,11 @@ namespace RadoHub.Services.Services
             updatingModel.ExecutingTime = viewModel.ExecutingTime;
             updatingModel.Hashtags = viewModel.Hashtags;
             updatingModel.LastModifiedAt = DateTime.UtcNow;
+            updatingModel.CoverImageFileName = viewModel.CoverImageFileName;
             //TODO: improve editorsUsernames handling at all (db too)
             //EditorsUsernames = oldCookingRecipe.EditorsUsernames,
 
-
-
             await this.cookingRecipeRepo.UpdateCookingRecipeAsync(updatingModel);
-
-            this.HandleImages(updatingModel.Id, viewModel.CoverImageFileName, viewModel.CoverImage, viewModel.Images);
         }
 
         public async Task DeleteAsync(int cookingRecipeId)
@@ -82,23 +77,7 @@ namespace RadoHub.Services.Services
             var cookingRecipe = this.cookingRecipeRepo.GetCookingRecipeById(cookingRecipeId);
 
             await this.cookingRecipeRepo.DeleteAsync(cookingRecipe);
-
-            var sb = new StringBuilder();
-
-            if (env.EnvironmentName == Environment.Development)
-            {
-                sb.Append(CookingRecipeConstants.StageImageFolderPath);
-            }
-            else if (env.EnvironmentName == Environment.Production)
-            {
-                sb.Append(CookingRecipeConstants.ProdImageFolderPath);
-            }
-
-            sb.Append(CookingRecipeConstants.CookingRecipesImageFolderName);
-            sb.Append(cookingRecipeId);
-
-            var currRecipeimagePath = sb.ToString();
-            this.fileService.DeleteDirectory(currRecipeimagePath);
+            //TODO: Also think about to delete image(s) at Cloudinary for current recipe
         }
 
         public List<CookingRecipe> GetAllCookingRecipes()
@@ -200,18 +179,19 @@ namespace RadoHub.Services.Services
             return updateModel;
         }
 
+        // Curently obsolete
         private void HandleImages(int cookingRecipeId, string oldCoverImageFileName, IFormFile newCoverImage, IEnumerable<IFormFile> newImages)
         {
             string coverImgFileName = oldCoverImageFileName;
 
             var sb = new StringBuilder();
 
-            if (env.EnvironmentName == Environment.Development)
+            if (env.EnvironmentName == RadoHubEnvironments.Development)
             {
                 sb.Append(CookingRecipeConstants.StageImageFolderPath);
             }
 
-            else if (env.EnvironmentName == Environment.Production)
+            else if (env.EnvironmentName == RadoHubEnvironments.Production)
             {
                 sb.Append(CookingRecipeConstants.ProdImageFolderPath);
             }
