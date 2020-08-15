@@ -53,7 +53,7 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
         public IActionResult CreateCookingRecipe()
         {
             CreateRecipeViewModel model = new CreateRecipeViewModel();
-            model.CloudinaryAccount = this.cloudinaryService.CloudinaryAccount();
+            model.Cloudinary = this.cloudinaryService.GetCloudinaryInstance();
 
             return this.View(model);
         }
@@ -94,7 +94,7 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
         {
             UpdateRecipeViewModel recipeToUpdate = this.cookingRecipeService.GetRecipeToUpdate(id);
 
-            recipeToUpdate.CloudinaryAccount = this.cloudinaryService.CloudinaryAccount();
+            recipeToUpdate.Cloudinary = this.cloudinaryService.GetCloudinaryInstance();
 
             return this.View(recipeToUpdate);
         }
