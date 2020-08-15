@@ -20,6 +20,7 @@ namespace RadoHub.WebApp.Areas.LifeStyle.Controllers.Cooking
             var model = new CookingRecipesViewModel();
 
             model.Recipes = this.cookingRecipeService.GetAllRecipesAsPublic();
+            model.Cloudinary = this.cloudinaryService.GetCloudinaryInstance();
 
             return this.View(model);
         }
