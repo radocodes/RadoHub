@@ -12,7 +12,7 @@ namespace RadoHub.WebApp.Areas.LifeStyle.Controllers.Cooking
         public CookingController(ICookingRecipeService cookingRecipeService, ICloudinaryService cloudinaryService)
         {
             this.cookingRecipeService = cookingRecipeService;
-            this.cloudinaryService = cloudinaryService.;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public IActionResult Index()
