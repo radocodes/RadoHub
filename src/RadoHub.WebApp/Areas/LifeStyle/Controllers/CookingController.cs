@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RadoHub.Services.Contracts;
 using RadoHub.ViewModels.CookingRecipes;
 
@@ -11,10 +7,12 @@ namespace RadoHub.WebApp.Areas.LifeStyle.Controllers.Cooking
     public class CookingController : LifeStyleControllerBase
     {
         private readonly ICookingRecipeService cookingRecipeService;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public CookingController(ICookingRecipeService cookingRecipeService)
+        public CookingController(ICookingRecipeService cookingRecipeService, ICloudinaryService cloudinaryService)
         {
             this.cookingRecipeService = cookingRecipeService;
+            this.cloudinaryService = cloudinaryService.;
         }
 
         public IActionResult Index()
@@ -29,6 +27,7 @@ namespace RadoHub.WebApp.Areas.LifeStyle.Controllers.Cooking
         public IActionResult RecipeDetails(int id)
         {
             var viewModel = this.cookingRecipeService.GetCookingRecipeByIdAsPublic(id);
+            viewModel.CloudinaryAccount = cloudinaryService.CloudinaryAccount();
 
             return this.View(viewModel);
         }
