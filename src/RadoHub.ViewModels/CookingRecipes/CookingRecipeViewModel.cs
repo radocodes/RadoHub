@@ -27,6 +27,6 @@ namespace RadoHub.ViewModels.CookingRecipes
 
         public HashSet<string> Hashtags { get; set; }
 
-        public Account CloudinaryAccount { get; set; }
+        public Cloudinary Cloudinary { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace RadoHub.WebApp.Areas.LifeStyle.Controllers.Cooking
         public IActionResult RecipeDetails(int id)
         {
             var viewModel = this.cookingRecipeService.GetCookingRecipeByIdAsPublic(id);
-            viewModel.CloudinaryAccount = cloudinaryService.CloudinaryAccount();
+            viewModel.Cloudinary = cloudinaryService.GetCloudinaryInstance();
 
             return this.View(viewModel);
         }
