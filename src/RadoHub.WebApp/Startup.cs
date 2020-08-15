@@ -54,6 +54,7 @@ namespace RadoHub.WebApp
             services.AddScoped<IUserAccountService, UserAccountService>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<ICookingRecipeService, CookingRecipeService>();
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
