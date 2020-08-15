@@ -448,9 +448,9 @@ body {
                 margin: 25px;
             }
 
-                .lifestyle-cooking .recipe-details .article .cover-image img {
+                /*.lifestyle-cooking .recipe-details .article .cover-image img {
                     width: 40%;
-                }
+                }*/
 
                     .lifestyle-cooking .recipe-details .article .cover-image img:hover {
                         cursor: pointer;
