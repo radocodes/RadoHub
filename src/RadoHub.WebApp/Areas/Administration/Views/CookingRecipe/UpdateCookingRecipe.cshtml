@@ -1,18 +1,24 @@
 ﻿@model RadoHub.ViewModels.CookingRecipes.UpdateRecipeViewModel
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
 @{
-    string envDir;
+    ViewData["Title"] = "Update existing cooking recipe";
 
-    if (hostingEnv.EnvironmentName == "Development")
+    string webDomainAddress;
+    if (hostingEnv.EnvironmentName == RadoHub.Services.Constants.RadoHubEnvironments.Production)
     {
-        envDir = "stage";
+        webDomainAddress = RadoHubDomainAddress.ProductionAddress;
     }
     else
     {
-        envDir = "production";
+        webDomainAddress = RadoHubDomainAddress.LocalHost;
     }
 
-    ViewData["Title"] = "Update existing cooking recipe";
+    string generateSignatureEndpoint = $"{webDomainAddress}/Administration/Cloudinary/GenerateSignature";
+
+    Cloudinary cloudinary = Model.Cloudinary;
+    string cloudName = "radocodes";
+    string apiKey = "534366459658879";
+    string uploadPreset = "ml_default";
 }
 
 <div class="admin-cooking-recipe">
@@ -21,18 +27,20 @@
         <header class="title text-center">
             <div>
                 <h1 class="">@ViewData["Title"]</h1>
-                <img src="~/images/@envDir/cookingRecipes/@Model.Id/coverImage/@Model.CoverImageFileName" style="width:15%;" />
+                <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Format("jpg")
+                             .Transform(new Transformation().Width(350).Quality(100))
+                             .BuildUrl(Model.CoverImageFileName))" />
             </div>
         </header>
 
         <section class="create-form">
             <div class="container">
-                <form method="post" enctype="multipart/form-data">
+                <form method="post">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="@Model.Title">Title</label>
                         <input type="text" class="form-control" asp-for="@Model.Title">
-                        <span asp-validation-for="@Model.Title" class="text-danger"></span> 
+                        <span asp-validation-for="@Model.Title" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="@Model.ShortDescription">Short Description</label>
@@ -76,9 +84,8 @@
                         <textarea type="text" class="form-control" asp-for="@Model.Content" rows="25"></textarea>
                     </div>
                     <div class="form-group">
-                        <label asp-for="@Model.CoverImage">Cover Image</label>
-                        <input type="file" class="form-control-file" asp-for="@Model.CoverImage">
-                        <input type="hidden" class="form-control" asp-for="@Model.CoverImageFileName">
+                        <div id="upload_widget" class="cloudinary-button">Upload files</div>
+                        <input type="hidden" class="form-control" id="imageId" asp-for="@Model.CoverImageFileName">
                     </div>
                     <div class="form-group hashtags-form">
                         <label asp-for="@Model.Hashtags">Hashtags</label>
@@ -112,6 +119,35 @@
         </section>
     </div>
 </div>
+
+
+<script type="text/javascript">
+    // Generate signature for upload operation with Cloudinary widget
+    var generateSignature = function (callback, params_to_sign) {
+        $.ajax({
+            url: "@generateSignatureEndpoint",
+            type: "GET",
+            dataType: "text",
+            data: { data: params_to_sign },
+            complete: function () { console.log("complete") },
+            success: function (signature, textStatus, xhr) { callback(signature); },
+            error: function (xhr, status, error) { console.log(xhr, status, error); }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    // Open Cloudinary widget and upload media content
+    $('#upload_widget').cloudinary_upload_widget({
+        cloudName: "@cloudName", apiKey: "@apiKey", upload_preset: "@uploadPreset", uploadSignature: generateSignature
+    }, (error, result) => {
+        if (!error && result && result.event === "success") {
+            console.log('Done! Here is the image info: ', result.info);
+            $("#imageId").val(result.info.public_id);
+            console.log($("#imageId").val());
+        }
+    });
+</script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -245,7 +281,7 @@
 
         $("#products-array").val(recipeProducts);
 
-        // Prepare Hashtags 
+        // Prepare Hashtags
         let hashtagsCount = $(".hashtags").length;
         let allHashtags = new Array();
 

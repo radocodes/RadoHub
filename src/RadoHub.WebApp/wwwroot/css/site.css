@@ -226,7 +226,7 @@ body {
         }
 
             .home .index .season-inspiration .image-wrapper {
-                width: 75%;
+                width: 90%;
                 padding: 25px;
                 /*background-color:white;*/
                 margin-left: auto;
@@ -392,12 +392,18 @@ body {
             border-radius: 10px;
         }
 
+            .lifestyle-cooking .index .all-recipes a {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+
             .lifestyle-cooking .index .all-recipes .cover-image {
-                width: 300px;
+                width: 70%;
                 height: 200px;
                 margin-top: 50px;
-                margin-left: 30px;
-                margin-right: 0;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .lifestyle-cooking .index .all-recipes .article {
@@ -449,7 +455,7 @@ body {
             }
 
                 .lifestyle-cooking .recipe-details .article .cover-image img {
-                    width: 40%;
+                    max-width: 40%;
                 }
 
                     .lifestyle-cooking .recipe-details .article .cover-image img:hover {
@@ -462,9 +468,13 @@ body {
                         font-size: large;
                     }
 
-            .lifestyle-cooking .recipe-details .article .executing-time {
-                margin: 25px;
-            }
+        .lifestyle-cooking .recipe-details .article .modal-body img{
+            max-width: 100%;
+        }
+
+        .lifestyle-cooking .recipe-details .article .executing-time {
+            margin: 25px;
+        }
 
             .lifestyle-cooking .recipe-details .article .products {
                 margin: 25px;

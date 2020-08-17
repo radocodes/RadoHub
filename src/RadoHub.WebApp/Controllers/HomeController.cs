@@ -13,11 +13,13 @@ namespace RadoHub.WebApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ICookingRecipeService cookingRecipeService;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public HomeController(ILogger<HomeController> logger, ICookingRecipeService cookingRecipeService)
+        public HomeController(ILogger<HomeController> logger, ICookingRecipeService cookingRecipeService, ICloudinaryService cloudinaryService)
         {
             this._logger = logger;
             this.cookingRecipeService = cookingRecipeService;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public IActionResult Index()
@@ -27,6 +29,8 @@ namespace RadoHub.WebApp.Controllers
             model.CookingRecipesModel.Recipes = cookingRecipeService
                 .GetAllRecipesAsPublic()
                 .Where(recipe => recipe.CoverImageFileName != null).Take(3).ToList();
+
+            model.Cloudinary = this.cloudinaryService.GetCloudinaryInstance();
 
             return View(model);
         }

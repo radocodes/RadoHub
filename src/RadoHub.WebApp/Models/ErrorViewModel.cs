@@ -1,5 +1,3 @@
-using System;
-
 namespace RadoHub.WebApp.Models
 {
     public class ErrorViewModel
