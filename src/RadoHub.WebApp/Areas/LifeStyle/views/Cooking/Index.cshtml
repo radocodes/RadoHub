@@ -14,7 +14,7 @@
             @foreach (var recipe in Model.Recipes)
             {
                 <div class="row">
-                    <aside class="col-sm-5">
+                    <aside class="col-sm-5 text-center">
                         @if (recipe.CoverImageFileName != null)
                         {
                         <a asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">
