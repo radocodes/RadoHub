@@ -64,6 +64,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 170.8px /*60px*/;
+    cursor: default;
 }
 
 .footer {
