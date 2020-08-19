@@ -1,7 +1,7 @@
 ﻿@model RadoHub.ViewModels.CookingRecipes.CookingRecipeViewModel
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
 @{
-    ViewData["Title"] = $"Cooking Recipes-{Model.Title}";
+    ViewData["Title"] = $"Cooking Recipes - {Model.Title}";
 
     Cloudinary cloudinary = Model.Cloudinary;
 }
@@ -10,7 +10,7 @@
 <div class="lifestyle-cooking">
     <div class="recipe-details">
         <header>
-            <h1 class="title text-center">Cooking Recipes</h1>
+            <h1 class="title text-center">Cooking Recipe Details</h1>
         </header>
 
         <article class="article container">
