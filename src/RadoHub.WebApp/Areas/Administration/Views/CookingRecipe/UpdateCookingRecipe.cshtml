@@ -27,7 +27,7 @@
         <header class="title text-center">
             <div>
                 <h1 class="">@ViewData["Title"]</h1>
-                <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Format("jpg")
+                <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(350).Quality(100))
                              .BuildUrl(Model.CoverImageFileName))" />
             </div>

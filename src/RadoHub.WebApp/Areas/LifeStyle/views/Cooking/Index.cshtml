@@ -20,7 +20,7 @@
                         @if (recipe.CoverImageFileName != null)
                         {
                         <a asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">
-                            <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Format("jpg")
+                            <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(350).Quality(100))
                              .BuildUrl(recipe.CoverImageFileName))" class="cover-image">
                         </a>

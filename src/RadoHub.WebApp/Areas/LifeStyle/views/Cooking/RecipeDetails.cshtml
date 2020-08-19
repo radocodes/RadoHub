@@ -21,7 +21,7 @@
             @if (Model.CoverImageFileName != null)
             {
                 <div class="cover-image text-center">
-                    <img data-toggle="modal" data-target="#cover-image" src="@Html.Raw(cloudinary.Api.UrlImgUp.Format("jpg")
+                    <img data-toggle="modal" data-target="#cover-image" src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(350).Quality(100))
                              .BuildUrl(Model.CoverImageFileName))" />
 
@@ -31,7 +31,7 @@
                                     <div class="modal-header">
                                     </div>
                                     <div class="modal-body">
-                                        <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Format("jpg")
+                                        <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(700).Quality(100))
                              .BuildUrl(Model.CoverImageFileName))"/>
                                     </div>

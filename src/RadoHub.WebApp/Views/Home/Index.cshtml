@@ -46,7 +46,7 @@
                         <div class="row">
                             <div class="col-12 col-md-12">
                                 <div class="image-wrapper text-center">
-                                    <img class="image" src="@Html.Raw(cloudinary.Api.UrlImgUp.Format("jpg")
+                                    <img class="image" src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(900).Quality(100))
                              .BuildUrl("v1597501962/April_alwskf"))" alt="season picture" />
                                 </div>
@@ -71,7 +71,7 @@
                                     {
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center recipe-wrapper">
                                         <a class="col-12 col-md-3 recipe-box" asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">
-                                            <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Format("jpg")
+                                            <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(250).Quality(100))
                              .BuildUrl(recipe.CoverImageFileName))" alt="recipe img">
                                         </a>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-12">
-                                <div class="banner-wrapper text-center"><a href="http://emaivanova.com" target="_blank"><img class="banner" src=@Html.Raw(cloudinary.Api.UrlImgUp.Format("jpg")
+                                <div class="banner-wrapper text-center"><a href="http://emaivanova.com" target="_blank"><img class="banner" src=@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(1000).Quality(100))
                              .BuildUrl("ema-ivanova_u0mleu")) alt="banner img" /></a>
                                 </div>
