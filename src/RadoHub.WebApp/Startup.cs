@@ -45,12 +45,15 @@ namespace RadoHub.WebApp
             .AddDefaultTokenProviders()
             .AddDefaultUI();
 
-            services.Configure<CloudinaryConfigs>(Configuration.GetSection("CloudinaryAccountCredits"));  
+            services.Configure<CloudinaryConfigs>(Configuration.GetSection("CloudinaryAccountCredits"));
+
+            // Background services at startup
+            services.AddHostedService<WebPingService>();
 
             // Data repositories
             services.AddScoped<ICookingRecipeRepository, CookingRecipeRepository>();
 
-            // Application service
+            // Application services
             services.AddScoped<IUserAccountService, UserAccountService>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<ICookingRecipeService, CookingRecipeService>();
