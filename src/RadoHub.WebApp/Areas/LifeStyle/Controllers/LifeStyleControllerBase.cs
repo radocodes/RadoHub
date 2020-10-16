@@ -2,7 +2,7 @@
 
 namespace RadoHub.WebApp.Areas.LifeStyle.Controllers
 {
-    [Area("LifeStyle")]
+    [Area(Services.Constants.Areas.Lifestyle)]
     public class LifeStyleControllerBase : Controller
     {
     }

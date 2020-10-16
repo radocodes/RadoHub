@@ -5,7 +5,7 @@ using RadoHub.Services.Constants;
 namespace RadoHub.WebApp.Areas.Administration.Controllers
 {
     [Authorize(Roles = GlobalConstants.AdminRole)]
-    [Area("Administration")]
+    [Area(Services.Constants.Areas.Administration)]
     public class AdministrationControllerBase : Controller
     {
     }
