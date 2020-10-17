@@ -67,6 +67,10 @@ body {
     cursor: default;
 }
 
+main {
+    padding-top: 57px;
+}
+
 .footer {
     background-color: #333;
     position: absolute;
@@ -152,7 +156,7 @@ body {
 
     .home .index {
         background-color: whitesmoke;
-        padding-bottom: 25px;
+        padding-bottom: 75px;
     }
 
         .home .index section {
@@ -243,8 +247,8 @@ body {
             border-radius: 5px;
             padding-bottom: 0px;
             margin-bottom: 0;
-
         }
+
             .home .index .cooking-recipes .recipe-wrapper {
                 margin-bottom: 2.5%;
             }
@@ -281,21 +285,20 @@ body {
         }
 
             .home .about-me .header .my-photo {
-
             }
 
-            .home .about-me .header .my-photo .image {
-                width: 50%;
-                border-radius: 50%;
-            }
+                .home .about-me .header .my-photo .image {
+                    width: 50%;
+                    border-radius: 50%;
+                }
 
             .home .about-me .header .contacts {
                 margin-top: 30px;
             }
 
-            .home .about-me .summary {
-                padding: 25px;
-            }
+        .home .about-me .summary {
+            padding: 25px;
+        }
 
         .home .about-me .technologies {
             padding: 25px;
@@ -463,19 +466,19 @@ body {
                         cursor: pointer;
                     }
 
-                    .lifestyle-cooking .recipe-details .article .short-description {
-                        margin: 25px;
-                        font-style: italic;
-                        font-size: large;
-                    }
+            .lifestyle-cooking .recipe-details .article .short-description {
+                margin: 25px;
+                font-style: italic;
+                font-size: large;
+            }
 
-        .lifestyle-cooking .recipe-details .article .modal-body img{
-            max-width: 100%;
-        }
+            .lifestyle-cooking .recipe-details .article .modal-body img {
+                max-width: 100%;
+            }
 
-        .lifestyle-cooking .recipe-details .article .executing-time {
-            margin: 25px;
-        }
+            .lifestyle-cooking .recipe-details .article .executing-time {
+                margin: 25px;
+            }
 
             .lifestyle-cooking .recipe-details .article .products {
                 margin: 25px;
@@ -488,3 +491,7 @@ body {
             .lifestyle-cooking .recipe-details .article .hashtags {
                 margin: 25px;
             }
+
+/*.lifestyle-tools {
+    padding-bottom: 25px;
+}*/

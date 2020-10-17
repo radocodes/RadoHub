@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow @*mb-3*@">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light fixed-top bg-white border-bottom box-shadow @*mb-3*@">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Rado's Hub</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -29,8 +29,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">Cooking</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="IT" asp-controller="Home" asp-action="Index">IT</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" asp-area="IT" asp-controller="UsefulTools" asp-action="Library">Useful tools</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">Lifestyle</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">Cooking</a>
+                                <a class="dropdown-item" asp-area="LifeStyle" asp-controller="Tools" asp-action="RakiaCalculator">Rakia Calculator</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -53,6 +63,14 @@
                         </div>
                         <div>
                             <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md col-12 it">
+                    <div class="column-center">
+                        <h5>IT</h5>
+                        <div>
+                            <a asp-area="IT" asp-controller="UsefulTools" asp-action="Library">Useful (Dev) Tools</a>
                         </div>
                     </div>
                 </div>
