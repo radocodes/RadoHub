@@ -1,0 +1,104 @@
+﻿@model RadoHub.ViewModels.Lifestyle.Tools.RakiaCalculatorViewModel
+
+@{
+    ViewData["Title"] = "Rakia Calculator - Ракия Калкулатор";
+
+    Cloudinary cloudinary = Model.Cloudinary;
+}
+
+<div class="lifestyle-tools" style="background-color:lavender">
+    <div class="rakia-calculator container pb-5" style="background-color:lavender">
+        <header class="text-center pb-5">
+            <h1 class="title text-center">@ViewData["Title"]</h1>
+            <div class="container text-center pb-3">
+                <div class="row text-center">
+                    <div class="col-12 text-center">
+                        <h5 class="text-center">Helpful tool, calculating how much to water-down your strong level alocohol masterpiece (for example "Rakia")</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="pb-4">
+                <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
+                             .Transform(new Transformation().Width(500).Quality(100))
+                             .BuildUrl(ViewData["HeaderImageFileName"].ToString()))" style="max-width:100%">
+            </div>
+        </header>
+
+        <section class="container">
+            <div class="row" style="padding-bottom: 100px;">
+                <div style="margin-left:auto; margin-right:auto; padding-left:25px; padding-right:25px">
+                    <form>
+                        <div class="form-inline row pb-1">
+                            <label class="col-md-8 col-6">Alcohol quantity (liters)</label>
+                            <input type="text" name="quantity" class="form-control col-md-4 col-6">
+                        </div>
+                        <div class="form-inline row pb-1">
+                            <label class="col-md-8 col-6">Initial alcohol degree</label>
+                            <input type="text" name="currentDegree" class="form-control col-md-4 col-6">
+                        </div>
+                        <div class="form-inline row pb-3">
+                            <label class="col-md-8 col-6">Desired alcohol degree</label>
+                            <input type="text" name="deiredDegree" class="form-control col-md-4 col-6">
+                        </div>
+
+                        <button type="button" class="btn btn-primary float-right" onClick="Calculate(quantity.value,currentDegree.value,deiredDegree.value)">Calculate!</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="container">
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Required amount of water to add:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <strong id="result"></strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script language="javascript" type="text/javascript">
+
+    function Calculate(quantity, currentDegree, deiredDegree) {
+        var error = 'ERROR';
+        var X1 = Number(quantity);
+        var Y1 = Number(currentDegree);
+        var Z1 = Number(deiredDegree);
+        if (Y1 > 99) {
+            $('#modalLabel').text(error);
+            $('#result').text('Initial alcohol degree can be maximum 100');
+            $('#modal').modal();
+        }
+        else {
+            if (Y1 < Z1) {
+                $('#modalLabel').text(error);
+                $('#result').text('Please input lower desired degree.');
+                $('#modal').modal();
+            }
+            else {
+                var result = ((Y1 - Z1) / Z1) * X1;
+                $('#modalLabel').text('Required amount of water to add:');
+                result = Math.round((result + Number.EPSILON) * 100) / 100;
+                $('#result').text(`${result}L`);
+                $('#modal').modal();
+            }
+        }
+    }
+
+</script>
+
