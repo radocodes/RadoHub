@@ -1,19 +1,21 @@
 ﻿@model RadoHub.ViewModels.IT.UsefulTools.LibraryViewModel
 
 @{
-    ViewData["Title"] = "Library";
+    ViewData["Title"] = "Useful Tools";
 
     Cloudinary cloudinary = Model.Cloudinary;
 }
 
-<div class="it-useful-tools">
-    <div class="library">
+<div class="it-useful-tools pb-5">
+    <div class="library pb-5">
         <header class="text-center">
             <h1 class="title text-center">@ViewData["Title"]</h1>
-            <h2>This area is under-construction</h2>
-            <div><img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
+            <h2>This area is under construction</h2>
+            <div>
+            <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(500).Quality(100))
-                             .BuildUrl(ViewData["UnderContructionImageFileName"].ToString()))"></div>
+                             .BuildUrl(ViewData["UnderContructionImageFileName"].ToString()))" style="max-width:100%">
+            </div>
         </header>
     </div>
 </div>
