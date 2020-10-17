@@ -22,7 +22,6 @@ Expect more new things in future!
 - ASP .NET Core MVC 3.0 
 - MS SQL Server 
 - Entity Framework Core
-- Automapper
 - Javascript additions
 - Ajax
 - JQuery
