@@ -1,0 +1,60 @@
+﻿@model RadoHub.ViewModels.UserAccount.AllUserAccountsViewModel
+@{
+    ViewData["Title"] = "Manage User Accounts";
+}
+<div class="admin-user-accounts">
+    <div class="index container-fluid">
+        <header>
+            <div class="title">
+                <h1 class="text-center">@ViewData["Title"]</h1>
+            </div>
+
+            @if (ViewData["statusMessage"] != null)
+            {
+                <div class="status-message text-center alert alert-warning" role="alert">
+                    <h3>@ViewData["statusMessage"].ToString()</h3>
+                </div>
+            }
+        </header>
+
+        <section class="all-user-accounts-table">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Real Name</th>
+                        <th scope="col">User Strongest Role</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.UserAccounts)
+                    {
+                        <tr>
+                            <td>@user.Username</td>
+                            <td>
+                                @{
+                                    string realName = string.Empty;
+                                    if (!string.IsNullOrEmpty(user.FirstName))
+                                    {
+                                        realName = user.FirstName;
+                                    }
+                                    if (!string.IsNullOrEmpty(user.LastName))
+                                    {
+                                        realName = $"{realName} {user.LastName}";
+                                    }
+                                }
+                                @realName
+                            </td>
+                            <td>@user.UserRole</td>
+                            <td>
+                                <a asp-controller="UserAccount" asp-action="UserDetails" asp-route-id="@user.Id" class="btn btn-primary">Manage</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+

@@ -1,0 +1,145 @@
+﻿@model RadoHub.ViewModels.UserAccount.UserAccountAdminViewModel
+@using RadoHub.Services.Constants
+@{
+    ViewData["Title"] = "User Details";
+
+    string adminRolToggleText = null;
+    bool IsAlreadyAdmin = true;
+    @if (Model.UserRole != UserRoles.AdminRole)
+    {
+        IsAlreadyAdmin = false;
+        adminRolToggleText = "Add Admin role";
+    }
+    else if (Model.UserRole == UserRoles.AdminRole)
+    {
+        IsAlreadyAdmin = true;
+        adminRolToggleText = "Remove from Admin role";
+}
+}
+<div class="admin-user-details pb-5">
+    <div class="index container">
+        <header>
+            <div class="title">
+                <h1 class="text-center">@ViewData["Title"]</h1>
+            </div>
+        </header>
+
+        <section class="all-user-accounts-table">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">User Parameters</th>
+                        <th scope="col">Values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>User Role</th>
+                        <td>@Model.UserRole</td>
+                    </tr>
+                    <tr>
+                        <th>Id</th>
+                        <td>@Model.Id</td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td>@Model.Username</td>
+                    </tr>
+                    <tr>
+                        <th>First Name</th>
+                        <td>@Model.FirstName</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>@Model.LastName</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>@Model.City</td>
+                    </tr>
+                    <tr>
+                        <th>Company</th>
+                        <td>@Model.Company</td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number</th>
+                        <td>@Model.PhoneNumber</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>@Model.Email</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="actions-buttons">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-toggle-admin-role">
+                            @adminRolToggleText
+                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-delete-user">
+                            Delete User
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@*Add/Remove User from Admin role Modal*@
+<div class="modal fade" id="modal-toggle-admin-role" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Changing User role</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want for this user to @adminRolToggleText ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form method="post">
+                    @if (IsAlreadyAdmin)
+                    {
+                        <button type="submit" class="btn btn-primary" asp-controller="UserAccount" asp-action="RemoveUserFromAdminRole" asp-route-id="@Model.Id">@adminRolToggleText</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary" asp-controller="UserAccount" asp-action="MakeUserAdmin" asp-route-id="@Model.Id">@adminRolToggleText</button>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Delete User Modal*@
+<div class="modal fade" id="modal-delete-user" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Deleting User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to Delete this user ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form method="post">
+                    <button type="submit" class="btn btn-primary" asp-controller="UserAccount" asp-action="DeleteUser" asp-route-id="@Model.Id">Delete User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
