@@ -14,6 +14,7 @@ using RadoHub.Services.Services;
 using RadoHub.WebApp.Middlewares;
 using RadoHub.Data.Repositories.Contracts;
 using RadoHub.Data.Repositories.Implementation;
+using AutoMapper;
 
 namespace RadoHub.WebApp
 {
@@ -46,6 +47,8 @@ namespace RadoHub.WebApp
             .AddDefaultUI();
 
             services.Configure<CloudinaryConfigs>(Configuration.GetSection("CloudinaryAccountCredits"));
+
+            services.AddAutoMapper(typeof(Startup));
 
             // Background services at startup
             services.AddHostedService<WebPingService>();
