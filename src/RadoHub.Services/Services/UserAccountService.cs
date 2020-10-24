@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using RadoHub.Services.Constants;
 
 namespace RadoHub.Services.Services
 {
@@ -23,6 +24,12 @@ namespace RadoHub.Services.Services
             this.UserManager = userManager;
         }
 
+        public IEnumerable<RadoHubUser> GetAllUsers()
+        {
+            var users = DbContext.Users.ToList<RadoHubUser>();
+
+            return users;
+        }
 
         public RadoHubUser GetUserById(string userId)
         {
@@ -111,6 +118,48 @@ namespace RadoHub.Services.Services
                 .Company = company;
 
             this.DbContext.SaveChangesAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task<IdentityResult> DeleteUserAsync(RadoHubUser user)
+        {
+            await this.RemoveUserFromRoleAsync(user, UserRoles.AdminRole);
+            return await this.UserManager.DeleteAsync(user);
+        }
+
+        public async Task<IEnumerable<string>> GetUserRolesAsync(string userId)
+        {
+            RadoHubUser user = this.GetUserById(userId);
+            var users = await this.UserManager.GetRolesAsync(user);
+
+            return users;
+        }
+
+        public async Task<IdentityResult> AddUserInRoleAsync(RadoHubUser user, string role)
+        {
+            return await this.UserManager.AddToRoleAsync(user, role);
+        }
+
+        public async Task<IdentityResult> RemoveUserFromRoleAsync(RadoHubUser user, string role)
+        {
+            return await this.UserManager.RemoveFromRoleAsync(user, role);
+        }
+
+        public string GetUserStrongestRole(string userId)
+        {
+            IEnumerable<string> userRoles = this.GetUserRolesAsync(userId).GetAwaiter().GetResult();
+
+            string userStrongestRole = UserRoles.DefaultUserRole;
+            foreach (var role in userRoles)
+            {
+                if (role == UserRoles.AdminRole)
+                {
+                    userStrongestRole = role;
+
+                    return userStrongestRole;
+                }
+            }
+
+            return userStrongestRole;
         }
     }
 }
