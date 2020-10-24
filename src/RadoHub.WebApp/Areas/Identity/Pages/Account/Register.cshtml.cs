@@ -117,7 +117,7 @@ namespace RadoHub.WebApp.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
                     var addUserToRole = await _userManager
-                        .AddToRoleAsync(user, GlobalConstants.DefaultUserRole);
+                        .AddToRoleAsync(user, UserRoles.DefaultUserRole);
 
                     if (addUserToRole.Succeeded)
                     {

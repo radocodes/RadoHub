@@ -19,8 +19,8 @@ namespace RadoHub.WebApp.Middlewares
         public async Task InvokeAsync(HttpContext context, UserManager<RadoHubUser> userManager,
                                       RoleManager<IdentityRole> roleManager)
         {
-            SeedRole(roleManager, GlobalConstants.AdminRole).GetAwaiter().GetResult();
-            SeedRole(roleManager, GlobalConstants.DefaultUserRole).GetAwaiter().GetResult();
+            SeedRole(roleManager, UserRoles.AdminRole).GetAwaiter().GetResult();
+            SeedRole(roleManager, UserRoles.DefaultUserRole).GetAwaiter().GetResult();
 
             SeedUserInRoles(userManager).GetAwaiter().GetResult();
 
@@ -53,8 +53,8 @@ namespace RadoHub.WebApp.Middlewares
 
                 if (userCreated.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user, GlobalConstants.AdminRole);
-                    await userManager.AddToRoleAsync(user, GlobalConstants.DefaultUserRole);
+                    await userManager.AddToRoleAsync(user, UserRoles.AdminRole);
+                    await userManager.AddToRoleAsync(user, UserRoles.DefaultUserRole);
                 }
             }
         }
