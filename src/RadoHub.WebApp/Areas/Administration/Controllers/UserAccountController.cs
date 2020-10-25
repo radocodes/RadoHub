@@ -94,7 +94,7 @@ namespace RadoHub.WebApp.Areas.Administration.Controllers
 
             if (operationSucceeded)
             {
-                TempData["statusMessage"] = $"User \"{user.UserName}\" was Deleted successfully!";
+                TempData["statusMessage"] = $"User \"{user.UserName}\" was deleted successfully!";
                 return RedirectToAction("Index", "UserAccount");
             }
             else
