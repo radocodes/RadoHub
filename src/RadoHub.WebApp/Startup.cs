@@ -15,6 +15,9 @@ using RadoHub.WebApp.Middlewares;
 using RadoHub.Data.Repositories.Contracts;
 using RadoHub.Data.Repositories.Implementation;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Razor;
+using RadoHub.Services.Constants;
+using System.Linq;
 
 namespace RadoHub.WebApp
 {
@@ -62,8 +65,11 @@ namespace RadoHub.WebApp
             services.AddScoped<ICookingRecipeService, CookingRecipeService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
 
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
             services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation();
+                .AddRazorRuntimeCompilation()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
 
             services.AddRazorPages();
         }
@@ -83,6 +89,15 @@ namespace RadoHub.WebApp
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
+            var supportedCultures = SupportedCultures.GetAll.Select(culture => culture.IsoCode).ToArray();
+            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            app.UseRequestLocalization(localizationOptions);
+
+
             app.UseStaticFiles();
 
             app.UseRouting();
