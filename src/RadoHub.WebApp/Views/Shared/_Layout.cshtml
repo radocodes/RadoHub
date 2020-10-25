@@ -21,25 +21,28 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_SelectLanguagePartial" />
+                    &emsp;
                     <partial name="_LoginPartial" />
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">@Localizer["About"]</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text-dark dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="IT" asp-controller="Home" asp-action="Index">IT</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" asp-area="IT" asp-controller="UsefulTools" asp-action="Library">Useful tools</a>
+                                <a class="dropdown-item" asp-area="IT" asp-controller="UsefulTools" asp-action="Library">@Localizer["Useful tools"]</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-dark dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">Lifestyle</a>
+                            <a class="nav-link text-dark dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">@Localizer["Lifestyle"]</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">Cooking</a>
-                                <a class="dropdown-item" asp-area="LifeStyle" asp-controller="Tools" asp-action="RakiaCalculator">Rakia Calculator</a>
+                                <a class="dropdown-item" asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">@Localizer["Cooking"]</a>
+                                <a class="dropdown-item" asp-area="LifeStyle" asp-controller="Tools" asp-action="RakiaCalculator">@Localizer["Rakia Calculator"]</a>
                             </div>
                         </li>
                     </ul>
@@ -59,10 +62,16 @@
                     <div class="column-center">
                         <h5>Rado's Hub</h5>
                         <div>
-                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
                         </div>
                         <div>
-                            <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a asp-area="" asp-controller="Home" asp-action="About">@Localizer["About"]</a>
+                        </div>
+                        <div>
+                            <a asp-area="Identity" asp-page="/Account/Login">@Localizer["Login"]</a>
+                        </div>
+                        <div>
+                            <a asp-area="Identity" asp-page="/Account/Register">@Localizer["Register"]</a>
                         </div>
                     </div>
                 </div>
@@ -70,15 +79,15 @@
                     <div class="column-center">
                         <h5>IT</h5>
                         <div>
-                            <a asp-area="IT" asp-controller="UsefulTools" asp-action="Library">Useful (Dev) Tools</a>
+                            <a asp-area="IT" asp-controller="UsefulTools" asp-action="Library">@Localizer["Useful tools"]</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md col-12 lifestyle">
                     <div class="column-center">
-                        <h5>Lifestyle</h5>
+                        <h5>@Localizer["Lifestyle"]</h5>
                         <div>
-                            <a asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">Cooking</a>
+                            <a asp-area="LifeStyle" asp-controller="Cooking" asp-action="Index">@Localizer["Cooking"]</a>
                         </div>
                     </div>
                 </div>

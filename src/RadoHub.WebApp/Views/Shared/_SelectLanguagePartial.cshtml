@@ -1,0 +1,56 @@
+﻿@using RadoHub.Services.Constants
+@using System.Globalization;
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
+
+@{
+    Culture incomingUICulture = toggleCurrentUICulture();
+    var returnUrlFullPath = GetCurrentUrlFullPath();
+
+    var parms = new Dictionary<string, string>()
+    {
+                { "culture", incomingUICulture.IsoCode },
+                { "returnUrl", returnUrlFullPath }
+    };
+}
+
+@functions {
+    public Culture toggleCurrentUICulture()
+    {
+        string currentUICulture = CultureInfo.CurrentUICulture.Name;
+
+        if (currentUICulture == SupportedCultures.English.IsoCode)
+        {
+            return SupportedCultures.Bulgarian;
+        }
+        else
+        {
+            return SupportedCultures.English;
+        }
+    }
+
+    public string GetCurrentUrlFullPath()
+    {
+        string webDomainAddress;
+        if (hostingEnv.EnvironmentName == RadoHub.Services.Constants.RadoHubEnvironments.Production)
+        {
+            webDomainAddress = RadoHubDomainAddress.ProductionAddress;
+        }
+        else
+        {
+            webDomainAddress = RadoHubDomainAddress.LocalHost;
+        }
+
+        string currentUrlRelativePath = Context.Request.Path;
+        var currentUrlFullPath = $"{webDomainAddress}{currentUrlRelativePath}";
+
+        return currentUrlFullPath;
+    }
+}
+
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <form method="post">
+            <button type="submit" class="nav-link text-dark link" style="background: none!important; border: none; padding: 0!important;" asp-area="" asp-controller="Home" asp-action="SetLanguage" asp-all-route-data="parms">@Localizer["Switch lang"]:&ensp;@incomingUICulture.Abbreviation</button>
+        </form>
+    </li>
+</ul>
