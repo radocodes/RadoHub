@@ -1,7 +1,7 @@
 ﻿@model RadoHub.ViewModels.CookingRecipes.CookingRecipesViewModel
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
 @{
-    ViewData["Title"] = "Cooking Recipes";
+    ViewData["Title"] = Localizer["Cooking Recipes"];
 
     Cloudinary cloudinary = Model.Cloudinary;
 }

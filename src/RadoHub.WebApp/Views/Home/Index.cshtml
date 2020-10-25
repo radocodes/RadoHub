@@ -1,16 +1,17 @@
 ﻿@model RadoHub.ViewModels.Home.HomeIndexViewModel
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
+
 @{
     Cloudinary cloudinary = Model.Cloudinary;
 
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = @Localizer["Home"];
 }
 
 <div class="home">
     <div class="index">
         <div class="header container text-center">
             <h1 class="display-4 font-weight-bold">Rado's Hub</h1>
-            <p>Welcome to my personal portal! I'm not sure is that a hub or a pub, but cheers! <i class="fas fa-beer" style="font-size:larger"></i></p>
+            <p>@Localizer["Welcome to my personal portal! I'm not sure is that a hub or a pub, but cheers!"] <i class="fas fa-beer" style="font-size:larger"></i></p>
         </div>
 
         <div class="content">
@@ -20,8 +21,8 @@
                         <div class="about-btn-link-wrapper">
                             <a asp-controller="Home" asp-action="About">
                                 <div class="about-me-btn text-center">
-                                    <h1 class="display-4">About Me</h1>
-                                    <p class="lead">Find out more about me here</p>
+                                    <h1 class="display-4">@Localizer["About Me"]</h1>
+                                    <p class="lead">@Localizer["Find out more about me here"]</p>
                                 </div>
                             </a>
                         </div>
@@ -40,7 +41,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="title col-12 col-md-12">
-                                <strong>Season Inspiration</strong>
+                                <strong>@Localizer["Season Inspiration"]</strong>
                             </div>
                         </div>
                         <div class="row">
@@ -48,7 +49,7 @@
                                 <div class="image-wrapper text-center">
                                     <img class="image" src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(900).Quality(100))
-                             .BuildUrl("v1597501962/April_alwskf"))" alt="season picture" />
+                             .BuildUrl("karolina-badzmierowska-KW3kWikn5cI-unsplash_ghuyi8"))" alt="season picture" />
                                 </div>
                             </div>
                         </div>
@@ -57,45 +58,48 @@
 
                 @if (Model.CookingRecipesModel.Recipes != null && Model.CookingRecipesModel.Recipes.Count() > 0)
                 {
-                <section class="cooking-recipes">
-                    <div class="container">
-                        <div class="row">
-                            <div class="title col-12 col-md-12">
-                                <strong>Something delicious? - Do it yourself</strong>
+                    <section class="cooking-recipes">
+                        <div class="container">
+                            <div class="row">
+                                <div class="title col-12 col-md-12">
+                                    <strong>@Localizer["Something delicious? - Do it yourself!"]</strong>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row recipes-list">
-                            <div class="container">
-                                <div class="row">
-                                    @foreach (var recipe in Model.CookingRecipesModel.Recipes)
-                                    {
-                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center recipe-wrapper">
-                                        <a class="col-12 col-md-3 recipe-box" asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">
-                                            <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
+                            <div class="row recipes-list">
+                                <div class="container">
+                                    <div class="row">
+                                        @foreach (var recipe in Model.CookingRecipesModel.Recipes)
+                                        {
+                                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center recipe-wrapper">
+                                                <a class="col-12 col-md-3 recipe-box" asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">
+                                                    <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(250).Quality(100))
                              .BuildUrl(recipe.CoverImageFileName))" alt="recipe img">
-                                        </a>
+                                                </a>
+                                            </div>
+                                        }
                                     </div>
-                                    }
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
                 }
 
                 <section class="i-suggest">
                     <div class="container">
                         <div class="row">
                             <div class="title col-12 col-md-12">
-                                <strong>I Suggest:</strong>
+                                <strong>@Localizer["I Suggest"]:</strong>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-12">
-                                <div class="banner-wrapper text-center"><a href="http://emaivanova.com" target="_blank"><img class="banner" src=@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
+                                <div class="banner-wrapper text-center">
+                                    <a href="http://emaivanova.com" target="_blank">
+                                        <img class="banner" src=@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(1000).Quality(100))
-                             .BuildUrl("ema-ivanova_u0mleu")) alt="banner img" /></a>
+                             .BuildUrl("ema-ivanova_u0mleu")) alt="banner img" />
+                                    </a>
                                 </div>
                             </div>
                         </div>
