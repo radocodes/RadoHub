@@ -70,6 +70,11 @@ body {
     flex-direction: column;
 }
 
+#canvas {
+    position: absolute;
+    max-width: 100%;
+}
+
 main {
     padding-top: 57px;
     flex: 1 0 auto;

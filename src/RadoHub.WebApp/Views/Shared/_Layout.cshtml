@@ -7,11 +7,15 @@
     <title>Rado's Hub - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/eae986932a.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="~/favicons/BeerFavIcon.png">
 
 </head>
 <body>
+    @*this canvas row is needed for js snowflakes*@
+    <canvas id="canvas"></canvas>
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light fixed-top bg-white border-bottom box-shadow @*mb-3*@">
             <div class="container">
@@ -50,9 +54,9 @@
             </div>
         </nav>
     </header>
-        <main role="main" @*class="pb-3"*@>
-            @RenderBody()
-        </main>
+    <main role="main">
+        @RenderBody()
+    </main>
     <footer class="border-top footer text-muted">
         <div class="container footer-top">
             <div class="row">
@@ -102,5 +106,14 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
+    @*JS SnowFlakes*@
+    @if (DateTime.UtcNow.Month > 10 || DateTime.UtcNow.Month < 4)
+    {
+        <script>
+            addSnowFlakes();
+        </script>
+    }
+
 </body>
 </html>
