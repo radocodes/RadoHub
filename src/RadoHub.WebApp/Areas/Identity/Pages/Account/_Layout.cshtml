@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+    <div class="container">
+        @RenderBody()
+
+        @section Scripts {
+            @RenderSection("Scripts", required: false)
+        }
+    </div>
