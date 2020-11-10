@@ -63,34 +63,22 @@ html {
 
 body {
     /* Margin bottom by footer height */
-    /*margin-bottom: 170.8px*/ /*60px*/
-    height: 100vh;
+    margin-bottom: 170.8px /*60px*/;
     cursor: default;
-    display: flex;
-    flex-direction: column;
-    /*margin-bottom: 0;
-    padding-bottom:0;*/
-}
-
-#canvas {
-    position: absolute;
-    max-width: 100%;
 }
 
 main {
     padding-top: 57px;
-    flex: 1;
 }
 
 .footer {
     background-color: #333;
-    /*position: absolute;*/
+    position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
     line-height: 30px; /* Vertically center the text there */
     padding-top: 15px;
-    flex-shrink: 0;
 }
 
     .footer h5 {
@@ -167,13 +155,14 @@ main {
 }
 
     .home .index {
-        background-color: lavender;/*whitesmoke;*/
-        padding-bottom: 25px;
+        background-color: whitesmoke;
+        padding-bottom: 75px;
     }
 
         .home .index section {
             border-radius: 5px;
             margin-top: 25px;
+            margin-bottom: 50px;
             padding-bottom: 25px;
             border: solid;
             border-width: 1px;
@@ -283,12 +272,10 @@ main {
         }
 
     .home .about-me {
-        background-color: lavender;
-        
     }
 
         .home .about-me .title {
-            padding-top: 25px;
+            margin-top: 25px;
         }
 
         .home .about-me .header {
@@ -392,7 +379,7 @@ main {
 
 .lifestyle-cooking {
     background-color: burlywood;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
 }
 
     .lifestyle-cooking .index {
@@ -507,8 +494,4 @@ main {
 
 /*.lifestyle-tools {
     padding-bottom: 25px;
-}*/
-
-/*.home .test {
-    background-color: green;
 }*/
