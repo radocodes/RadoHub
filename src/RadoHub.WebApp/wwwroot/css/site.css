@@ -65,20 +65,24 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 170.8px /*60px*/;
     cursor: default;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
     padding-top: 57px;
+    flex: 1 0 auto;
 }
 
 .footer {
     background-color: #333;
-    position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
     line-height: 30px; /* Vertically center the text there */
     padding-top: 15px;
+    flex-shrink: 0;
 }
 
     .footer h5 {
@@ -156,13 +160,13 @@ main {
 
     .home .index {
         background-color: whitesmoke;
-        padding-bottom: 75px;
+        padding-bottom: 25px;
     }
 
         .home .index section {
             border-radius: 5px;
             margin-top: 25px;
-            margin-bottom: 50px;
+            margin-bottom: 25px;
             padding-bottom: 25px;
             border: solid;
             border-width: 1px;
