@@ -43,10 +43,10 @@
                         </div>
                         <div class="form-inline row pb-3">
                             <label class="col-md-8 col-6">@Localizer["Desired alcohol degree"]</label>
-                            <input type="text" name="deiredDegree" class="form-control col-md-4 col-6">
+                            <input type="text" name="desiredDegree" class="form-control col-md-4 col-6">
                         </div>
 
-                        <button type="button" class="btn btn-primary float-right" onClick="Calculate(quantity.value,currentDegree.value,deiredDegree.value)">@Localizer["Calculate"]!</button>
+                        <button type="button" class="btn btn-primary float-right" onClick="Calculate(quantity.value,currentDegree.value,desiredDegree.value)">@Localizer["Calculate"]!</button>
                     </form>
                 </div>
             </div>
@@ -79,25 +79,25 @@
 
 <script language="javascript" type="text/javascript">
 
-    function Calculate(quantity, currentDegree, deiredDegree) {
-        var error = @ViewData["Title"];
+    function Calculate(quantity, currentDegree, desiredDegree) {
+        var error = '@ViewData["Title"]';
         var X1 = Number(quantity);
         var Y1 = Number(currentDegree);
-        var Z1 = Number(deiredDegree);
+        var Z1 = Number(desiredDegree);
         if (Y1 > 99) {
             $('#modalLabel').text(error);
-            $('#result').text(@ViewData["InitialAlcoholErrorMessage"]);
+            $('#result').text('@ViewData["InitialAlcoholErrorMessage"]');
             $('#modal').modal();
         }
         else {
             if (Y1 < Z1) {
                 $('#modalLabel').text(error);
-                $('#result').text(@ViewData["DesiredDegreeErrorMessage"]);
+                $('#result').text('@ViewData["DesiredDegreeErrorMessage"]');
                 $('#modal').modal();
             }
             else {
                 var result = ((Y1 - Z1) / Z1) * X1;
-                $('#modalLabel').text(@ViewData["RequiredWaterMessage"]);
+                $('#modalLabel').text('@ViewData["RequiredWaterMessage"]');
                 result = Math.round((result + Number.EPSILON) * 100) / 100;
                 $('#result').text(`${result}L`);
                 $('#modal').modal();
