@@ -20,27 +20,28 @@
             <div class="date-info text-center"><i class="fas fa-pencil-alt"></i> @Model.CreationDate.ToShortDateString() | <i class="fas fa-sync-alt"></i> @Model.LastModifiedAt.ToShortDateString()</div>
             @if (Model.CoverImageFileName != null)
             {
-                <div class="cover-image text-center">
-                    <img data-toggle="modal" data-target="#cover-image" src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
+                <div class="cover-image text-center row">
+                    <div class="col">
+                        <img data-toggle="modal" data-target="#cover-image" src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(350).Quality(100))
                              .BuildUrl(Model.CoverImageFileName))" />
-
-                        <div class="modal fade" id="cover-image" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    </div>
-                                    <div class="modal-body">
-                                        <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
+                    </div>
+                    <div class="modal fade" id="cover-image" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                </div>
+                                <div class="modal-body">
+                                    <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(700).Quality(100))
-                             .BuildUrl(Model.CoverImageFileName))"/>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
+                             .BuildUrl(Model.CoverImageFileName))" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
             }
             @if (Model.ShortDescription != null)

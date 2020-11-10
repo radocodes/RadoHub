@@ -45,8 +45,9 @@
                             <label class="col-md-8 col-6">@Localizer["Desired alcohol degree"]</label>
                             <input type="text" name="desiredDegree" class="form-control col-md-4 col-6">
                         </div>
-
-                        <button type="button" class="btn btn-primary float-right" onClick="Calculate(quantity.value,currentDegree.value,desiredDegree.value)">@Localizer["Calculate"]!</button>
+                        <div class="col">
+                            <button type="button" class="btn btn-primary float-right" onClick="Calculate(quantity.value,currentDegree.value,desiredDegree.value)">@Localizer["Calculate"]!</button>
+                        </div>
                     </form>
                 </div>
             </div>
