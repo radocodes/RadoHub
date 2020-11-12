@@ -58,6 +58,7 @@ namespace RadoHub.WebApp
 
             // Data repositories
             services.AddScoped<ICookingRecipeRepository, CookingRecipeRepository>();
+            services.AddScoped<IInspirationRepository, InspirationRepository>();
 
             // Application services
             services.AddScoped<IUserAccountService, UserAccountService>();
