@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RadoHub.Data.Repositories.Contracts;
 using RadoHub.Services.Contracts;
 using RadoHub.ViewModels.CookingRecipes;
 using RadoHub.ViewModels.Home;
@@ -18,12 +19,17 @@ namespace RadoHub.WebApp.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ICookingRecipeService cookingRecipeService;
         private readonly ICloudinaryService cloudinaryService;
+        private readonly IInspirationRepository inspirationRepository;
 
-        public HomeController(ILogger<HomeController> logger, ICookingRecipeService cookingRecipeService, ICloudinaryService cloudinaryService)
+        public HomeController(ILogger<HomeController> logger,
+            ICookingRecipeService cookingRecipeService,
+            ICloudinaryService cloudinaryService,
+            IInspirationRepository inspirationRepository)
         {
             this._logger = logger;
             this.cookingRecipeService = cookingRecipeService;
             this.cloudinaryService = cloudinaryService;
+            this.inspirationRepository = inspirationRepository;
         }
 
         public IActionResult Index()
@@ -35,6 +41,7 @@ namespace RadoHub.WebApp.Controllers
                 .Where(recipe => recipe.CoverImageFileName != null).Take(3).ToList();
 
             model.Cloudinary = this.cloudinaryService.GetCloudinaryInstance();
+            model.InspirationImageFileName = this.inspirationRepository.GetInspirationImage();
 
             return View(model);
         }
