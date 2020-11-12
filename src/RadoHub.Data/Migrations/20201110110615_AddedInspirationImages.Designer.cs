@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RadoHub.WebApp.Data;
 
 namespace RadoHub.WebApp.Data.Migrations
 {
     [DbContext(typeof(RadoHubDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201110110615_AddedInspirationImages")]
+    partial class AddedInspirationImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,31 +200,22 @@ namespace RadoHub.WebApp.Data.Migrations
                     b.ToTable("CookingRecipes");
                 });
 
-            modelBuilder.Entity("RadoHub.Data.Models.InspirationPeriod", b =>
+            modelBuilder.Entity("RadoHub.Data.Models.InspirationImage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ImageFileName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("InspirationPeriods");
+                    b.ToTable("InspirationImages");
                 });
 
             modelBuilder.Entity("RadoHub.Data.Models.RadoHubUser", b =>

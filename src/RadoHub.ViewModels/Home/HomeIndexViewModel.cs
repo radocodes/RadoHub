@@ -8,5 +8,8 @@ namespace RadoHub.ViewModels.Home
         public CookingRecipesViewModel CookingRecipesModel { get; set; }
 
         public Cloudinary Cloudinary { get; set; }
+
+        public string InspirationImageFileName { get; set; }
+
     }
 }

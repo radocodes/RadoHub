@@ -12,5 +12,8 @@ namespace RadoHub.WebApp.Data
         }
 
         public DbSet<CookingRecipe> CookingRecipes { get; set; }
+
+        public DbSet<InspirationPeriod> InspirationPeriods { get; set; }
+
     }
 }
