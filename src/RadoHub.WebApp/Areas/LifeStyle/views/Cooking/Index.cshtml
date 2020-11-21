@@ -6,6 +6,12 @@
     Cloudinary cloudinary = Model.Cloudinary;
 }
 
+@section AdditionalMetaTags
+{
+    <meta name="keywords" content="cooking recipes library gallery list all всички домашни готварски рецепти готвене готварство вкусно ядене библиотека галерия списък">
+    <meta name="description" content="cooking recipes library">
+}
+
 <div class="lifestyle-cooking">
     <div class="index">
         <header>
@@ -19,11 +25,11 @@
                     <aside class="col-sm-5 text-center">
                         @if (recipe.CoverImageFileName != null)
                         {
-                        <a asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">
-                            <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
+                            <a asp-area="LifeStyle" asp-controller="Cooking" asp-action="RecipeDetails" asp-route-id="@recipe.Id">
+                                <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
                              .Transform(new Transformation().Width(350).Quality(100))
                              .BuildUrl(recipe.CoverImageFileName))" class="cover-image">
-                        </a>
+                            </a>
                         }
                     </aside>
 

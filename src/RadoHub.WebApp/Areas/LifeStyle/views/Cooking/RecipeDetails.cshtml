@@ -4,8 +4,21 @@
     ViewData["Title"] = Localizer[$"Cooking Recipes - {Model.Title}"];
 
     Cloudinary cloudinary = Model.Cloudinary;
+
+    bool hashtagsExists = false;
+    string hashtags = string.Empty;
+    if (Model.Hashtags != null && Model.Hashtags.Count > 0)
+    {
+        hashtagsExists = true;
+        hashtags = String.Join(", ", Model.Hashtags);
+    }
 }
 
+@section AdditionalMetaTags
+{
+    <meta name="keywords" content="@string.Concat(hashtags, "recepta retsepta рецепта готварска готвене")">
+    <meta name="description" content="@Localizer[Model.Title]">
+}
 
 <div class="lifestyle-cooking">
     <div class="recipe-details">
@@ -71,13 +84,13 @@
                 <h5>Рецепта:</h5>
                 @Html.Raw(Model.Content)
             </div>
-            @if (Model.Hashtags != null && Model.Hashtags.Count > 0)
+            @if (hashtagsExists)
             {
                 <div class="hashtags">
                     <div>
                         <strong>Hashtags:</strong>
                     </div>
-                    @String.Join(", ", Model.Hashtags)
+                    @hashtags
                 </div>
             }
         </article>
