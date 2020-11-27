@@ -6,17 +6,45 @@
     Cloudinary cloudinary = Model.Cloudinary;
 }
 
-<div class="it-useful-tools pb-5">
-    <div class="library pb-5">
-        <header class="text-center">
-            <h1 class="title text-center">@ViewData["Title"]</h1>
-            <h2>@Localizer["This area is under construction"]</h2>
-            <div>
-            <img src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
-                             .Transform(new Transformation().Width(500).Quality(100))
-                             .BuildUrl(ViewData["UnderContructionImageFileName"].ToString()))" style="max-width:100%">
+@section AdditionalMetaTags
+{
+    <meta name="keywords" content="developer dev tools library it">
+    <meta name="description" content="Library with different kinds of IT tools for developers and fans">
+}
+
+<div class="it-useful-tools">
+    <div class="library" style="background-color: darkslategrey">
+        <div class="container" style="padding-bottom:25px; background-color: #EAE7DC">
+            <div class="row">
+                <div class="col">
+                    <header class="text-center container" style="padding-top:25px; padding-bottom:25px;">
+                        <h1 class="title text-center">@ViewData["Title"]</h1>
+                    </header>
+                </div>
             </div>
-        </header>
+            <div class="row">
+                <div class="col">
+                    <section class="summary text-center" style="padding:25px;">
+                        <h3>Library with different kinds of IT tools for developers and fans</h3>
+                    </section>
+                </div>
+            </div>
+
+            <section class="text-center" style="padding:25px;">
+                <div class="row text-center">
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">SVG Sprite Splitter</h5>
+                                <p class="card-text">Download SVG Sprite Spitter app for x64/x86 Win or linux system </p>
+                                <a asp-controller="UsefulTools" asp-action="SvgSpriteSplitter" class="card-link">Details and download</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
     </div>
 </div>
 
