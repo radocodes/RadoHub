@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewData["Title"] = "SVG Sprite Splitter";
+}
+
+@section AdditionalMetaTags
+{
+    <meta name="keywords" content="svg sprite splitter devider devide split separating separate files">
+    <meta name="description" content="This console application takes one SVG sprite file and split it to separated single SVG files">
+}
+
+<div class="it-useful-tools">
+    <div class="svg-sprite-splitter" style="background-color: darkslategrey">
+        <div class="container" style="padding-bottom:25px; background-color: #EAE7DC">
+            <div class="row">
+                <div class="col">
+                    <header class="text-center container" style="padding-top:25px; padding-bottom:25px;">
+                        <h1 class="title text-center">@ViewData["Title"]</h1>
+                    </header>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <section class="summary text-center" style="padding:25px;">
+                        <h3>This console application takes one SVG sprite file and split it to separated single SVG files</h3>
+                    </section>
+                </div>
+            </div>
+
+            <section class="text-center" style="padding:25px;">
+                <div class="row">
+                    <div class="col">
+                        <h6 style="font-weight:bold">Technical Specifiactions:</h6>
+                        Console Applicaton
+                        <br />
+                        .Net Core 3.0
+                        <br />
+                        Cross platform
+                    </div>
+                    <div class="col">
+                        <h6 style="font-weight:bold">Available for:</h6>
+                        Windows x64
+                        <br />
+                        Windows x86
+                        <br />
+                        Linux
+                    </div>
+                    <div class="col">
+                        <h6 style="font-weight:bold">Additional Info:</h6>
+                        This app is Freeware
+                        <br />
+                        <i class="fab fa-github"></i> <a href="https://github.com/radocodes/SVG-Sprite-Splitter" target="_blank">See the code in Github here</a>
+                        <br />
+                        <i class="far fa-envelope"></i> <a asp-area="" asp-controller="Home" asp-action="About">Contacts</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="download text-center">
+                <div class="row" style="margin-bottom:25px;">
+                    <div class="col text-center">
+                        <h4>Download application:</h4>
+                    </div>
+                </div>
+                <div class="row" style="margin: 25px;">
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Windows x64</h5>
+                                <p class="card-text">Download SVG Sprite Spitter app for x64 Win system </p>
+                                <a asp-controller="UsefulTools" asp-action="DownloadSvgSpriteSplitter" asp-route-type="win64" class="card-link">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Windows x86</h5>
+                                <p class="card-text">Download SVG Sprite Spitter app for x86 Win system </p>
+                                <a asp-controller="UsefulTools" asp-action="DownloadSvgSpriteSplitter" asp-route-type="win86" class="card-link">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Linux</h5>
+                                <p class="card-text">Download SVG Sprite Spitter app for Linux system </p>
+                                <a asp-controller="UsefulTools" asp-action="DownloadSvgSpriteSplitter" asp-route-type="linux64" class="card-link">Download</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="documentation" style="margin:25px;">
+                <div class="row" style="margin-bottom:25px;">
+                    <div class="col text-center">
+                        <h4>Documentation:</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            Every version of this application is cross platform and self contained application. That means it don't depends of any frameworks (for example .net framwork (core) ).
+                            <br />
+                            You just need to download the app and to run 'ConsoleApp' execution file in yours console (terminal) and to follow the instructions there.
+                            <br />
+                            NOTE:
+                            <br />
+                            The download file is packed in .7z (7 Zip, RAR) format. If you don't have such tool to unpack it, you can download and use some. For example 7-zip (free) or WinRar, WinZip and others.
+                            <br />
+                            <a href="https://www.7-zip.org/7z.html">Link for download 7-Zip</a> (official site) (freeware)
+                        </p>
+                        <p>
+                            GET STARTED:
+                            <br />
+                            There is several steps for using this app:
+                            <br />
+                            0. Unpack the folder with needed files.
+                            <br />
+                            1. Run the 'ConsoleApp' exe file at the console (terminal).
+                            <br />
+                            2. It will prompt you to fill the full path of the source SVG Sprite file which you want to split.
+                            <br />
+                            for example: D:\SomeFolder\ExampleFile.svg
+                            <br />
+                            3. As next step it will prompt you to fill the full path of the desired destination folder - the place where you what app to create the new separated svg files.
+                            <br />
+                            for example: C:\test
+                            <br />
+                            4. Now you have to wait the application to process you data and at the end it will inform you for the resut (Successful or Failed).
+                            <br />
+                            5. After the end of the whole operation you can check manualy the destination directory for the result. Is there all files ok.
+                        </p>
+                        <p>
+                            FAQ (Frequently Asked Questions):
+                            <br />
+                            If there appears some error or problem during (also after) the process, please check for invalid source data or input data.
+                            <br />
+                            For example: wrong path of the source file, wrong path of the destination folder or wrong format of typing of them. And the same thing about source file content.
+                            <br />
+                            In case of problem, there can exists some syntax errors, tag missing or other kind of decription in the source svg sprite file.
+                            <br />
+                            If you have some another questions or suggestions, please write me - <a asp-area="" asp-controller="Home" asp-action="About">Contacts</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
