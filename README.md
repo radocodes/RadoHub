@@ -26,8 +26,10 @@ Expect more new things in future!
 - Ajax
 - JQuery
 - Bootstrap
+- Automapper
 - Cloudinary (image CDN) integration
 - Tiny WYSIWYG integration
+- SEO improvements
 - Hosted in Production
 
 
