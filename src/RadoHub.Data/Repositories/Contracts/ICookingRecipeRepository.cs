@@ -8,6 +8,8 @@ namespace RadoHub.Data.Repositories.Contracts
     {
         IEnumerable<CookingRecipe> GetAllCookingRecipes();
 
+        IEnumerable<CookingRecipe> GetAllCookingRecipesByKeyword(string keyword);
+
         IEnumerable<CookingRecipe> GetCookingRecipesByHashtag(string hashtag);
 
         CookingRecipe GetCookingRecipeById(int cookingRecipeId);

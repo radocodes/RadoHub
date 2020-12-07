@@ -37,6 +37,11 @@ namespace RadoHub.Data.Repositories.Implementation
             return this.DbContext.CookingRecipes;
         }
 
+        public IEnumerable<CookingRecipe> GetAllCookingRecipesByKeyword(string keyword)
+        {
+            return this.DbContext.CookingRecipes.Where(recipe => recipe.Hashtags.Contains(keyword));
+        }
+
         public CookingRecipe GetCookingRecipeById(int cookingRecipeId)
         {
             return this.DbContext.CookingRecipes.FirstOrDefault(recipe => recipe.Id == cookingRecipeId);
