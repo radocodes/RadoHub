@@ -40,30 +40,33 @@ namespace RadoHub.WebApp.Areas.IT.Controllers
             return this.View();
         }
 
-        public IActionResult DownloadSvgSpriteSplitter(string type)
-        {
-            var existingTypes = new string []{ "win64", "win86", "linux64" };
 
-            foreach (var item in existingTypes)
-            {
-                if (item == type)
-                {
-                    var wwwwrootPath = this.environment.WebRootPath;
-                    var filePath = $"{wwwwrootPath}/download/apps/svg-sprite-splitter/{type}.7z";
+        // Disabled for now:
 
-                    string contentType;
-                    new FileExtensionContentTypeProvider().TryGetContentType(filePath, out contentType);
-                    if (contentType == null)
-                    {
-                        contentType = "application/octet-stream";
-                    }
+        //public IActionResult DownloadSvgSpriteSplitter(string type)
+        //{
+        //    var existingTypes = new string []{ "win64", "win86", "linux64" };
 
-                    var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                    return File(fileStream, contentType, $"SVG_Sprite_Splitter_{type}.7z");
-                }
-            }
+        //    foreach (var item in existingTypes)
+        //    {
+        //        if (item == type)
+        //        {
+        //            var wwwwrootPath = this.environment.WebRootPath;
+        //            var filePath = $"{wwwwrootPath}/download/apps/svg-sprite-splitter/{type}.7z";
 
-            return BadRequest();
-        }
+        //            string contentType;
+        //            new FileExtensionContentTypeProvider().TryGetContentType(filePath, out contentType);
+        //            if (contentType == null)
+        //            {
+        //                contentType = "application/octet-stream";
+        //            }
+
+        //            var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        //            return File(fileStream, contentType, $"SVG_Sprite_Splitter_{type}.7z");
+        //        }
+        //    }
+
+        //    return BadRequest();
+        //}
     }
 }
