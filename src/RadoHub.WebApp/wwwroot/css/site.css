@@ -387,6 +387,7 @@ main {
 }
 
 .lifestyle-cooking {
+    min-height: 100%;
     background-color: burlywood;
     padding-bottom: 50px;
 }
@@ -504,3 +505,13 @@ main {
 .lifestyle-tools {
     min-height: 100%;
 }
+
+.it-useful-tools {
+    min-height: 100%;
+    background-color: darkslategrey;
+}
+
+    .it-useful-tools .library {
+        min-height: 100%;
+        background-color: darkslategrey;
+    }
