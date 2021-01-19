@@ -41,7 +41,7 @@ Expect more new things in future!
 - Search engine for Cooking Recipes
 
 
-Follow are listed a couple of sreenshots from Administration area, which you usually can't see at my hosted app, because you need Admin role to have access to this area (click at the images for fullscreen):
+### Follow are listed a couple of sreenshots from Administration area, which you usually can't see at my hosted app, because you need Admin role to have access to this area (click at the images for fullscreen):
 
 - Manage cooking recipe:
 ![Manage cooking recipe](/documentation_resources/app_screenshots/manage_cooking.jpg?raw=true)
