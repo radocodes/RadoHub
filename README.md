@@ -32,4 +32,22 @@ Expect more new things in future!
 - SEO improvements
 - Hosted in Production
 
+Follow are listed a couple of sreenshots from Administration area, which you usually can't see at my hosted app, because you need Admin role to have access to this area (click at the images for fullscreen):
 
+- Manage cooking recipe:
+![Manage cooking recipe](/documentation_resources/app_screenshots/manage_cooking.jpg?raw=true)
+
+- Create or edit cooking recipe:
+![Create or edit cooking recipe](/documentation_resources/app_screenshots/create_cooking_recipe.jpg?raw=true)
+
+- Delete cooking recipe:
+![Delete cooking recipe](/documentation_resources/app_screenshots/delete_recipe.jpg?raw=true)
+
+- Manage user accounts:
+![Manage user accounts](/documentation_resources/app_screenshots/manage_user_accounts.jpg?raw=true)
+
+- User details:
+![User details](/documentation_resources/app_screenshots/user_details.jpg?raw=true)
+
+- Delete details:
+![Delete details](/documentation_resources/app_screenshots/delete_user.jpg?raw=true)
