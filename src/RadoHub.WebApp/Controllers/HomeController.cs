@@ -48,7 +48,10 @@ namespace RadoHub.WebApp.Controllers
 
         public IActionResult About()
         {
-            return View();
+            var model = new AboutViewModel();
+            model.Cloudinary = this.cloudinaryService.GetCloudinaryInstance();
+
+            return View(model);
         }
 
         [HttpPost]

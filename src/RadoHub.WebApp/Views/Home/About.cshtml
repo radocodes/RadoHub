@@ -1,5 +1,8 @@
-﻿
+﻿@model RadoHub.ViewModels.Home.AboutViewModel
 @{
+    Cloudinary cloudinary = Model.Cloudinary;
+    string photoOfMeFileName = "Radoslav_cquwim";
+
     ViewData["Title"] = "About";
 }
 
@@ -18,7 +21,9 @@
         <header class="header container">
             <div class="row">
                 <div class="col-md-5 col-12 my-photo">
-                    <img class="image" src="~/images/bio/profile/Radoslav.jpg" />
+                    <img class="image" src="@Html.Raw(cloudinary.Api.UrlImgUp.Secure(true).Format("jpg")
+                             .Transform(new Transformation().Width(0.15).Radius("max").Quality(100))
+                             .BuildUrl(photoOfMeFileName))" alt="photo of me" />
                 </div>
                 <div class="col-md-7 col-12 contacts">
                     <address>
