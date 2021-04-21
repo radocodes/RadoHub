@@ -36,7 +36,7 @@ Expect more new features in future! :)
 - Hosted in Release (Production) environment - https://radohub.com
 
 ### Note some background elements:
-- Javascript Snowflakes code and canvas is applying dinamically according to such setting and date time period of the year (for example - Winter)
+- Javascript Snowflakes code and canvas is applying dynamically according to such setting and date time period of the year (for example - Winter)
 - Season Inspiration at Home page dinamically shows different (already added in the system) images, according to the season or current Holliday. Admin is able to manage it. 
 - Search engine for Cooking Recipes
 
