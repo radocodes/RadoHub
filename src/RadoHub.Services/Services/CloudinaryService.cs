@@ -34,10 +34,11 @@ namespace RadoHub.Services.Services
             return this.cloudinaryAccount;
         }
 
-        public string GenerateSignature(string timestamp, string source)
+        public string GenerateSignature(string timestamp, string source, string folder)
         {
             string SignedUploadPreset = "ml_default";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("folder", folder);
             parameters.Add("source", source);
             parameters.Add("timestamp", timestamp);
             parameters.Add("upload_preset", SignedUploadPreset);

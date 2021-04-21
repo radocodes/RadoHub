@@ -8,6 +8,6 @@ namespace RadoHub.Services.Contracts
 
         public Account CloudinaryAccount();
 
-        public string GenerateSignature(string timestamp, string source);
+        public string GenerateSignature(string timestamp, string source, string folder);
     }
 }
