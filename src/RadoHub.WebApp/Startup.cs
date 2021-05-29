@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using RadoHub.WebApp.Data;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RadoHub.Data.Models;
 using RadoHub.Services.Contracts;
-using RadoHub.Services.Services;
+using RadoHub.Services.Implementation;
 using RadoHub.WebApp.Middlewares;
 using RadoHub.Data.Repositories.Contracts;
 using RadoHub.Data.Repositories.Implementation;

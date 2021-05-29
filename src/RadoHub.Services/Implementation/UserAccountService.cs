@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RadoHub.Services.Constants;
 
-namespace RadoHub.Services.Services
+namespace RadoHub.Services.Implementation
 {
     public class UserAccountService : IUserAccountService
     {

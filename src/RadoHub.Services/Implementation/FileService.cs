@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RadoHub.Services.Services
+namespace RadoHub.Services.Implementation
 {
     public class FileService : IFileService
     {

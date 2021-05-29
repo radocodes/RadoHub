@@ -4,7 +4,7 @@ using RadoHub.Data.Models;
 using RadoHub.Services.Contracts;
 using System.Collections.Generic;
 
-namespace RadoHub.Services.Services
+namespace RadoHub.Services.Implementation
 {
     public class CloudinaryService : ICloudinaryService
     {

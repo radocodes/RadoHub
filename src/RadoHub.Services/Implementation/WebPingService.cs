@@ -7,7 +7,7 @@ using System.Net.NetworkInformation;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RadoHub.Services.Services
+namespace RadoHub.Services.Implementation
 {
     public class WebPingService : BackgroundService
     {
