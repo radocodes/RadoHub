@@ -7,17 +7,19 @@
         <div class="container" style="padding-bottom:25px; background-color: #EAE7DC">
             <header>
                 <div class="row">
-                    <div class="col text-center container" style="padding-top:25px; padding-bottom:25px;">
+                    <div class="col-12 text-center container" style="padding-top:25px; padding-bottom:25px;">
                         <h1 class="title text-center">@ViewData["Title"]</h1>
                         <p>Convert your sitemap from txt to xml <strong>or</strong> from xml to txt format</p>
                     </div>
                 </div>
             </header>
-            <section class="container">
+            <section>
                 <div class="row">
                     <div class="col-12">
                         <div style="width:25%; margin-left:auto; margin-right:auto">
-                            <input type="file" id="filetoRead" />
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="filetoRead" style="max-width:100%;" />
+                            </div>
                             <div class="radio-buttons" style="margin-top:25px; margin-bottom:25px;">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="convertMode" id="convert-mode-1" value="1" checked>
@@ -36,21 +38,20 @@
                     </div>
                     <div class="col-12" style="width: 50%; margin-left:auto; margin-right: auto">
                         <div style="width:25%; margin-left:auto; margin-right:auto">
-                            <button class="btn btn-info" onclick="ProcessWithPreview()">show result</button>
-                            <button class="btn btn-info" onclick="ProcessWithDownload()">Download result</button>
+                            <button class="btn btn-info" onclick="ProcessWithPreview()" style="margin-bottom:10px;">show result</button>
+                            <button class="btn btn-info" onclick="ProcessWithDownload()" style="margin-bottom:10px;">Download result</button>
                         </div>
                     </div>
                 </div>
             </section>
 
             <div class="row">
-                <div class="col">
+                <div class="col-12">
                     <section id="show-result">
                         <div id="result-content"></div>
                     </section>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
