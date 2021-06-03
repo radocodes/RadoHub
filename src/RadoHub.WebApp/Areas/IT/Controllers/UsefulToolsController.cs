@@ -40,7 +40,6 @@ namespace RadoHub.WebApp.Areas.IT.Controllers
             return this.View();
         }
 
-
         // Disabled for now:
 
         //public IActionResult DownloadSvgSpriteSplitter(string type)
@@ -68,5 +67,10 @@ namespace RadoHub.WebApp.Areas.IT.Controllers
 
         //    return BadRequest();
         //}
+
+        public IActionResult SitemapFormatConverter()
+        {
+            return this.View();
+        }
     }
 }

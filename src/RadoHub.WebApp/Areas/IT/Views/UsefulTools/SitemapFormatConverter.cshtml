@@ -1,0 +1,252 @@
+﻿@{
+    ViewData["Title"] = "Sitemap Format Converter";
+}
+
+<div class="it-useful-tools">
+    <div class="sitemap-format-parser" style="background-color: darkslategrey">
+        <div class="container" style="padding-bottom:25px; background-color: #EAE7DC">
+            <header>
+                <div class="row">
+                    <div class="col text-center container" style="padding-top:25px; padding-bottom:25px;">
+                        <h1 class="title text-center">@ViewData["Title"]</h1>
+                        <p>Convert your sitemap from txt to xml <strong>or</strong> from xml to txt format</p>
+                    </div>
+                </div>
+            </header>
+            <section class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div style="width:25%; margin-left:auto; margin-right:auto">
+                            <input type="file" id="filetoRead" />
+                            <div class="radio-buttons" style="margin-top:25px; margin-bottom:25px;">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="convertMode" id="convert-mode-1" value="1" checked>
+                                    <label class="form-check-label" for="convertMode">
+                                        from txt to xml
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="convertMode" id="convert-mode-2" value="2">
+                                    <label class="form-check-label" for="convertMode">
+                                        from xml to txt
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12" style="width: 50%; margin-left:auto; margin-right: auto">
+                        <div style="width:25%; margin-left:auto; margin-right:auto">
+                            <button class="btn btn-info" onclick="ProcessWithPreview()">show result</button>
+                            <button class="btn btn-info" onclick="ProcessWithDownload()">Download result</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="row">
+                <div class="col">
+                    <section id="show-result">
+                        <div id="result-content"></div>
+                    </section>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const ConvertMode = {
+        TXT_TO_XML: 1,
+        XML_TO_TXT: 2
+    };
+
+    const regexExpression = new RegExp('(<loc>)(.*)(<\/loc>)', 'g');
+
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        var finalResult = "";
+        var resultPreviewLinesLength = 0;
+        var content = null;
+        var file = null;
+
+        document.getElementById("filetoRead").addEventListener("change", function () {
+            file = this.files[0];
+
+            if (file) {
+                let reader = new FileReader();
+
+                reader.onload = function (evt) {
+                    console.log(evt);
+                    content = evt.target.result;
+                    alert('File was loaded successfuly!');
+                };
+
+                reader.onerror = function (evt) {
+                    console.error("An error ocurred reading the file", evt);
+                    alert("An error ocurred reading the file");
+                };
+
+                reader.readAsText(file, "UTF-8");
+            }
+        }, false);
+
+    } else {
+        alert('The File APIs are not fully supported by your browser.');
+    }
+
+    function IsFileTypeValid(file) {
+        let currentMode = GetMode();
+
+        if (file.type === "text/xml" && currentMode === ConvertMode.TXT_TO_XML) {
+            return false;
+        }
+        else if (file.type === "text/plain" && currentMode === ConvertMode.XML_TO_TXT) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function HandleContent(content, convertMode) {
+        if (!IsFileTypeValid(file)) {
+            alert("Your file's type is not valid according to the selected  convert mode");
+            throw "Wrong input file type";
+        };
+
+        if (convertMode === ConvertMode.TXT_TO_XML) {
+            ConvertTxtToXml(content);
+        }
+        else if (convertMode === ConvertMode.XML_TO_TXT) {
+            ConvertXmlToTxt(content);
+        }
+    }
+
+    function ConvertTxtToXml(content) {
+        let functionResult = ""
+        let resultLinesLength = 0;
+
+        functionResult += `<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap format-converter https://radohub.com/IT/UsefulTools/SitemapFormatConverter -->
+
+
+`;
+        resultLinesLength += 9;
+
+        let ContentLines = content.split('\r\n');
+
+        for (let currRow = 0; currRow < ContentLines.length; currRow++) {
+            let rowData = ContentLines[currRow].trim();
+            if (rowData != null && rowData != "") {
+                functionResult += `<url>
+  <loc>${rowData}</loc>
+  <lastmod>${new Date().toISOString()}</lastmod>
+</url> \n`;
+                resultLinesLength += 3;
+            }
+        }
+
+        functionResult += `
+
+</urlset>`;
+
+        resultLinesLength += 3;
+
+        finalResult = functionResult;
+        resultPreviewLinesLength = resultLinesLength;
+    }
+
+    function ConvertXmlToTxt(content) {
+        let functionResult = "";
+        let resultLinesLength = 0;
+
+        let regexMatchedElements = [...content.matchAll(regexExpression)];
+
+        for (let index = 0; index < regexMatchedElements.length; index++) {
+            let currentElement = regexMatchedElements[index];
+
+            //plain url of current sitemap endpoint
+            let secondRegexExpressionGroup = 2;
+
+            let url = currentElement[secondRegexExpressionGroup]
+
+            functionResult += `${url} \n`;
+            resultLinesLength += 1;
+        }
+
+        finalResult = functionResult;
+        resultPreviewLinesLength = resultLinesLength;
+    }
+
+    function ProcessWithPreview() {
+        let selectedMode = GetMode();
+
+        try {
+            HandleContent(content, selectedMode);
+            ShowResult();
+        } catch (e) {
+            console.log(e);
+        }
+        finally {
+            finalResult = "";
+        }
+    }
+
+    function ProcessWithDownload() {
+        let selectedMode = GetMode();
+        let resultFileExtention = GetResultFileExtention();
+
+        try {
+            HandleContent(content, selectedMode);
+            download(`sitemap.${resultFileExtention}`, finalResult);
+        } catch (e) {
+            console.log(e);
+        }
+        finally {
+            finalResult = "";
+        }
+    }
+
+    function GetMode() {
+        var radios = document.getElementsByName('convertMode');
+
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                return Number(radios[i].value);
+            }
+        }
+    }
+
+    function GetResultFileExtention() {
+        let currMode = GetMode();
+        if (currMode === ConvertMode.TXT_TO_XML) {
+            return "xml"
+        }
+        else {
+            return "txt"
+        }
+    }
+
+    function ShowResult() {
+
+        $('#result-content').replaceWith(`<textarea id="result-content" disabled style="width:100%; border:ridge; margin-left:auto; margin-right:auto; margin-top:25px; background-color: white" rows="${resultPreviewLinesLength}">${finalResult}</textarea>`)
+    }
+
+    function download(filename, fileContent) {
+        let element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fileContent));
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    }
+</script>
