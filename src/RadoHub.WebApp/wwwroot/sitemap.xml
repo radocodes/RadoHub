@@ -9,97 +9,102 @@
 
 <url>
   <loc>https://radohub.com/</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://radohub.com/Identity/Account/Login</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.20</priority>
 </url>
 <url>
   <loc>https://radohub.com/Home/About</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/IT/UsefulTools/Library</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/LifeStyle/Cooking</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/LifeStyle/Tools/RakiaCalculator</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.95</priority>
 </url>
 <url>
   <loc>https://radohub.com/LifeStyle/Cooking/RecipeDetails/8</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/LifeStyle/Cooking/RecipeDetails/9</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/LifeStyle/Cooking/RecipeDetails/10</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/Identity/Account/Register</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.20</priority>
 </url>
 <url>
   <loc>https://radohub.com/Identity/Account/ForgotPassword</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.20</priority>
 </url>
 <url>
   <loc>https://radohub.com/Identity/Account/Register?returnUrl=%2F</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.20</priority>
 </url>
 <url>
   <loc>https://radohub.com/IT/UsefulTools/SvgSpriteSplitter</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
+  <priority>0.95</priority>
+</url>
+<url>
+  <loc>https://radohub.com/IT/UsefulTools/SitemapFormatConverter</loc>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.95</priority>
 </url>
 <url>
   <loc>https://radohub.com/Lifestyle/Cooking</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/LifeStyle/Cooking/RecipeDetails/11</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/LifeStyle/Cooking/RecipeDetails/12</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/LifeStyle/Cooking/RecipeDetails/13</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/LifeStyle/Cooking/RecipeDetails/14</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://radohub.com/LifeStyle/Cooking/RecipeDetails/15</loc>
-  <lastmod>2020-12-22T17:05:55+00:00</lastmod>
+  <lastmod>2021-06-25T17:05:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
