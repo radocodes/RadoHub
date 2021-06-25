@@ -146,7 +146,7 @@
             if (rowData != null && rowData != "") {
                 functionResult += `<url>
   <loc>${rowData}</loc>
-  <lastmod>${new Date().toISOString()}</lastmod>
+  <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
 </url> \n`;
                 resultLinesLength += 3;
             }
