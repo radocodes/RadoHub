@@ -1,5 +1,6 @@
 ﻿@using RadoHub.Services.Constants
 @using System.Globalization;
+@inject IOptions<RadoHubDomainAddressConfig> RadoHubDomainAddressConfig
 @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
 
 @{
@@ -7,7 +8,7 @@
     var returnUrlFullPath = GetCurrentUrlFullPath();
 
     var parms = new Dictionary<string, string>()
-    {
+{
                 { "culture", incomingUICulture.IsoCode },
                 { "returnUrl", returnUrlFullPath }
     };
@@ -30,15 +31,17 @@
 
     public string GetCurrentUrlFullPath()
     {
-        string webDomainAddress;
-        if (hostingEnv.EnvironmentName == RadoHub.Services.Constants.RadoHubEnvironments.Production)
-        {
-            webDomainAddress = RadoHubDomainAddress.ProductionAddress;
-        }
-        else
-        {
-            webDomainAddress = RadoHubDomainAddress.LocalHost;
-        }
+        string webDomainAddress = RadoHubDomainAddressConfig.Value.Url;
+
+        // Obsolete approach to get webDomainAddress:
+        //if (hostingEnv.EnvironmentName == RadoHub.Services.Constants.RadoHubEnvironments.Production)
+        //{
+        //    webDomainAddress = RadoHubDomainAddress.ProductionAddress;
+        //}
+        //else
+        //{
+        //    webDomainAddress = RadoHubDomainAddress.LocalHost;
+        //}
 
         string currentUrlRelativePath = Context.Request.Path;
         var currentUrlFullPath = $"{webDomainAddress}{currentUrlRelativePath}";

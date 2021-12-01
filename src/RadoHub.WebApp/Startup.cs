@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RadoHub.Data.Models;
+using RadoHub.Data.Models.AppConfigModels;
 using RadoHub.Services.Contracts;
 using RadoHub.Services.Implementation;
 using RadoHub.WebApp.Middlewares;
@@ -47,7 +48,10 @@ namespace RadoHub.WebApp
             .AddDefaultTokenProviders()
             .AddDefaultUI();
 
-            services.Configure<CloudinaryConfigs>(Configuration.GetSection("CloudinaryAccountCredits"));
+            // AppSettings (App Configs)
+            services.Configure<RadoHubDomainAddressConfig>(Configuration.GetSection("RadohubDomainAddress"));
+            services.Configure<CookingRecipeConfig>(Configuration.GetSection("CookingRecipeConfig"));
+            services.Configure<CloudinaryConfig>(Configuration.GetSection("CloudinaryAccountCredits"));
 
             services.AddAutoMapper(typeof(Startup));
 

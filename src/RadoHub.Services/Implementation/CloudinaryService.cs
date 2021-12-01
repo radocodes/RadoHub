@@ -1,6 +1,6 @@
 ﻿using CloudinaryDotNet;
 using Microsoft.Extensions.Options;
-using RadoHub.Data.Models;
+using RadoHub.Data.Models.AppConfigModels;
 using RadoHub.Services.Contracts;
 using System.Collections.Generic;
 
@@ -8,18 +8,18 @@ namespace RadoHub.Services.Implementation
 {
     public class CloudinaryService : ICloudinaryService
     {
-        private readonly CloudinaryConfigs cloudinaryConfigs;
+        private readonly CloudinaryConfig cloudinaryConfig;
         private readonly Cloudinary cloudinary;
         private readonly Account cloudinaryAccount;
 
-        public CloudinaryService(IOptions<CloudinaryConfigs> cloudinaryConfigsAccessor)
+        public CloudinaryService(IOptions<CloudinaryConfig> cloudinaryConfigAccessor)
         {
-            this.cloudinaryConfigs = cloudinaryConfigsAccessor.Value;
+            this.cloudinaryConfig = cloudinaryConfigAccessor.Value;
 
             this.cloudinaryAccount = new Account(
-                this.cloudinaryConfigs.CloudName,
-                this.cloudinaryConfigs.ApiKey,
-                this.cloudinaryConfigs.ApiSecret);
+                this.cloudinaryConfig.CloudName,
+                this.cloudinaryConfig.ApiKey,
+                this.cloudinaryConfig.ApiSecret);
 
             this.cloudinary = new Cloudinary(this.cloudinaryAccount);
         }

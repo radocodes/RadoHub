@@ -1,11 +1,13 @@
-﻿namespace RadoHub.Data.Models
+﻿namespace RadoHub.Data.Models.AppConfigModels
 {
-    public class CloudinaryConfigs
+    public class CloudinaryConfig
     {
         public string CloudName { get; set; }
 
         public string ApiKey { get; set; }
 
         public string ApiSecret { get; set; }
+
+        public string DefaultUploadPreset { get; set; }
     }
 }
