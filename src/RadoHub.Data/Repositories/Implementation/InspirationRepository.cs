@@ -67,7 +67,7 @@ namespace RadoHub.Data.Repositories.Implementation
 
             if (inspirationPeriod.EndDate.Month < inspirationPeriod.StartDate.Month)
             {
-                if (DateTime.UtcNow.Month >= inspirationPeriod.StartDate.Month || DateTime.UtcNow.Month <= inspirationPeriod.EndDate.Month)
+                if (DateTime.UtcNow.Month >= inspirationPeriod.StartDate.Month && DateTime.UtcNow.Month <= inspirationPeriod.EndDate.Month)
                 {
                     result = true;
                 }
