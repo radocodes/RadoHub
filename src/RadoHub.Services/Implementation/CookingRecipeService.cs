@@ -180,57 +180,57 @@ namespace RadoHub.Services.Implementation
         }
 
         // Curently obsolete
-        private void HandleImages(int cookingRecipeId, string oldCoverImageFileName, IFormFile newCoverImage, IEnumerable<IFormFile> newImages)
-        {
-            string coverImgFileName = oldCoverImageFileName;
+        //private void HandleImages(int cookingRecipeId, string oldCoverImageFileName, IFormFile newCoverImage, IEnumerable<IFormFile> newImages)
+        //{
+        //    string coverImgFileName = oldCoverImageFileName;
 
-            var sb = new StringBuilder();
+        //    var sb = new StringBuilder();
 
-            if (env.EnvironmentName == RadoHubEnvironments.Development)
-            {
-                sb.Append(CookingRecipeConstants.StageImageFolderPath);
-            }
+        //    if (env.EnvironmentName == RadoHubEnvironments.Development)
+        //    {
+        //        sb.Append(CookingRecipeConstants.StageImageFolderPath);
+        //    }
 
-            else if (env.EnvironmentName == RadoHubEnvironments.Production)
-            {
-                sb.Append(CookingRecipeConstants.ProdImageFolderPath);
-            }
+        //    else if (env.EnvironmentName == RadoHubEnvironments.Production)
+        //    {
+        //        sb.Append(CookingRecipeConstants.ProdImageFolderPath);
+        //    }
 
-            sb.Append(CookingRecipeConstants.CookingRecipesImageFolderName);
-            sb.Append(@$"{cookingRecipeId}\");
+        //    sb.Append(CookingRecipeConstants.CookingRecipesImageFolderName);
+        //    sb.Append(@$"{cookingRecipeId}\");
 
-            var currRecipeAllimagesPath = sb.ToString();
+        //    var currRecipeAllimagesPath = sb.ToString();
 
-            sb.Append(CookingRecipeConstants.CoverImagefolderName);
+        //    sb.Append(CookingRecipeConstants.CoverImagefolderName);
 
-            var currCoverImagePath = sb.ToString();
+        //    var currCoverImagePath = sb.ToString();
 
-            this.fileService.CreateDirectory(currCoverImagePath);
+        //    this.fileService.CreateDirectory(currCoverImagePath);
 
-            if (newCoverImage != null)
-            {
-                if (string.IsNullOrEmpty(coverImgFileName))
-                {
-                    coverImgFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
-                }
+        //    if (newCoverImage != null)
+        //    {
+        //        if (string.IsNullOrEmpty(coverImgFileName))
+        //        {
+        //            coverImgFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
+        //        }
 
-                this.fileService.SaveImageFile($"{currCoverImagePath}{coverImgFileName}", newCoverImage);
-            }
+        //        this.fileService.SaveImageFile($"{currCoverImagePath}{coverImgFileName}", newCoverImage);
+        //    }
 
-            var updatingModel = this.cookingRecipeRepo.GetCookingRecipeById(cookingRecipeId);
-            updatingModel.CoverImageFileName = coverImgFileName;
-            this.cookingRecipeRepo.UpdateCookingRecipeAsync(updatingModel);
+        //    var updatingModel = this.cookingRecipeRepo.GetCookingRecipeById(cookingRecipeId);
+        //    updatingModel.CoverImageFileName = coverImgFileName;
+        //    this.cookingRecipeRepo.UpdateCookingRecipeAsync(updatingModel);
 
-            // TODO: implementation for secondary images not completed 
-            if (newImages != null && newImages.Count() > 0)
-            {
-                foreach (var image in newImages)
-                {
-                    var imageFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
+        //    // TODO: implementation for secondary images not completed 
+        //    if (newImages != null && newImages.Count() > 0)
+        //    {
+        //        foreach (var image in newImages)
+        //        {
+        //            var imageFileName = $"{Guid.NewGuid().ToString()}{FileExtensions.ImageExtension}";
 
-                    this.fileService.SaveImageFile($"{currRecipeAllimagesPath}{imageFileName}", newCoverImage);
-                }
-            }
-        }
+        //            this.fileService.SaveImageFile($"{currRecipeAllimagesPath}{imageFileName}", newCoverImage);
+        //        }
+        //    }
+        //}
     }
 }
