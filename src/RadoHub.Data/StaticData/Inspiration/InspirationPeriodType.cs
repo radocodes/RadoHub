@@ -1,6 +1,6 @@
 ﻿namespace RadoHub.Data.StaticData.Inspiration
 {
-    public enum InspirationPeriodTypes
+    public enum InspirationPeriodType
     {
         Seasonal = 1,
         Monthly = 2,

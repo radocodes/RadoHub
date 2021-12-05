@@ -19,14 +19,14 @@ namespace RadoHub.Data.Repositories.Implementation
 
         public string GetInspirationImage()
         {
-            var currentInspirationPeriod = GetCurrentHolidayPeriod();
+            var currentInspirationPeriod = GetSeasonPeriodByType(InspirationPeriodType.Holiday);
             if (currentInspirationPeriod == null)
             {
-                currentInspirationPeriod = GetMonthPeriod();
+                currentInspirationPeriod = GetSeasonPeriodByType(InspirationPeriodType.Monthly);
             }
             if (currentInspirationPeriod == null)
             {
-                currentInspirationPeriod = GetSeasonPeriod();
+                currentInspirationPeriod = GetSeasonPeriodByType(InspirationPeriodType.Seasonal);
             }
             if (currentInspirationPeriod == null)
             {
@@ -36,22 +36,10 @@ namespace RadoHub.Data.Repositories.Implementation
             return currentInspirationPeriod.ImageFileName;
         }
 
-        private InspirationPeriod GetSeasonPeriod()
+        private InspirationPeriod GetSeasonPeriodByType(InspirationPeriodType inspirationPeriodType)
         {
             return GetActiveInspirationPeriods()
-                .FirstOrDefault(period => period.Type == (int)InspirationPeriodTypes.Seasonal);
-        }
-
-        private InspirationPeriod GetMonthPeriod()
-        {
-            return GetActiveInspirationPeriods()
-                .FirstOrDefault(period => period.Type == (int)InspirationPeriodTypes.Monthly);
-        }
-
-        private InspirationPeriod GetCurrentHolidayPeriod()
-        {
-            return GetActiveInspirationPeriods()
-                .FirstOrDefault(period => period.Type == (int)InspirationPeriodTypes.Holiday);
+                .FirstOrDefault(period => period.Type == (int)inspirationPeriodType);
         }
 
         private IEnumerable<InspirationPeriod> GetActiveInspirationPeriods()
@@ -67,12 +55,16 @@ namespace RadoHub.Data.Repositories.Implementation
 
             if (inspirationPeriod.EndDate.Month < inspirationPeriod.StartDate.Month)
             {
-                if (DateTime.UtcNow.Month >= inspirationPeriod.StartDate.Month && DateTime.UtcNow.Month <= inspirationPeriod.EndDate.Month)
+                if (DateTime.UtcNow.Month > inspirationPeriod.EndDate.Month && DateTime.UtcNow.Month < inspirationPeriod.StartDate.Month)
                 {
-                    result = true;
+                    return false;
+                }
+                else
+                {
+                    return true;
                 }
             }
-            else if (inspirationPeriod.StartDate.Month <= inspirationPeriod.StartDate.Month)
+            else if (inspirationPeriod.StartDate.Month <= inspirationPeriod.EndDate.Month)
             {
                 if (DateTime.UtcNow.Month >= inspirationPeriod.StartDate.Month && DateTime.UtcNow.Month <= inspirationPeriod.EndDate.Month)
                 {
